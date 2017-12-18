@@ -11,8 +11,17 @@
     </div>
   </div>
   <br>
-  <h3>Current Polls:</h3>
-  <input id="search" type="text" name="search" placeholder="Search">
+  <h3>Fool Quizz:</h3>
+  <div class="container">
+    <!-- <table> -->
+      <div class="content" *ngFor="let i of total">          
+      <a [routerLink]="['/poll','5a343044c4ef03318c02c7b7']"> <div class="blc">
+        
+        </div></a>
+      </div>
+    <!-- </table> -->
+  </div>
+  <!-- <input id="search" type="text" name="search" placeholder="Search">
   <div class="container">
     <table class="table">
       <thead>
@@ -21,20 +30,17 @@
           <td>Survey Question</td>
           <td>Date Posted</td>
           <td>Action</td>
-          <!-- <td>Like</td> -->
-        </tr>
+      </tr>
       </thead>
       <tbody>
        
         <tr *ngFor="let que of questions">
           <td><a [routerLink]="['/poll',que._id]" (click)="onQueClick(que.question)">{{que.question}}</a></td>
-          <!-- <td><a (click)="onQueClick(que.id)">{{que.question}}</a></td> -->
           <td>{{que.author}}</td>
           <td>{{que.createdAt | date:'medium'}}</td>         
           <td><div  *ngIf="que.author == name"><a (click)="onDelete(que._id)" ><button>Delete</button></a></div></td>        
         </tr>
       </tbody>
     </table>
-
-  </div>
+  </div> -->
 </div>
