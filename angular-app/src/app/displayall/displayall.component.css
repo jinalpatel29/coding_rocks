@@ -1,0 +1,17 @@
+.container{
+    border: 2px solid gray;
+    margin: 20px;
+    width: 100%;
+}
+.link{
+    color: blue;
+    text-decoration: underline;
+}
+#link{
+    color: blue;
+    text-decoration: underline;
+}
+
+#search{
+    margin-left: 950px;
+}

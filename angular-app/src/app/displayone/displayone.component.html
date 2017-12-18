@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-10"><h3></h3></div>
+      <div class="col-md-2"> <a id="link" (click)="goToPoll()">Go to Polls</a></div>
+    </div>
+    <div class="container">
+      <h4>{{question}}</h4>
+      <p>Click the Vote button to choose one</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Option</td>
+            <td>Current Count of Votes</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let opt of options">
+            <td>{{opt.option}}</td>
+            <td>{{opt.rating}}</td>
+            <td><a (click)="onLike(opt)"><button>Vote</button></a></td>          
+          </tr>
+        </tbody>
+      </table>
+   
+    </div>
+  </div>

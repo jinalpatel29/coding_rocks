@@ -1,0 +1,20 @@
+#que{
+    width: 500px;
+}
+.container{
+    margin: 20px;
+}
+form{
+    margin: 20px;
+}
+button{
+    margin-left: 550px;
+}
+label{
+    /* color: black; */
+    font-weight: bold;
+}
+#link{
+    color: blue;
+    text-decoration: underline;
+}
