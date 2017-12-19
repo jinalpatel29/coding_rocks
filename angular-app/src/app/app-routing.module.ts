@@ -11,7 +11,7 @@ import { ReqconfirmComponent } from './reqconfirm/reqconfirm.component';
 import { InviteComponent } from './invite/invite.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NeweventComponent } from './newevent/newevent.component';
-
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent }, 
@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'invite', pathMatch: 'full', component: InviteComponent },
   { path: 'freqset', pathMatch: 'full', component: FrequencyComponent },
   { path: 'item', pathMatch: 'full', component: NeweventComponent },
+  { path: 'calendar', pathMatch: 'full', component: CalendarComponent },
 ];
 
 @NgModule({

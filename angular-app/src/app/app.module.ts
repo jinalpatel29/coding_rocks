@@ -16,6 +16,7 @@ import { ReqconfirmComponent } from './reqconfirm/reqconfirm.component';
 import { InviteComponent } from './invite/invite.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NeweventComponent } from './newevent/newevent.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 
@@ -32,6 +33,7 @@ import { NeweventComponent } from './newevent/newevent.component';
     InviteComponent,
     FrequencyComponent,
     NeweventComponent,
+    CalendarComponent,
     
   ],
   imports: [
