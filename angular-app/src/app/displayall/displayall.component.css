@@ -21,9 +21,8 @@
 .blc{
    display: inline-block;
    margin: 2px;
-   background-image: url("/assets/images/Makeup.jpg");
    width: 250px;
-   height: 250px;
+   height: 200px;
    padding: 5px;
 }
 
@@ -32,7 +31,7 @@
 }
 
 .border_red {
-    border: 4px solid red;
+    border: 4px solid black;
 }
 
 .wrapper {
@@ -47,12 +46,13 @@
 .checkimg {
     height: 30px;
     width: 30px;
-    padding: 0px;
-    margin: 0px;
-    vertical-align: top;
+    top: -130px;
+    left: 0px;
+    position: relative;
 }
 
+.catimg {
+    width: 200px;
+    margin: 0px auto;
+}
 
-/* img{
-    width: 10%;
-} */
