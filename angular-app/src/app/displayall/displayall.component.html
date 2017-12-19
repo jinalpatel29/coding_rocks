@@ -11,8 +11,6 @@
     </div>
   </div>
 
-  {{ categories2 | json }}
-  
   <div class="wrapper">
     <div class="content" *ngFor="let category of categories; let idx = index">
       <div (click)="select(idx)" [ngClass]="{border_green: category_boolean[idx], border_red: !category_boolean[idx]}" class="blc">

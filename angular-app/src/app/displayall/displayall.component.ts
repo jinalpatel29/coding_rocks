@@ -14,12 +14,11 @@ import { CategoryService } from '../category-service.service';
 export class DisplayallComponent implements OnInit {
   name;
   categories;
-  categories2;
   questions;
   category_boolean = [];
   check_one: boolean;
   question: Question = new Question();
-  constructor(public service: DataService, private router: Router, private _categoryService: CategoryService) {
+  constructor(public service: DataService, private _router: Router, private _categoryService: CategoryService) {
     this.name = this.service.getUser();
   }
 
@@ -31,63 +30,25 @@ export class DisplayallComponent implements OnInit {
     this.service.setQuestionDisplay(que);
   }
 
-  logout(){
+  logout() {
     this.service.createUser("");
     this.router.navigate(['']);
   }
 
-  onDelete(id){
+  onDelete(id) {
     this.service.deleteQuestion(id)
   }
 
   ngOnInit() {
-    this.categories = [
-      {
-        name: "Fashion",
-        src: '/assets/images/fashion.jpg'
-      },
-      {
-        name: "Drinks",
-        src: '/assets/images/drinks.jpg'
-      },
-      {
-        name: "Food",
-        src: '/assets/images/food.jpg'
-      },
-      {
-        name: "Travel",
-        src: '/assets/images/travel.jpg'
-      },
-      {
-        name: "Art",
-        src: '/assets/images/art.jpg'
-      },
-      {
-        name: "Reading",
-        src: '/assets/images/reading.jpg'
-      },
-      {
-        name: "Music",
-        src: '/assets/images/music.jpg'
-      },
-      {
-        name: "Movies",
-        src: '/assets/images/movies.jpg'
-      },
-      {
-        name: "Gifts",
-        src: '/assets/images/gifts.jpg'
-      },
-    ]
-    
-    //set a boolean value in the category_boolean array that corresponds to the categories;
-    this.categories.forEach(
-      (element) => {this.category_boolean.push(false)}
-    );
-
     this._categoryService.getCategories();
     this._categoryService.tasks.subscribe(
-      (data) => {this.categories2 = data}
+      (data) => {
+        this.categories = data;
+        //set a boolean value in the category_boolean array that corresponds to the categories;
+        this.categories.forEach(
+          (element) => { this.category_boolean.push(false) }
+        );
+      }
     );
 
     this.name = this.service.getUser();
@@ -102,16 +63,19 @@ export class DisplayallComponent implements OnInit {
     this.category_boolean[idx] == true ? this.category_boolean[idx] = false : this.category_boolean[idx] = true;
     //check to see if at least one item has been checked.
     this.category_boolean.forEach(
-      (element) => { if (element){
-        this.check_one = true;
-      }}
+      (element) => {
+        if (element) {
+          this.check_one = true;
+        }
+      }
     );
 
     console.log(this.category_boolean[idx]);
   }
 
-  filter(){
+  filter() {
     console.log("test");
+    this._router.navigateByUrl('quiz/subcategories');
   }
 
 
