@@ -1,5 +1,5 @@
 .container{
-    border: 2px solid gray;
+    padding: 0px;
     /* margin: 20px; */
     width: 100%;
 }
@@ -19,14 +19,40 @@
     display: inline-block;
 }
 .blc{
-    display: inline-block;
-   border: 2px solid black;
-   margin: 5px;
-   background-image: url("/assets/images/Makeup.jpg");
-   width: 150px;
-   height: 150px;
-
+   display: inline-block;
+   margin: 2px;
+   width: 250px;
+   height: 200px;
+   padding: 5px;
 }
-/* img{
-    width: 10%;
-} */
+
+.border_green {
+    border: 4px solid green;
+}
+
+.border_red {
+    border: 4px solid black;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.check {
+    height: 30px;
+    width: 30px;
+}
+
+.checkimg {
+    height: 30px;
+    width: 30px;
+    top: -130px;
+    left: 0px;
+    position: relative;
+}
+
+.catimg {
+    width: 200px;
+    margin: 0px auto;
+}
+
