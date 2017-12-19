@@ -17,7 +17,7 @@ import { InviteComponent } from './invite/invite.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NeweventComponent } from './newevent/newevent.component';
 import { CalendarComponent } from './calendar/calendar.component';
-
+import { CalendarService } from './calendar.service'
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService],
+  providers: [DataService,CalendarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
