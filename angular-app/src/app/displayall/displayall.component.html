@@ -11,10 +11,13 @@
     </div>
   </div>
   <br>
-  <div class="container">
+  <div class="wrapper">
     <!-- <table> -->
       <div class="content" *ngFor="let i of total; let idx = index">
-        <div (click)="select(idx)" [ngClass]="{border_green: total[idx], border_red: !total[idx]}" class="blc"></div>
+        <div (click)="select(idx)" [ngClass]="{border_green: total[idx], border_red: !total[idx]}" class="blc">
+          <div class="check"><img *ngIf="total[idx]" class="checkimg" src="/assets/images/check.jpg" alt="check.jpg">
+            <img *ngIf="!total[idx]" class="checkimg" src="#" alt=""></div>
+        </div>
       </div>
     <!-- </table> -->
   </div>

@@ -12,7 +12,7 @@ import { Question } from '../question';
 export class DisplayallComponent implements OnInit {
   name;
   questions;
-  total = [false,false,false,false,false,false,false,false,false,false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+  total = [false,false,false,false,false,false,false,false,false];
   question: Question = new Question();
   constructor(public service: DataService, private router: Router) {
     this.name = this.service.getUser();
