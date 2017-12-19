@@ -12,7 +12,7 @@ import { Question } from '../question';
 export class DisplayallComponent implements OnInit {
   name;
   questions;
-  total = [1,2,3,4,5,6,7,8,9,10];
+  total = [false,false,false,false,false,false,false,false,false,false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   question: Question = new Question();
   constructor(public service: DataService, private router: Router) {
     this.name = this.service.getUser();
@@ -42,6 +42,11 @@ export class DisplayallComponent implements OnInit {
       (result) => this.questions = result
     )
     this.service.getAll();
+  }
+
+  select(idx) {
+    this.total[idx] == true ? this.total[idx] = false : this.total[idx] = true;
+    console.log(this.total[idx]);
   }
 
 

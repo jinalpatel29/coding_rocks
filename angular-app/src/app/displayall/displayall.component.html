@@ -11,13 +11,11 @@
     </div>
   </div>
   <br>
-  <h3>Fool Quizz:</h3>
+  <h3>Intrests:</h3>
   <div class="container">
     <!-- <table> -->
-      <div class="content" *ngFor="let i of total">          
-      <a [routerLink]="['/poll','5a343044c4ef03318c02c7b7']"> <div class="blc">
-        
-        </div></a>
+      <div class="content" *ngFor="let i of total; let idx = index">
+        <div (click)="select(idx)" [ngClass]="{border_green: total[idx], border_red: !total[idx]}" class="blc"></div>
       </div>
     <!-- </table> -->
   </div>
