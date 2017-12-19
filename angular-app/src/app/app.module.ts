@@ -10,6 +10,12 @@ import { NewComponent } from './new/new.component';
 import { DataService } from './data.service';
 import { DisplayallComponent } from './displayall/displayall.component';
 import { DisplayoneComponent } from './displayone/displayone.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { ReqconfirmComponent } from './reqconfirm/reqconfirm.component';
+import { InviteComponent } from './invite/invite.component';
+import { FrequencyComponent } from './frequency/frequency.component';
+import { NeweventComponent } from './newevent/newevent.component';
 
 
 
@@ -20,6 +26,12 @@ import { DisplayoneComponent } from './displayone/displayone.component';
     NewComponent,
     DisplayallComponent,
     DisplayoneComponent,
+    DashboardComponent,
+    ConfirmComponent,
+    ReqconfirmComponent,
+    InviteComponent,
+    FrequencyComponent,
+    NeweventComponent,
     
   ],
   imports: [
