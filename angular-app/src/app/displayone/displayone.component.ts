@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Question } from '../question';
-import { Option } from '../option';
 import { InterestService } from '../interests.service';
+import { CategoryService } from '../category-service.service';
+import { Category } from '../category';
+import { Subcategories } from '../subcategories';
 
 @Component({
   selector: 'app-displayone',
@@ -11,25 +12,25 @@ import { InterestService } from '../interests.service';
   styleUrls: ['./displayone.component.css']
 })
 export class DisplayoneComponent implements OnInit {
-  interests_boolean: any[];
+  category_boolean: any[];
   name;
   question_id;
   options;
   question;
   option : Option = new Option();
+  categories;
   // question : any = new Question();
-  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService) {
+  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService) {
     this.name = this.service.getUser();
   }
 
   ngOnInit() {
-    this.interests_boolean = this._interestService.getPreferences(); 
-    this.question = this.service.getQuestionDisplay();
-    this._route.paramMap.subscribe(params => {
-      this.service.getQuestion(params.get('id')).subscribe(
-        (result) => this.options = result       
-      )
-    })     
+    this.category_boolean = this._interestService.getPreferences();
+    this._categoryService.tasks.subscribe(
+      (data) => {
+        this.categories = data;
+      }
+    );
   }
 
   onLike(opt) {
