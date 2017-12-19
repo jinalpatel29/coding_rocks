@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Question } from '../question';
 import { Category } from '../category';
 import { CategoryService } from '../category-service.service';
+import { InterestService } from '../interests.service';
 
 
 @Component({
@@ -18,12 +19,12 @@ export class DisplayallComponent implements OnInit {
   category_boolean = [];
   check_one: boolean;
   question: Question = new Question();
-  constructor(public service: DataService, private _router: Router, private _categoryService: CategoryService) {
+  constructor(public service: DataService, private _router: Router, private _categoryService: CategoryService, private _interestService: InterestService) {
     this.name = this.service.getUser();
   }
 
   onClick() {
-    this.router.navigate(['/create']);
+    this._router.navigate(['/create']);
   }
 
   onQueClick(que) {
@@ -32,7 +33,7 @@ export class DisplayallComponent implements OnInit {
 
   logout() {
     this.service.createUser("");
-    this.router.navigate(['']);
+    this._router.navigate(['']);
   }
 
   onDelete(id) {
@@ -47,7 +48,8 @@ export class DisplayallComponent implements OnInit {
         //set a boolean value in the category_boolean array that corresponds to the categories;
         this.categories.forEach(
           (element) => { this.category_boolean.push(false) }
-        );
+        )
+        this._interestService.updatePreferences(this.category_boolean);
       }
     );
 
@@ -61,6 +63,7 @@ export class DisplayallComponent implements OnInit {
   select(idx) {
     this.check_one = false;
     this.category_boolean[idx] == true ? this.category_boolean[idx] = false : this.category_boolean[idx] = true;
+    this._interestService.updatePreferences(this.category_boolean);
     //check to see if at least one item has been checked.
     this.category_boolean.forEach(
       (element) => {
@@ -75,7 +78,7 @@ export class DisplayallComponent implements OnInit {
 
   filter() {
     console.log("test");
-    this._router.navigateByUrl('quiz/subcategories');
+    this._router.navigateByUrl('quiz/subcategories/1');
   }
 
 

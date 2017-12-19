@@ -24,15 +24,15 @@ module.exports = function(app){
 
     app.get('/question/:id', function(req,res){
         questions.findQuestion(req,res);
-    })
+    });
 
     app.put('/note/:id', function(req,res){
         questions.update(req,res);
-    })
+    });
 
     app.delete('/question/:id', function(req,res){
         questions.destroy(req,res);
-    })
+    });
 
     app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./angular-app/dist/index.html"))
