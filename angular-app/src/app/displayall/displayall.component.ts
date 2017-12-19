@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { Question } from '../question';
 import { Category } from '../category';
+import { CategoryService } from '../category-service.service';
 
 
 @Component({
@@ -13,10 +14,12 @@ import { Category } from '../category';
 export class DisplayallComponent implements OnInit {
   name;
   categories;
+  categories2;
   questions;
   category_boolean = [];
+  check_one: boolean;
   question: Question = new Question();
-  constructor(public service: DataService, private router: Router) {
+  constructor(public service: DataService, private router: Router, private _categoryService: CategoryService) {
     this.name = this.service.getUser();
   }
 
@@ -36,7 +39,6 @@ export class DisplayallComponent implements OnInit {
   onDelete(id){
     this.service.deleteQuestion(id)
   }
-
 
   ngOnInit() {
     this.categories = [
@@ -83,6 +85,11 @@ export class DisplayallComponent implements OnInit {
       (element) => {this.category_boolean.push(false)}
     );
 
+    this._categoryService.getCategories();
+    this._categoryService.tasks.subscribe(
+      (data) => {this.categories2 = data}
+    );
+
     this.name = this.service.getUser();
     this.service.questionObserver.subscribe(
       (result) => this.questions = result
@@ -91,8 +98,20 @@ export class DisplayallComponent implements OnInit {
   }
 
   select(idx) {
+    this.check_one = false;
     this.category_boolean[idx] == true ? this.category_boolean[idx] = false : this.category_boolean[idx] = true;
+    //check to see if at least one item has been checked.
+    this.category_boolean.forEach(
+      (element) => { if (element){
+        this.check_one = true;
+      }}
+    );
+
     console.log(this.category_boolean[idx]);
+  }
+
+  filter(){
+    console.log("test");
   }
 
 
