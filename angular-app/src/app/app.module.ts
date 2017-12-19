@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NewComponent } from './new/new.component';
 import { DataService } from './data.service';
 import { DisplayallComponent } from './displayall/displayall.component';
 import { DisplayoneComponent } from './displayone/displayone.component';
@@ -20,11 +19,13 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar.service'
 
 
+import { CategoryService } from './category-service.service';
+import { InterestService } from './interests.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NewComponent,
     DisplayallComponent,
     DisplayoneComponent,
     DashboardComponent,
@@ -42,7 +43,8 @@ import { CalendarService } from './calendar.service'
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService,CalendarService],
+  providers: [DataService, CategoryService,CalendarService, InterestService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

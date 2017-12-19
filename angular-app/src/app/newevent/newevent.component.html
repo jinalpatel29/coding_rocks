@@ -1,3 +1,58 @@
-<p>
-  newevent works!
-</p>
+<div class="container">
+  <div class="header">
+    <div class="links">
+      <a [routerLink]="['/dashboard']">Back to Dashboard</a>
+      <a [routerLink]="['/']">Cancel</a>
+    </div>
+    <h1>New Event</h1>
+  </div>
+  <div class="content">
+    <form class="form-control" method="post" (submit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <label for="name">Title: </label>
+        </div>
+        <div class="col-10">
+          <input id="title" type="text" name="title" [(ngModel)]=question.question placeholder="Enter name here">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="name">Title: </label>
+        </div>
+        <div class="col-10">
+          <input id="title" type="text" name="title" [(ngModel)]=question.question placeholder="Enter name here">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="loc">Location: </label>
+        </div>
+        <div class="col-10">
+          <input type="text" name="loc" [(ngModel)]=question.options[0] placeholder="Enter name here">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="date">Date: </label>
+        </div>
+        <div class="col-10">
+          <input type="date" name="date" [(ngModel)]=question.options[1] placeholder="Enter name here">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="comment">Comment: </label>
+        </div>
+        <div class="col-10">
+          <input type="text" name="comment" [(ngModel)]=question.options[2] placeholder="Enter name here">
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="offset-sm-1 pull-right"> -->
+        <button type="submit" class="btn btn-primary">Create Event</button>
+        <!-- </div> -->
+      </div>
+    </form>
+  </div>
+</div>

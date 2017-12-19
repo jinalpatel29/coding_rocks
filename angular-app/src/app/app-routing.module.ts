@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { NewComponent } from './new/new.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayallComponent } from './displayall/displayall.component';
 import { DisplayoneComponent } from './displayone/displayone.component';
@@ -16,9 +15,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent }, 
   { path: 'quiz', pathMatch: 'full', component: DisplayallComponent },
-  { path: 'create', pathMatch: 'full', component: NewComponent },
   // { path: 'poll', pathMatch: 'full', component: DisplayoneComponent },
-  { path: 'poll/:id', pathMatch: 'full', component: DisplayoneComponent },
+  { path: 'quiz/subcategories/:id', pathMatch: 'full', component: DisplayoneComponent },
   { path: 'dashboard', pathMatch: 'full', component: DashboardComponent },
   { path: 'confirmlove', pathMatch: 'full', component: ConfirmComponent },
   { path: 'requests', pathMatch: 'full', component: ReqconfirmComponent },

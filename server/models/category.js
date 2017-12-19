@@ -7,4 +7,4 @@ var categorySchema = new mongoose.Schema({
     src: String
 }, {timestamps: true});
 
-var Category = mongoose.model("Category", categorySchema);
+var Category = mongoose.model("Categorie", categorySchema);

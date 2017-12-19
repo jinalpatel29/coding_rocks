@@ -1,0 +1,12 @@
+.container{
+    width: 700px;
+    /* background-color: rgba(241, 177, 209, 0.733); */
+}
+
+.header{
+    padding: 20px;
+    background-color: rgba(116, 136, 223, 0.507);
+}
+.content{
+    border: 2px solid gray;
+}

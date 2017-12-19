@@ -1,26 +1,24 @@
-<p>
-  dashboard works!
-</p>
-<ul>
+<div class="container">
+    <!-- navbar -->
+    <div class="row" style="border: 1px solid grey;">
+        <div class="col-md-4">
+            <h4>Hello, username</h4>
+        </div>
+        <div class="col-md-6">
+            <!-- adjust layout -->
+            <a [routerLink]="['/quiz']">Edit Interests</a>
+            <a [routerLink]="['/confirmlove']">Confirm Love</a>
+            <a [routerLink]="['/invite']">Invite Partner</a>
+            <a [routerLink]="['/freqset']">Partner Interests</a>
+            <a [routerLink]="['/item']">Add Calendar Event</a>
+            <a [routerLink]="['/requests']">Partner requests</a>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['/']">Logout</a>
+        </div>
+    </div>
+    <!-- main content -->
+    <div class="container">
 
-   <!-- Dropdown -->
-   <li class="nav-item dropdown" dropdown>
-       <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
-       Basic dropdown<span class="caret"></span></a>
-       <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-           <a class="dropdown-item waves-light" mdbRippleRadius href="#">Action</a>
-           <a class="dropdown-item waves-light" mdbRippleRadius href="#">Another action</a>
-           <a class="dropdown-item waves-light" mdbRippleRadius href="#">Something else here</a>
-           <div class="divider dropdown-divider"></div>
-           <a class="dropdown-item waves-light" mdbRippleRadius href="#">Separated link</a>
-       </div>
-   </li>
-
-</ul>
-
-<!--/.Navbar-->
-<a [routerLink]="['/confirmlove']">Confirm Love</a>
-<a [routerLink]="['/requests']">Partner requests</a>
-<a [routerLink]="['/invite']">Invite Partner</a>
-<a [routerLink]="['/freqset']">Add Event</a>
-<a [routerLink]="['/item']">Confirm Love</a>
+    </div>
+</div>

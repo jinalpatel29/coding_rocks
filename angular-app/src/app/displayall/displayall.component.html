@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row top">
     <div class="col-md-6">
-      <h3>Interests</h3>
+      <h3>Step 1: Select Your Interests</h3>
     </div>
     <div class="col-md-3">
       <a id="link" (click)="onClick()">Create a new Poll</a>
@@ -10,42 +10,20 @@
       <a (click)="logout()">Logout</a>
     </div>
   </div>
-  <br> {{categories | json }}; {{category_boolean | json}}
+
   <div class="wrapper">
-    <!-- <table> -->
     <div class="content" *ngFor="let category of categories; let idx = index">
       <div (click)="select(idx)" [ngClass]="{border_green: category_boolean[idx], border_red: !category_boolean[idx]}" class="blc">
+        <h6>{{category.name}}</h6>
+        <img class="catimg" src="{{category.src}}" alt="{{category.src}}">
         <div class="check">
-          <img class="catimg" src="{{category.src}}" alt="{{category.src}}">
-          <div class="check">
-            <img *ngIf="category_boolean[idx]" class="checkimg" src="/assets/images/check.jpg" alt="check.jpg">
-            <img *ngIf="!category_boolean[idx]" class="checkimg" src="#" alt="">
-          </div>
+          <img *ngIf="category_boolean[idx]" class="checkimg" src="/assets/images/check.jpg" alt="check.jpg">
+          <img *ngIf="!category_boolean[idx]" class="checkimg" src="#" alt="">
         </div>
       </div>
-      <!-- </table> -->
     </div>
-    <button type="button" class="btn btn-primary btn-block float-right">Next</button>
-    <!-- <input id="search" type="texxt" name="search" placeholder="Search">
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td>Survey Question</td>
-          <td>Date Posted</td>
-          <td>Action</td>
-      </tr>
-      </thead>
-      <tbody>
-       
-        <tr *ngFor="let que of questions">
-          <td><a [routerLink]="['/poll',que._id]" (click)="onQueClick(que.question)">{{que.question}}</a></td>
-          <td>{{que.author}}</td>
-          <td>{{que.createdAt | date:'medium'}}</td>         
-          <td><div  *ngIf="que.author == name"><a (click)="onDelete(que._id)" ><button>Delete</button></a></div></td>        
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
   </div>
+  <form>
+    <button (click)="filter()" [disabled]=!this.check_one type="button" class="btn btn-primary btn-block float-right">Next</button>
+  </form>
+</div>
