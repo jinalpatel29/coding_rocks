@@ -11,6 +11,7 @@ export class InterestService {
   }
 
   updatePreferences(preferences: boolean[]){
+    console.log(preferences);
     this.preferences = preferences;
   }
 

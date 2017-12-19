@@ -41,15 +41,17 @@ export class DisplayallComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this._categoryService.getCategories();
     this._categoryService.tasks.subscribe(
       (data) => {
         this.categories = data;
         //set a boolean value in the category_boolean array that corresponds to the categories;
+        this.category_boolean = [];
         this.categories.forEach(
           (element) => { this.category_boolean.push(false) }
         )
-        this._interestService.updatePreferences(this.category_boolean);
+        console.log(this.category_boolean);
       }
     );
 
@@ -72,8 +74,6 @@ export class DisplayallComponent implements OnInit {
         }
       }
     );
-
-    console.log(this.category_boolean[idx]);
   }
 
   filter() {
