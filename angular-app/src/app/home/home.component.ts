@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     console.log("in ")
     console.log(name)
     this._service.createUser(name);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/quiz']);
   }
 
   ngOnInit() {

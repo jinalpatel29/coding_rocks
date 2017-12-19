@@ -5,16 +5,26 @@ import { NewComponent } from './new/new.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayallComponent } from './displayall/displayall.component';
 import { DisplayoneComponent } from './displayone/displayone.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { ReqconfirmComponent } from './reqconfirm/reqconfirm.component';
+import { InviteComponent } from './invite/invite.component';
+import { FrequencyComponent } from './frequency/frequency.component';
+import { NeweventComponent } from './newevent/newevent.component';
 
 
 const routes: Routes = [
-
   { path: '', pathMatch: 'full', component: HomeComponent }, 
-  { path: 'dashboard', pathMatch: 'full', component: DisplayallComponent },
+  { path: 'quiz', pathMatch: 'full', component: DisplayallComponent },
   { path: 'create', pathMatch: 'full', component: NewComponent },
-  { path: 'poll', pathMatch: 'full', component: DisplayoneComponent },
+  // { path: 'poll', pathMatch: 'full', component: DisplayoneComponent },
   { path: 'poll/:id', pathMatch: 'full', component: DisplayoneComponent },
- 
+  { path: 'dashboard', pathMatch: 'full', component: DashboardComponent },
+  { path: 'confirmlove', pathMatch: 'full', component: ConfirmComponent },
+  { path: 'requests', pathMatch: 'full', component: ReqconfirmComponent },
+  { path: 'invite', pathMatch: 'full', component: InviteComponent },
+  { path: 'freqset', pathMatch: 'full', component: FrequencyComponent },
+  { path: 'item', pathMatch: 'full', component: NeweventComponent },
 ];
 
 @NgModule({
