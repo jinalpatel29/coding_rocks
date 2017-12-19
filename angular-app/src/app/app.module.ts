@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NewComponent } from './new/new.component';
 import { DataService } from './data.service';
 import { DisplayallComponent } from './displayall/displayall.component';
 import { DisplayoneComponent } from './displayone/displayone.component';
@@ -24,7 +23,6 @@ import { InterestService } from './interests.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    NewComponent,
     DisplayallComponent,
     DisplayoneComponent,
     DashboardComponent,

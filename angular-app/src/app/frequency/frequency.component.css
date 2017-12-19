@@ -1,0 +1,22 @@
+.container{
+    width: 700px;
+}
+.header{
+    padding: 20px;
+    background-color: rgba(116, 136, 223, 0.507);
+}
+.content{
+    border: 2px solid gray;
+    text-align: center;
+    padding: 10px;
+}
+a{
+    color: blue;
+    text-decoration: underline;
+}
+.links{
+    text-align: right;
+}
+.btn{
+    text-align: right;
+}

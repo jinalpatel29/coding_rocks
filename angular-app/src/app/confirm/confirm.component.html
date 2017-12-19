@@ -1,3 +1,48 @@
-<p>
-  confirm works!
-</p>
+<div class="container">
+  <div class="header">
+      <div class="links">
+          <a [routerLink]="['/dashboard']">Back to Dashboard</a>      
+        </div>
+    <h1>Hello</h1>
+  </div>
+  <div class="content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Love Item</th>
+          <th>Date</th>
+          <th>Points</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Movie</td>
+          <td>Today</td>
+          <td>0</td>
+          <td>
+            <a href="http://">
+              <button>Confirm</button>
+            </a>
+            <a href="http://">
+              <button>Deny</button>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Food</td>
+          <td>Today</td>
+          <td>0</td>
+          <td>
+            <a href="http://">
+              <button>Confirm</button>
+            </a>
+            <a href="http://">
+              <button>Deny</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

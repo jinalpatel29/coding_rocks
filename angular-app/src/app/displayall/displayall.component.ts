@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-import { Question } from '../question';
 import { Category } from '../category';
 import { CategoryService } from '../category-service.service';
 import { InterestService } from '../interests.service';
@@ -18,7 +17,6 @@ export class DisplayallComponent implements OnInit {
   questions;
   category_boolean = [];
   check_one: boolean;
-  question: Question = new Question();
   constructor(public service: DataService, private _router: Router, private _categoryService: CategoryService, private _interestService: InterestService) {
     this.name = this.service.getUser();
   }
