@@ -1,5 +1,5 @@
 .container{
-    border: 2px solid gray;
+    padding: 0px;
     /* margin: 20px; */
     width: 100%;
 }
@@ -20,10 +20,10 @@
 }
 .blc{
    display: inline-block;
-   margin: 5px;
+   margin: 1px;
    background-image: url("/assets/images/Makeup.jpg");
-   width: 120px;
-   height: 120px;
+   width: 123.75px;
+   height: 123.75px;
 }
 
 .border_green {
@@ -34,9 +34,6 @@
     border: 4px solid red;
 }
 
-.container {
-    text-align: center;
-}
 
 
 
