@@ -14,8 +14,9 @@ import { NeweventComponent } from './newevent/newevent.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent }, 
-  { path: 'quiz', pathMatch: 'full', component: DisplayallComponent},
-  { path: 'poll/:id', pathMatch: 'full', component: DisplayoneComponent },
+  { path: 'quiz', pathMatch: 'full', component: DisplayallComponent },
+  // { path: 'poll', pathMatch: 'full', component: DisplayoneComponent },
+  { path: 'quiz/subcategories/:id', pathMatch: 'full', component: DisplayoneComponent },
   { path: 'dashboard', pathMatch: 'full', component: DashboardComponent },
   { path: 'confirmlove', pathMatch: 'full', component: ConfirmComponent },
   { path: 'requests', pathMatch: 'full', component: ReqconfirmComponent },

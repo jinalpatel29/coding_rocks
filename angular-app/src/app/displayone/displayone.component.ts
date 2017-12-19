@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Question } from '../question';
-import { Option } from '../option';
+import { InterestService } from '../interests.service';
+import { CategoryService } from '../category-service.service';
+import { Category } from '../category';
+import { Subcategories } from '../subcategories';
 
 @Component({
   selector: 'app-displayone',
@@ -10,23 +12,25 @@ import { Option } from '../option';
   styleUrls: ['./displayone.component.css']
 })
 export class DisplayoneComponent implements OnInit {
+  category_boolean: any[];
   name;
   question_id;
   options;
   question;
   option : Option = new Option();
+  categories;
   // question : any = new Question();
-  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute) {
+  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService) {
     this.name = this.service.getUser();
   }
 
-  ngOnInit() {  
-    this.question = this.service.getQuestionDisplay();
-    this._route.paramMap.subscribe(params => {
-      this.service.getQuestion(params.get('id')).subscribe(
-        (result) => this.options = result       
-      )
-    })     
+  ngOnInit() {
+    this.category_boolean = this._interestService.getPreferences();
+    this._categoryService.tasks.subscribe(
+      (data) => {
+        this.categories = data;
+      }
+    );
   }
 
   onLike(opt) {
