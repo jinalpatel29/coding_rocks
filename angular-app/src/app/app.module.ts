@@ -17,7 +17,8 @@ import { InviteComponent } from './invite/invite.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NeweventComponent } from './newevent/newevent.component';
 
-
+import { CategoryService } from './category-service.service';
+import { InterestService } from './interests.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NeweventComponent } from './newevent/newevent.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService],
+  providers: [DataService, CategoryService, InterestService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
