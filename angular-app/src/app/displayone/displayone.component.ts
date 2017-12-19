@@ -16,8 +16,7 @@ export class DisplayoneComponent implements OnInit {
   name;
   question_id;
   options;
-  question;
-  option : Option = new Option();
+  question; 
   categories;
   // question : any = new Question();
   constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService) {
@@ -34,9 +33,7 @@ export class DisplayoneComponent implements OnInit {
   }
 
   onLike(opt) {
-    this.option = opt;
-    this.option.rating +=1;
-    this.service.updateRating(this.option);
+   
   }
   goToPoll() {
     this.router.navigate(['dashboard']);
