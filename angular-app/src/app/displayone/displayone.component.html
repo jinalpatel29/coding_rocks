@@ -21,9 +21,9 @@
           <div *ngIf="category_boolean[idx]">
             <legend>{{ category.name }}</legend>
             <div *ngFor="let item of category.subcategories; let idx2=index">
-              <div *ngIf="item.name">
-                <label for="{{item.name}}">{{item.name}}</label>
-                <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.name}}" *ngIf="item.name">
+              <div *ngIf="item.title">
+                <label for="{{item.title}}">{{item.title}}</label>
+                <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.title}}" *ngIf="item.title">
               </div>
             </div>
           </div>

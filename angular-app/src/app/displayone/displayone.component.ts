@@ -14,6 +14,7 @@ import { Subcategories } from '../subcategories';
 export class DisplayoneComponent implements OnInit {
   category_boolean: any[];
   user_profile = [];
+  user_id="5aaab233333"
   question_id;
   options;
   question;
@@ -36,7 +37,7 @@ export class DisplayoneComponent implements OnInit {
               var new_arr = [];
               for(var r = 0; r < this.categories[i].subcategories.length; r++){
                 var new_sub = {}
-                new_sub['name'] = this.categories[i].subcategories[r].name;
+                new_sub['title'] = this.categories[i].subcategories[r].title;
                 new_sub['keep'] = false;
                 new_arr.push(new_sub);
               }
@@ -57,7 +58,28 @@ export class DisplayoneComponent implements OnInit {
   }
 
   addInterests() {
-    console.log("test");
+    var result = [];
+    //loop through user_profile to see which subcategories were selected
+    for (var user of this.user_profile){
+      var new_obj = {};
+      new_obj['name'] = user.name;
+      var new_arr = [];
+      for (var sub of user.subcategories){
+        if(sub.keep){
+          var sub_obj = {};
+          sub_obj['title'] = sub.title;
+          sub_obj['interval'] = 0;
+          new_arr.push(sub_obj);
+        }
+      }
+      if(new_arr.length){
+        new_obj['subcategories'] = new_arr;
+        result.push(new_obj);
+      }
+    }
+
+    console.log(result);
+
   }
 
 }
