@@ -14,22 +14,26 @@ export class HomeComponent implements OnInit {
   title = 'Registration';
   user = new User();
   success = false;
-  info = { email: "",pwd:""}
-  loginRes;
+  info = { email: '', pwd: '' };
 
   constructor(private _service: DataService, private _uservice: UserService, private router: Router) { }
 
   signUp(formdata) {
     console.log(this.user);
-    this._uservice.register(this.user);   
+    this._uservice.register(this.user);
     formdata.reset();
     this.user = new User();
   }
+
   login(info) {
-    console.log("in login")
-    console.log(info)  
-    this.loginRes = this._uservice.login(info);      
-    this.router.navigate(['/quiz']);   
+    console.log('in login');
+    console.log(info);
+    this._uservice.login(info, (data) => {
+      sessionStorage.setItem('_id', data['_id']);
+      sessionStorage.setItem('name', data['name']);
+      console.log('Logged in...');
+      this.router.navigate(['/quiz']);
+    });
   }
   ngOnInit() {
   }
