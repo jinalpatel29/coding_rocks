@@ -28,5 +28,5 @@ export class CalendarComponent implements OnInit {
     this.events= this.calendar.populate(1,moment().format('MMMM Do YYYY'),28,this.preferences);
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
-  }
+  } 
 }

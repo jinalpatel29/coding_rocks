@@ -2,7 +2,7 @@ import {Event} from './event';
 import {CalendarService} from './calendar.service'
 import * as moment from 'moment';
 
-export class Calendar { 
+export class Calendar {  
 
     _CalendarService=new CalendarService();
     events:Event[];//holder of events to be displayed on a particular page
@@ -30,8 +30,8 @@ export class Calendar {
         for(let interest of preferences){
             console.log('interest: ',interest);
             console.log(Math.floor(duration/interest.freq));
-            for(let i =0;i< Math.floor(duration/interest.freq);i++){
-                var newEvent=new Event(interest.event);
+            for(let i =0;i< duration;i+=interest.interval){
+                var newEvent=new Event(interest.event,moment(startDate, "MMMM Do YYYY").add(i,'days').format('MMMM Do YYYY'));
                 // newEvent.location='San Jose';
                 console.log('adding events');
                 events.push(newEvent);

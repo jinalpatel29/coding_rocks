@@ -1,9 +1,9 @@
 export class Event {
-    start:Date;
+    // start:Date;
     end:Date;
     location:string;
     // summary:string;
-    description:string;
+    description:string; 
     status:string;
     reminders:any[];
     attachments:any[];
@@ -14,6 +14,7 @@ export class Event {
 
     constructor(
         public summary:string,
+        public start:string,
     ){};
     delete=function(){};
     insert=function(){};
