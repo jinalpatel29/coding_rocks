@@ -24,13 +24,16 @@ export class HomeComponent implements OnInit {
     this._uservice.register(this.user);   
     formdata.reset();
     this.user = new User();
+    this.router.navigateByUrl('quiz');
   }
-  login(info) {
+
+  login() {
     console.log("in login")
-    console.log(info)  
-    this.loginRes = this._uservice.login(info);      
-    this.router.navigate(['/quiz']);   
+    console.log(this.info)
+    this.loginRes = this._uservice.login(this.info);      
+    this.router.navigate(['/dashboard']);
   }
+
   ngOnInit() {
   }
 

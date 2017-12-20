@@ -28,5 +28,14 @@ module.exports = {
                 res.json(user);
             }
         })        
+    },
+    addinterests: function (req, res){
+        User.update({_id: req.body.user_id}, { $set: { interests: req.body.result }}, function(err, result){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("successfully added model");
+            }
+        });
     }
 }
