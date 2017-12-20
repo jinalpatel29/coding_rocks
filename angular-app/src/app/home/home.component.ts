@@ -27,9 +27,9 @@ export class HomeComponent implements OnInit {
   }
   login(info) {
     console.log("in login")
-    console.log(info)  
+    console.log(info)
     this.loginRes = this._uservice.login(info);      
-    this.router.navigate(['/quiz']);   
+    this.router.navigate(['/dashboard']);   
   }
   ngOnInit() {
   }
