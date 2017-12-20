@@ -3,6 +3,7 @@ import { Calendar } from '../calendar';
 import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
+import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 
 @Component({
   selector: 'app-calendar',
@@ -14,7 +15,7 @@ export class CalendarComponent implements OnInit {
   // nod:number;
   // mult:number;
   // result;
-  events:Event[];
+  events:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   constructor() { }

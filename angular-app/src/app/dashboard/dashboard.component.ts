@@ -136,7 +136,7 @@ export class DashboardComponent {
 
   constructor(private modal: NgbModal) {}
 
-  events:Event[];
+  events:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
