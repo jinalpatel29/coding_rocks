@@ -1,26 +1,13 @@
 // import { Component, OnInit } from '@angular/core';
 import { CalendarHeaderComponent } from '../calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
+import { UserService } from '../user.service';
 
 //for loveFool's calendar Class
 import { Calendar } from '../calendar';
 import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
-
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.css']
-// })
-// export class DashboardComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
 
 import {
   Component,
@@ -47,6 +34,8 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../data.service';
+
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -71,7 +60,7 @@ const colors: any = {
 })
 export class DashboardComponent {
   @ViewChild('AppComponent') modalContent: TemplateRef<any>;
-
+  user;
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -135,15 +124,20 @@ export class DashboardComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, config: NgbDropdownConfig) {
+  constructor(private modal: NgbModal, config: NgbDropdownConfig, private _userService: UserService) {
     // config.placement = 'top-left';
     config.autoClose = false;
   }
-  
+
+
   events:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
+    this._userService.users.subscribe(
+      (data) => { this.user = data }
+    );
+
     this.calendar.retrieveEvents(1);
     this.preferences=[
       {event:'shop together',interval:7},
@@ -157,8 +151,6 @@ export class DashboardComponent {
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
   }
-
-
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

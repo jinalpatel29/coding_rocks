@@ -24,7 +24,7 @@ export class DisplayallComponent implements OnInit {
     this.uservice.users.subscribe(
       (result) =>{ this.user = result;
         this.service.createUser(this.user.firstName);      
-      console.log(this.user)}
+      }
     )  
   }
 

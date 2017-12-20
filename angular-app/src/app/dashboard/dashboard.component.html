@@ -4,7 +4,7 @@
     <!-- navbar -->
     <div class="row" style="border: 1px solid grey; padding-top: 10px;">
         <div class="col-md-8">
-            <h4>Hello, username</h4>
+            <h4>Hello, {{ user.firstName }}</h4>
         </div>
         <div class="col">
             <div ngbDropdown class="d-inline-block text-right">
@@ -18,8 +18,6 @@
                     <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
                 </div>
             </div>
-        </div>
-        <div class="col">
             <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
         </div>
     </div>

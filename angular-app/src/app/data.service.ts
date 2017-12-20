@@ -27,6 +27,15 @@ export class DataService {
     return this.questionDisplay;
   }
 
+  addInterests(result){
+    console.log(result);
+    this._http.post('/interests', result).subscribe(
+      (response: any) => {
+        this.questionObserver.next(response);
+      }
+    );
+  }
+
   createQuestion(question: any) {
     this.options = question.options;
     console.log("in service")
