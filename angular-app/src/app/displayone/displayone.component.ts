@@ -84,15 +84,12 @@ export class DisplayoneComponent implements OnInit {
         result.push(new_obj);
       }
     }
-
     var interests_obj = {
       user_id: this.user._id,
       result: result
     }
-
     this.service.addInterests(interests_obj);
     this.router.navigateByUrl('dashboard');
-
   }
 
 }
