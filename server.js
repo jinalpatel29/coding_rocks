@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+// var moment = require('moment');
 
 var path = require('path');
 // var cors = require('cors');
@@ -17,4 +18,5 @@ var routes_setter = require('./server/config/routes.js');
 routes_setter(app)
 
 const port = 8000;
+// console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 app.listen(port, ()=> console.log('Express server listening on port ${port}'));
