@@ -13,12 +13,12 @@ import { Subcategories } from '../subcategories';
 })
 export class DisplayoneComponent implements OnInit {
   category_boolean: any[];
-  name;
+  user_profile = [];
   question_id;
   options;
-  question; 
+  question;
   categories;
-  // question : any = new Question();
+  name;
   constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService) {
     this.name = this.service.getUser();
   }
@@ -28,14 +28,36 @@ export class DisplayoneComponent implements OnInit {
     this._categoryService.tasks.subscribe(
       (data) => {
         this.categories = data;
+        if (data) {
+          for (var i = 0; i < this.categories.length; i++) {
+            if (this.category_boolean[i] == true) {
+              var new_object = {}
+              new_object['name'] = this.categories[i].name;
+              var new_arr = [];
+              for(var r = 0; r < this.categories[i].subcategories.length; r++){
+                var new_sub = {}
+                new_sub['name'] = this.categories[i].subcategories[r].name;
+                new_sub['keep'] = false;
+                new_arr.push(new_sub);
+              }
+              new_object['subcategories'] = new_arr;
+              this.user_profile.push(new_object);
+            }
+          }
+        }
       }
     );
   }
 
   onLike(opt) {
-   
+
   }
   goToPoll() {
     this.router.navigate(['dashboard']);
   }
+
+  addInterests() {
+    console.log("test");
+  }
+
 }
