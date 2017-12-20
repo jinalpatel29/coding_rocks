@@ -1,6 +1,13 @@
 // import { Component, OnInit } from '@angular/core';
 import { CalendarHeaderComponent } from '../calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
+
+//for loveFool's calendar Class
+import { Calendar } from '../calendar';
+import { Event } from '../event';
+// var moment = require('moment');
+import * as moment from 'moment';
+
 // @Component({
 //   selector: 'app-dashboard',
 //   templateUrl: './dashboard.component.html',
@@ -91,43 +98,63 @@ export class DashboardComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: colors.red,
+  //     actions: this.actions
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: colors.yellow,
+  //     actions: this.actions
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.blue
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: new Date(),
+  //     title: 'A draggable and resizable event',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //     draggable: true
+  //   }
+  // ];
 
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal) {}
+
+  events:CalendarEvent[];
+  calendar=new Calendar();
+  preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
+  ngOnInit() {
+    this.calendar.retrieveEvents(1);
+    this.preferences=[
+      {event:'shop together',interval:7},
+      // {event:'',freq:},
+      {event:'fancy dinner',interval:7},
+      {event:'dinner',interval:1},
+      {event:'outdoors event',interval:28},
+      {event:'movie',interval:14},      
+    ]
+    this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
+    console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    
+  }
+
+
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -174,3 +201,4 @@ export class DashboardComponent {
     this.refresh.next();
   }
 }
+ 
