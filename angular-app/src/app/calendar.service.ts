@@ -4,5 +4,7 @@ import { Injectable } from '@angular/core';
 export class CalendarService {
 
   constructor() { }
-
+  retrieveEvents(dateRange){
+    console.log('calendar service works!');
+  }
 }
