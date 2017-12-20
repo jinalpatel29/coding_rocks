@@ -6,9 +6,7 @@ module.exports = {
         Category.find({}).sort({ createdAt: -1 }).exec(function (err, categories) {
             if (err) {
                 res.json({ "status": "error" })
-            } else {
-                console.log("in show categories");
-                console.log(categories);
+            } else {              
                 res.json(categories);
             }
         });

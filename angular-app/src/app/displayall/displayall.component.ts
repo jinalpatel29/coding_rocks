@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Category } from '../category';
 import { CategoryService } from '../category-service.service';
 import { InterestService } from '../interests.service';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -13,12 +14,18 @@ import { InterestService } from '../interests.service';
 })
 export class DisplayallComponent implements OnInit {
   name;
+  user;
   categories;
   questions;
   category_boolean = [];
   check_one: boolean;
-  constructor(public service: DataService, private _router: Router, private _categoryService: CategoryService, private _interestService: InterestService) {
-    this.name = this.service.getUser();
+  constructor(public service: DataService, private uservice: UserService,private _router: Router, private _categoryService: CategoryService, private _interestService: InterestService) {
+    this.name = this.service.getUser();  
+    this.uservice.users.subscribe(
+      (result) =>{ this.user = result;
+        this.service.createUser(this.user.firstName);      
+      console.log(this.user)}
+    )  
   }
 
   onClick() {
@@ -53,7 +60,12 @@ export class DisplayallComponent implements OnInit {
       }
     );
 
-    this.name = this.service.getUser();
+    this.uservice.users.subscribe(
+      (result) =>{ this.user = result;
+        this.service.createUser(this.user.firstName);      
+      console.log(this.user)}
+    )  
+
     this.service.questionObserver.subscribe(
       (result) => this.questions = result
     )

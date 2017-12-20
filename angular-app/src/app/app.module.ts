@@ -24,6 +24,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar.service';
 import { CategoryService } from './category-service.service';
 import { InterestService } from './interests.service';
+import { UserService } from './user.service';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 
@@ -52,7 +53,7 @@ import { DateTimePickerComponent } from './date-time-picker/date-time-picker.com
     NgbModalModule.forRoot(),
     CalendarModule.forRoot(),
   ],
-  providers: [DataService, CategoryService,CalendarService, InterestService],
+  providers: [DataService, CategoryService,CalendarService, InterestService, UserService],
   bootstrap: [AppComponent]
 })
 
