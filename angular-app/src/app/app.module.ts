@@ -15,6 +15,9 @@ import { ReqconfirmComponent } from './reqconfirm/reqconfirm.component';
 import { InviteComponent } from './invite/invite.component';
 import { FrequencyComponent } from './frequency/frequency.component';
 import { NeweventComponent } from './newevent/newevent.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarService } from './calendar.service'
+
 
 import { CategoryService } from './category-service.service';
 import { InterestService } from './interests.service';
@@ -30,7 +33,9 @@ import { UserService } from './user.service';
     ReqconfirmComponent,
     InviteComponent,
     FrequencyComponent,
-    NeweventComponent,    
+    NeweventComponent,
+    CalendarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { UserService } from './user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService, CategoryService, InterestService, UserService],
+  providers: [DataService, CategoryService,CalendarService, InterestService],
   bootstrap: [AppComponent]
 })
 
