@@ -1,6 +1,34 @@
 <div class="container">
   <div class="home">
-    <h1>Welcome to Lovefool!</h1>
+    <h3>Welcome to Lovefool!</h3>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-sm-5">
+      <div class="register">
+        <form (submit)="login(info)" #register="ngForm">
+          <h3>Sign In</h3>
+          <br>
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="email1">Email:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="email1" placeholder="Enter username " required minlength="2" maxlength="24"
+                [(ngModel)]="info.email" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="pwd1">Password:</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="pwd1" placeholder="Enter password " required minlength="2" maxlength="24" [(ngModel)]="info.pwd"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" name="reg" class="btn btn-dark" style="width:100%;" [disabled]="!register.form.valid">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   <div class="alert alert-success msg" *ngIf="success">
     <p>Thank you for registering with us
@@ -11,98 +39,81 @@
     </p>
     <p>Have a wonderful day!</p>
   </div>
-  <form (submit)="signUp(register)" #register="ngForm">
-    <div class="register" style="border:2px solid black; padding:10px;">
-      <h3>Account Information</h3>
-      <br>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="name">First Name:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required minlength="2" maxlength="24"
-            [(ngModel)]="user.firstName" #fname='ngModel' />
-          <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
-            Enter valid First Name
+  <<div class="row"></div>
+  <div class="row justify-content-md-center">
+    <div class="col-sm-7">
+      <form (submit)="signUp(register)" #register="ngForm">
+        <div class="register">
+          <h3>Account Information</h3>
+          <br>
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="name">First Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required minlength="2" maxlength="24"
+                [(ngModel)]="user.firstName" #fname='ngModel' />
+              <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
+                Enter valid First Name
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="name">Last Name:</label>
-        <div class="col-sm-10 field">
-          <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required minlength="4" maxlength="24"
-            [(ngModel)]="user.lastName" #lname='ngModel' />
-          <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
-            Enter valid Last Name
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="name">Last Name:</label>
+            <div class="col-sm-10 field">
+              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required minlength="4" maxlength="24"
+                [(ngModel)]="user.lastName" #lname='ngModel' />
+              <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
+                Enter valid Last Name
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="pwd">Email:</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" name="email" placeholder="Please enter email here" required minlength="10" maxlength="50"
-            [(ngModel)]="user.email" #email="ngModel">
-          <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-            Enter valid Email id
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="pwd">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" name="email" placeholder="Please enter email here" required minlength="10" maxlength="50"
+                [(ngModel)]="user.email" #email="ngModel">
+              <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                Enter valid Email id
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="pwd">Birthday:</label>
-        <div class="col-sm-10">
-          <input type="date" class="form-control" name="bday" required [(ngModel)]="user.dob" #bday="ngModel">
-          <div class="alert alert-danger" *ngIf="bday.touched && bday.invalid">
-            Enter Birthday Please
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="pwd">Birthday:</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" name="bday" required [(ngModel)]="user.dob" #bday="ngModel">
+              <div class="alert alert-danger" *ngIf="bday.touched && bday.invalid">
+                Enter Birthday Please
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="pwd">Password:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" name="pwd" placeholder="Please enter password" required minlength="8" maxlength="20"
-            [(ngModel)]="user.pwd" #pwd="ngModel" />
-          <div class="alert alert-danger" *ngIf="pwd.touched && pwd.invalid">
-            Enter valid password
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="pwd" placeholder="Please enter password" required minlength="8" maxlength="20"
+                [(ngModel)]="user.pwd" #pwd="ngModel" />
+              <div class="alert alert-danger" *ngIf="pwd.touched && pwd.invalid">
+                Enter valid password
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-sm-2" for="pwd">Password Confirmation:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" name="cpwd" placeholder="Please confirm your password" required minlength="8"
-            maxlength="20" [(ngModel)]="user.cpwd" #cpwd="ngModel" />
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="pwd">Password Confirmation:</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="cpwd" placeholder="Please confirm your password" required minlength="8"
+                maxlength="20" [(ngModel)]="user.cpwd" #cpwd="ngModel" />
 
-          <div class="alert alert-danger" *ngIf="cpwd.touched && user.pwd != user.cpwd">
-            Confirm password doesn't match with Password
+              <div class="alert alert-danger" *ngIf="cpwd.touched && user.pwd != user.cpwd">
+                Confirm password doesn't match with Password
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <button type="submit" name="reg" class="btn btn-dark" style="width:100%;" [disabled]="!register.form.valid">Sign Up</button>
           </div>
         </div>
-      </div>
-      <br>
-      <div class="form-group">
-        <button type="submit" name="reg" class="btn btn-dark" style="width:100%;" [disabled]="!register.form.valid">Sign Up</button>
-      </div>
+      </form>
     </div>
-  </form>
-</div>
+  </div>
 
-
-<div class="home">
-  <form (submit)="login(info)" #register="ngForm">
-    <!-- <div class="register" style="border:2px solid black; padding:10px;"> -->
-    <h3>Login</h3>
-    <br>
-    <div class="form-group row">
-      <label class="control-label col-sm-2" for="email1">Email:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="email1" placeholder="Enter username " required minlength="2" maxlength="24"
-          [(ngModel)]="info.email" />
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="control-label col-sm-2" for="pwd1">Password:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="pwd1" placeholder="Enter password " required minlength="2" maxlength="24" [(ngModel)]="info.pwd"
-        />
-      </div>
-      </div>
-      <button type="submit">Login </button>  
-  </form>
+  <!-- </div> -->
 </div>
