@@ -7,9 +7,7 @@ module.exports = {
             if (err) {
                 console.log(err);
                 res.json({ "status": "error" })
-            } else {
-                console.log("in show categories");
-                console.log(categories);
+            } else {              
                 res.json(categories);
             }
         });

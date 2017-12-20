@@ -12,6 +12,7 @@ export class DataService {
   constructor(private _http: HttpClient) { }
 
   createUser(author) {
+    console.log(author);
     this.author = author;
   }
 

@@ -1,5 +1,6 @@
 var questions = require('../controllers/questions.js');
 var categories = require('../controllers/categories.js');
+var users = require('../controllers/users.js');
 var path = require('path');
 
 module.exports = function(app){
@@ -15,6 +16,14 @@ module.exports = function(app){
     app.post('/create', function(req,res){   
         console.log("in routes");    
         questions.create(req,res);
+    })
+
+    app.post('/createUser', function(req,res){ 
+        users.create(req,res);
+    })
+
+    app.post('/login', function(req,res){          
+        users.login(req,res);
     })
 
     app.put('/option/:id', function(req,res){
