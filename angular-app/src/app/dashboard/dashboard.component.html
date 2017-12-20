@@ -18,7 +18,19 @@
         </div>
     </div>
     <!-- main content -->
-    <div class="container">
+    <div class="container" style="width: 85%; margin: 10px auto;">
+        <!-- this part isnt working right now. -->
+        <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+        </mwl-demo-utils-calendar-header>
 
+        <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="true" (dayClicked)="dayClicked($event.day)"
+                (eventClicked)="eventClicked($event)">
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
+            </mwl-calendar-day-view>
+        </div>
     </div>
 </div>
