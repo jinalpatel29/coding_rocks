@@ -1,5 +1,6 @@
 var questions = require('../controllers/questions.js');
 var categories = require('../controllers/categories.js');
+var users = require('../controllers/users.js');
 var path = require('path');
 
 module.exports = function(app){
@@ -17,6 +18,12 @@ module.exports = function(app){
         questions.create(req,res);
     })
 
+
+
+    app.post('/createUser', function(req,res){   
+        console.log("in routes");    
+        users.create(req,res);
+    })
     app.put('/option/:id', function(req,res){
         console.log("in routes");
         questions.updateRating(req,res);

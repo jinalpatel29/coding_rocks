@@ -18,7 +18,7 @@ import { NeweventComponent } from './newevent/newevent.component';
 
 import { CategoryService } from './category-service.service';
 import { InterestService } from './interests.service';
-
+import { UserService } from './user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +30,7 @@ import { InterestService } from './interests.service';
     ReqconfirmComponent,
     InviteComponent,
     FrequencyComponent,
-    NeweventComponent,
-    
+    NeweventComponent,    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +38,7 @@ import { InterestService } from './interests.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService, CategoryService, InterestService],
+  providers: [DataService, CategoryService, InterestService, UserService],
   bootstrap: [AppComponent]
 })
 
