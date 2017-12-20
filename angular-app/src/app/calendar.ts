@@ -2,6 +2,7 @@ import {Event} from './event';
 import {CalendarService} from './calendar.service'
 import * as moment from 'moment';
 
+
 export class Calendar {  
 
     _CalendarService=new CalendarService();
@@ -24,6 +25,10 @@ export class Calendar {
         return events;
         // return resolved Events
     }
+    addDays = function(date:Date,noOfDays) {
+        date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
+        return date;
+    }
     generate(preferences,startDate,duration): Event[] {//randomness or strictly follow frequency? probably later
         var events:Event[] = [];
         console.log('date range: ',duration)
@@ -31,7 +36,7 @@ export class Calendar {
             console.log('interest: ',interest);
             console.log(Math.floor(duration/interest.freq));
             for(let i =0;i< duration;i+=interest.interval){
-                var newEvent=new Event(interest.event,moment(startDate, "MMMM Do YYYY").add(i,'days').format('MMMM Do YYYY'));
+                var newEvent=new Event(interest.event,moment(startDate, "MMMM Do YYYY").add(i,'days').toDate());//moment(startDate, "MMMM Do YYYY").add(i,'days').format('MMMM Do YYYY'));this.addDays(startDate,i)
                 // newEvent.location='San Jose';
                 console.log('adding events');
                 events.push(newEvent);

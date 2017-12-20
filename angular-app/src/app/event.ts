@@ -7,14 +7,15 @@ export class Event {
     status:string;
     reminders:any[];
     attachments:any[];
+    color={primary:'blue',secondary:'green'}
  
     interest:string;//points / frequency
     creator:'';
     receiver:'';
 
     constructor(
-        public summary:string,
-        public start:string,
+        public title:string,
+        public start:Date,
     ){};
     delete=function(){};
     insert=function(){};

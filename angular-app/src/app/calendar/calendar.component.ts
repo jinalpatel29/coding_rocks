@@ -10,6 +10,10 @@ import * as moment from 'moment';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  // today=new Date();
+  // nod:number;
+  // mult:number;
+  // result;
   events:Event[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
@@ -25,8 +29,11 @@ export class CalendarComponent implements OnInit {
       {event:'outdoors event',interval:28},
       {event:'movie',interval:14},      
     ]
-    this.events= this.calendar.populate(1,moment().format('MMMM Do YYYY'),28,this.preferences);
+    this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
   } 
+  // onChange(){
+  //   this.result=this.today.setTime(this.today.getTime() + (this.nod * (1000 * 60 * 60 * 24)))
+  // }
 }
