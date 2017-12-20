@@ -2,7 +2,15 @@
     margin-top: 50px;
     text-align: center;
     color: rgba(42, 8, 122, 0.726);
+    /* border: 1px solid gray; */
+    padding: 10px;
 }
 .container{
     background-color: rgba(116, 136, 223, 0.507);
+}
+.register{
+    padding: 3px;
+}
+h3{
+    text-align: center;
 }
