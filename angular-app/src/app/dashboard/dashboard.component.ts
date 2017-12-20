@@ -9,20 +9,6 @@ import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
 
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.css']
-// })
-// export class DashboardComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
 import {
   Component,
   ChangeDetectionStrategy,
@@ -72,7 +58,7 @@ const colors: any = {
 })
 export class DashboardComponent {
   @ViewChild('AppComponent') modalContent: TemplateRef<any>;
-  users;
+  user;
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -136,14 +122,16 @@ export class DashboardComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private _userService: UserService) {}
+  constructor(private modal: NgbModal, private _userService: UserService) {
+    
+  }
 
   events:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
     this._userService.users.subscribe(
-      (data) => { this.users = data }
+      (data) => { this.user = data }
     );
 
     this.calendar.retrieveEvents(1);
@@ -159,8 +147,6 @@ export class DashboardComponent {
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
   }
-
-
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
