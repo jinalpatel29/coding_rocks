@@ -1,11 +1,15 @@
 import {Event} from './event';
 import {CalendarService} from './calendar.service'
 import * as moment from 'moment';
+// import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
+// import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
+import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 
-export class Calendar { 
+
+export class Calendar {  
 
     _CalendarService=new CalendarService();
-    events:Event[];//holder of events to be displayed on a particular page
+    events:CalendarEvent[];//holder of events to be displayed on a particular page
     // constructor(
     //     public preferences={
     //         subCategory:[],
@@ -14,24 +18,28 @@ export class Calendar {
     //     private _CalendarService: CalendarService
     // ){};
     //populate is the top level behind the scenes method; dateRange provides flexibility e.g. user only wants to populate one month at a time
-    populate(user:any, startDate,duration:any,preferences:any[]):Event[] {//do this over a range, resolve / generate on a single event basis
+    populate(user:any, startDate,duration:any,preferences:any[]):CalendarEvent[] {//do this over a range, resolve / generate on a single event basis
         //add generated events to local calendar
         var tempPreferences=this.updateFrequencies(preferences,duration);//frequencies from use later
-        var events:Event[]=this.generate(tempPreferences,startDate,duration);
+        var events:CalendarEvent[]=this.generate(tempPreferences,startDate,duration);
         for(let event of events){
             this.resolveConflict(event);
         }
         return events;
         // return resolved Events
     }
-    generate(preferences,startDate,duration): Event[] {//randomness or strictly follow frequency? probably later
-        var events:Event[] = [];
+    // addDays = function(date:Date,noOfDays) {
+    //     date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
+    //     return date;
+    // }
+    generate(preferences,startDate,duration): CalendarEvent[] {//randomness or strictly follow frequency? probably later
+        var events:CalendarEvent[] = [];
         console.log('date range: ',duration)
         for(let interest of preferences){
             console.log('interest: ',interest);
             console.log(Math.floor(duration/interest.freq));
-            for(let i =0;i< Math.floor(duration/interest.freq);i++){
-                var newEvent=new Event(interest.event);
+            for(let i =0;i< duration;i+=interest.interval){
+                var newEvent=new Event(interest.event,moment(startDate, "MMMM Do YYYY").add(i,'days').toDate());//moment(startDate, "MMMM Do YYYY").add(i,'days').format('MMMM Do YYYY'));this.addDays(startDate,i)
                 // newEvent.location='San Jose';
                 console.log('adding events');
                 events.push(newEvent);
@@ -42,11 +50,7 @@ export class Calendar {
         // events.push(newEvent);
         // console.log(events);
         //takes preferences, and randomly (following heuristic rules) generate events in a particular dateRange
-        //e.g. daily & weekly events will be populated in a week, monthly events has 25% chance to be populated in this week ;
-        
-        
-        
-        
+        //e.g. daily & weekly events will be populated in a week, monthly events has 25% chance to be populated in this week ;   
         return events;
     }
     updateFrequencies(preferences,dateRange){//read loveful's events
