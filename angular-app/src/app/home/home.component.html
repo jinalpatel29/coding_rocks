@@ -6,7 +6,7 @@
   <div class="row justify-content-md-center">
     <div class="col-sm-5">
       <div class="register">
-        <form (submit)="login(info)" #register="ngForm">
+        <form (submit)="login(info)" #signin="ngForm">
           <h3>Sign In</h3>
           <br>
           <div class="form-group row">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" name="reg" class="btn btn-dark" style="width:100%;" [disabled]="!register.form.valid">Login</button>
+            <button type="submit" name="reg" class="btn btn-dark" style="width:100%;" [disabled]="!signin.form.valid">Login</button>
           </div>
         </form>
       </div>
@@ -39,7 +39,7 @@
     </p>
     <p>Have a wonderful day!</p>
   </div>
-  <<div class="row"></div>
+  <div class="row"></div>
   <div class="row justify-content-md-center">
     <div class="col-sm-7">
       <form (submit)="signUp(register)" #register="ngForm">

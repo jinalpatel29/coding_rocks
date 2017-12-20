@@ -1,26 +1,13 @@
 // import { Component, OnInit } from '@angular/core';
 import { CalendarHeaderComponent } from '../calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
+import { UserService } from '../user.service';
 
 //for loveFool's calendar Class
 import { Calendar } from '../calendar';
 import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
-
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.css']
-// })
-// export class DashboardComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
 
 import {
   Component,
@@ -46,6 +33,8 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../data.service';
 
 const colors: any = {
   red: {
@@ -67,10 +56,11 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./dashboard.component.css'],
   templateUrl: './dashboard.component.html',
+  providers: [NgbDropdownConfig]
 })
 export class DashboardComponent {
   @ViewChild('AppComponent') modalContent: TemplateRef<any>;
-
+  user;
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -134,12 +124,20 @@ export class DashboardComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, config: NgbDropdownConfig, private _userService: UserService) {
+    // config.placement = 'top-left';
+    config.autoClose = false;
+  }
+
 
   events:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
+    this._userService.users.subscribe(
+      (data) => { this.user = data }
+    );
+
     this.calendar.retrieveEvents(1);
     this.preferences=[
       {event:'shop together',interval:7},
@@ -153,8 +151,6 @@ export class DashboardComponent {
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
   }
-
-
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -199,6 +195,47 @@ export class DashboardComponent {
       }
     });
     this.refresh.next();
+  }
+
+
+
+  // lineChart
+  public lineChartData:Array<any> = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Username'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Partner Name'},
+  ];
+  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartOptions:any = {
+    responsive: true
+  };
+  public lineChartColors:Array<any> = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    },
+  ];
+  public lineChartLegend:boolean = true;
+  public lineChartType:string = 'line';
+ 
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 }
  

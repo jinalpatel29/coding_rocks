@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     this._uservice.register(this.user);
     formdata.reset();
     this.user = new User();
+    this.router.navigateByUrl('quiz');
   }
 
   login(info) {
@@ -32,10 +33,11 @@ export class HomeComponent implements OnInit {
       sessionStorage.setItem('_id', data['_id']);
       sessionStorage.setItem('name', data['name']);
       console.log('Logged in...');
-      this.router.navigate(['/quiz']);
+      this.router.navigate(['/dashboard']);
     });
   }
-  ngOnInit() {
-  }
+
+    ngOnInit() {
+    }
 
 }

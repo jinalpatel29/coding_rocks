@@ -28,12 +28,19 @@ export class DisplayallComponent implements OnInit {
   ) {
     this.name = this.service.getUser();
     this.uservice.users.subscribe(
+<<<<<<< HEAD
       (result) => {
         this.user = result;
         this.service.createUser(this.user.firstName);
         console.log(this.user);
       }
     );
+=======
+      (result) =>{ this.user = result;
+        this.service.createUser(this.user.firstName);      
+      }
+    )  
+>>>>>>> 7a34d4a7ded96a68d1502b8d65228c7d3dc670eb
   }
 
   onClick() {
