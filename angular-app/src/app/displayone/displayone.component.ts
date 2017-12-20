@@ -91,6 +91,7 @@ export class DisplayoneComponent implements OnInit {
     }
 
     this.service.addInterests(interests_obj);
+    this.router.navigateByUrl('dashboard');
 
   }
 
