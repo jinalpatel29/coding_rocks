@@ -7,9 +7,7 @@ module.exports = {
         Question.find({}).sort({ createdAt: -1 }).exec(function (err, questions) {
             if (err) {
                 res.json({ "status": "error" })
-            } else {
-                console.log("in show questions");
-                console.log(questions);
+            } else {               
                 res.json(questions);
             }
         });
@@ -48,8 +46,7 @@ module.exports = {
     },
 
     updateRating: function (req, res) {
-        console.log("in controller");
-        console.log(req.body);
+
         Option.findByIdAndUpdate(req.params.id, { rating: req.body.rating }, function (err, option) {
             if (err) {
                 res.json({ "status": "error" })

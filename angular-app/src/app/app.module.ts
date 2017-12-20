@@ -43,7 +43,7 @@ import { UserService } from './user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService, CategoryService,CalendarService, InterestService],
+  providers: [DataService, CategoryService,CalendarService, InterestService, UserService],
   bootstrap: [AppComponent]
 })
 

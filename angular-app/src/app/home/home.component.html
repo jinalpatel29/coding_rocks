@@ -11,7 +11,7 @@
     </p>
     <p>Have a wonderful day!</p>
   </div>
-  <form (submit)="signUp()" #register="ngForm">
+  <form (submit)="signUp(register)" #register="ngForm">
     <div class="register" style="border:2px solid black; padding:10px;">
       <h3>Account Information</h3>
       <br>
@@ -19,7 +19,7 @@
         <label class="control-label col-sm-2" for="name">First Name:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required minlength="2" maxlength="24"
-            [(ngModel)]="user.fname" #fname='ngModel' />
+            [(ngModel)]="user.firstName" #fname='ngModel' />
           <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
             Enter valid First Name
           </div>
@@ -29,7 +29,7 @@
         <label class="control-label col-sm-2" for="name">Last Name:</label>
         <div class="col-sm-10 field">
           <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required minlength="4" maxlength="24"
-            [(ngModel)]="user.lname" #lname='ngModel' />
+            [(ngModel)]="user.lastName" #lname='ngModel' />
           <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
             Enter valid Last Name
           </div>
@@ -42,6 +42,15 @@
             [(ngModel)]="user.email" #email="ngModel">
           <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
             Enter valid Email id
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-sm-2" for="pwd">Birthday:</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" name="bday" required [(ngModel)]="user.dob" #bday="ngModel">
+          <div class="alert alert-danger" *ngIf="bday.touched && bday.invalid">
+            Enter Birthday Please
           </div>
         </div>
       </div>
@@ -73,14 +82,27 @@
     </div>
   </form>
 </div>
+
+
 <div class="home">
-    <form (submit)="onSubmit(name)">
-      Your Name:
-      <input type="text" name="name" [(ngModel)]="name" placeholder="Please enter name here">
-      <br>
-      <br>
-      <button type="submit">Login
-        <!-- <a [routerLink]="['/new']">Create User</a> -->
-      </button>
-    </form>
-  </div>
+  <form (submit)="login(info)" #register="ngForm">
+    <!-- <div class="register" style="border:2px solid black; padding:10px;"> -->
+    <h3>Login</h3>
+    <br>
+    <div class="form-group row">
+      <label class="control-label col-sm-2" for="email1">Email:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="email1" placeholder="Enter username " required minlength="2" maxlength="24"
+          [(ngModel)]="info.email" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-sm-2" for="pwd1">Password:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="pwd1" placeholder="Enter password " required minlength="2" maxlength="24" [(ngModel)]="info.pwd"
+        />
+      </div>
+      </div>
+      <button type="submit">Login </button>  
+  </form>
+</div>

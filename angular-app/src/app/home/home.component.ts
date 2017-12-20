@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,23 +14,23 @@ export class HomeComponent implements OnInit {
   title = 'Registration';
   user = new User();
   success = false;
-  newUser = {};
+  info = { email: "",pwd:""}
+  loginRes;
 
-  constructor(private _service: DataService, private router: Router) { }
+  constructor(private _service: DataService, private _uservice: UserService, private router: Router) { }
 
-  signUp() {
+  signUp(formdata) {
     console.log(this.user);
-    this.newUser = this.user;
-    this.success = true;
+    this._uservice.register(this.user);   
+    formdata.reset();
     this.user = new User();
   }
-  onSubmit(name) {
-    console.log("in ")
-    console.log(name)
-    this._service.createUser(name);
-    this.router.navigate(['/quiz']);
+  login(info) {
+    console.log("in login")
+    console.log(info)  
+    this.loginRes = this._uservice.login(info);      
+    this.router.navigate(['/quiz']);   
   }
-
   ngOnInit() {
   }
 
