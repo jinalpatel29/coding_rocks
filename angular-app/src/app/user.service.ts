@@ -30,15 +30,26 @@ export class UserService {
     this._http.post('login', info).subscribe(
       (data: any[]) => {
         this.users.next(data);
-        callback(data);
+        sessionStorage.setItem('_id', data['_id']);
+        sessionStorage.setItem('firstName', data['firstName']);
+        sessionStorage.setItem('user', JSON.stringify(data));
+        callback();
       },
       errorResponse => console.log(errorResponse)
     );
   }
+  getSessionUser() {
+    if ( this.isLoggedIn() ) {
+      return JSON.parse(sessionStorage.user);
+    } else {
+      return null;
+    }
+  }
+
   isLoggedIn() {
     if (sessionStorage) {
-      if ( sessionStorage.getItem('_id') && sessionStorage.getItem('name') ) {
-        console.log(sessionStorage.getItem('name') + ' is logged in already!!!' );
+      if ( sessionStorage.getItem('_id') ) {
+        console.log(sessionStorage.getItem('firstName') + ' is logged in already!!!' );
         return true;
       } else {
         return false;
