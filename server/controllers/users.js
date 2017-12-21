@@ -76,6 +76,9 @@ module.exports = {
                         console.log(err);
                     } else {
                         user_accepting._partner = user_requesting._id;
+                        var arr = user_accepting.requests
+                        arr.splice(arr.indexOf(req.body.request_id),1);
+                        user_accepting.requests = arr;
                         user_accepting.save(function(err){
                             if (err){
                                 console.log(err);

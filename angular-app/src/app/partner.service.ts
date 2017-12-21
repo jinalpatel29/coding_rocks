@@ -29,4 +29,5 @@ export class PartnerService {
       (data: any) => {this.partner.next(data)}
     )
   }
+  
 }
