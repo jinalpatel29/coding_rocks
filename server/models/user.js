@@ -11,6 +11,7 @@ var UserSchema = new mongoose.Schema({
     dob: {type: Date},
     point: {type: Number, default: 0},
     interests: [],
+    requests: [],
     _partner: {type: Schema.Types.ObjectId, ref: 'User'}
 }, {timestamps: true});
 

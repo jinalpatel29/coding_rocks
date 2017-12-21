@@ -23,8 +23,7 @@ module.exports = {
             if (err) {
                 res.json({ "status": "Please enter correct username or password" })
             } else {
-                console.log("success");
-                console.log(user);
+                console.log('successfully logged in');
                 res.json(user);
             }
         })        
@@ -37,5 +36,35 @@ module.exports = {
                 console.log("successfully added model");
             }
         });
+    },
+    findOne: function (req, res){
+        User.findOne({ email: req.body.email }, function(err, user){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("got user");
+                res.json(user);
+            }
+        });
+    },
+    addRequest: function (req, res){
+        User.update({_id: req.params.id}, { $push: { requests: req.body.user_id }}, function(err, result){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("successfully added request");
+            }
+        });
+    },
+    getRequestedUsers: function (req, res){
+        User.find({ _id: { $in: req.body.requests } }, function(err, users){
+            if (err){
+                console.log(err);
+            } else {
+                console.log('successfully found users');
+                res.json(users);
+            }
+        });
     }
+
 }

@@ -19,6 +19,7 @@ export class DataService {
   getUser() {
     return this.author;
   }
+  
   setQuestionDisplay(question){
     this.questionDisplay = question;
   }
@@ -30,6 +31,16 @@ export class DataService {
   addInterests(result){
     console.log(result);
     this._http.post('/interests', result).subscribe(
+      (response: any) => {
+        this.questionObserver.next(response);
+      }
+    );
+  }
+
+  addRequest(link_request){
+    console.log("in data service");
+    console.log(link_request);
+    this._http.put('/request/' + link_request.partner_id, link_request).subscribe(
       (response: any) => {
         this.questionObserver.next(response);
       }
@@ -73,6 +84,8 @@ export class DataService {
       (result : any) => this.getAll()
     )
   }
+
+
 
   // getNote(id: string) {
   //   return this._http.get('/note/' + id)    

@@ -9,8 +9,8 @@ export class User {
         public dob: Date = null,
         public point: Number = 0,
         public partner: any = null,
-      //  public interests: any[] = []
-
+        public requests: any[],
+        public interests: any[]
     ) { }
 }
 
