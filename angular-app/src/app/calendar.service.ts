@@ -46,6 +46,7 @@ export class CalendarService {
     )
   }
   retrievePartnerEvents(user_id){//also grabs user_id from local storage, hard coded from express for now
+    console.log(user_id);
     this._http.get('/events/'+user_id).subscribe(
       (events:any[])=>{this.partnerEvents.next(events);
       console.log('event size:',events.length);
