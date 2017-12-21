@@ -1,27 +1,47 @@
 <div class="container">
-    <div class="header">
-        <h1>Hello</h1>
-      </div>
-    <form>
-      <div class="form-group content">
-        <div class="row">
-          <div class="col-12 col-md-auto">
-              <label for="exampleInputName2">Email</label>
-          </div>
-          <div class="col">
-              <input type="text" class="form-control" id="email" placeholder="Partner email Id">    
-          </div>
-          <div class="col col-lg-2">
-              <button type="submit" class="btn btn-primary">Invite</button>
-          </div>
+  <!-- navbar -->
+  <div class="row" style="border: 1px solid grey; padding-top: 10px;">
+    <div class="col-md-8">
+      <h4>Hello, {{user.username}}</h4>
+    </div>
+    <div class="col">
+      <div ngbDropdown class="d-inline-block text-right">
+        <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" [routerLink]="['/quiz']">Edit Interests</button>
+          <button class="dropdown-item" [routerLink]="['/confirmlove']">Confirm Love</button>
+          <button class="dropdown-item" [routerLink]="['/invite']">Invite Partner</button>
+          <button class="dropdown-item" [routerLink]="['/freqset']">Partner Interests</button>
+          <button class="dropdown-item" [routerLink]="['/item']">Add Calendar Event</button>
+          <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
         </div>
       </div>
-      
-      <!-- <div class="form-group">
-        <div class="offset-sm-10 col-sm-7 pull-right">
-          <button type="submit" class="btn btn-primary">Invite</button>
+      <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container" >
+    <div class="container">
+      <p>Search for your partner:</p>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="search">Search: </label>
+          <input type="email" class="form-control" name="search" placeholder="Enter email">
         </div>
-      </div>  -->
-    </form>
-  <!-- </fieldset> -->
-</div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+    <br>
+    <div class="container">
+      <p>Didn't find your parner? Invite them below:</p>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="search">Invite partner: </label>
+          <input type="email" class="form-control" name="search" placeholder="Enter email">
+        </div>
+        <button type="submit" class="btn btn-primary">Invite</button>
+      </form>
+    </div>
+
+  </div>

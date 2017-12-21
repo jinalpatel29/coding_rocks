@@ -2,3 +2,17 @@
     color: blue;
     text-decoration: underline;
 }
+
+fieldset {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+input {
+    margin: 10px;
+}
+
+.category {
+    margin: 10px;
+}
+

@@ -8,7 +8,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'angular-calendar';
-
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DataService } from './data.service';
@@ -50,8 +50,10 @@ import { DateTimePickerComponent } from './date-time-picker/date-time-picker.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     NgbModalModule.forRoot(),
     CalendarModule.forRoot(),
+    ChartsModule
   ],
   providers: [DataService, CategoryService,CalendarService, InterestService, UserService],
   bootstrap: [AppComponent]

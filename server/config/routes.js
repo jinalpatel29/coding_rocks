@@ -19,6 +19,10 @@ module.exports = function(app){
         questions.create(req,res);
     })
 
+    app.post('/interests', function(req,res){
+        users.addinterests(req,res);
+    });
+
     app.post('/createUser', function(req,res){ 
         users.create(req,res);
     })

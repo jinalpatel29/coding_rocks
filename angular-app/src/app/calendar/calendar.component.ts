@@ -3,8 +3,8 @@ import { Calendar } from '../calendar';
 import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
-import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 import {CalendarService} from '../calendar.service'
+import { CalendarEvent } from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 
 @Component({
   selector: 'app-calendar',
