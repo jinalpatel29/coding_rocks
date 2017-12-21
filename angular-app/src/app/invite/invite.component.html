@@ -1,8 +1,10 @@
   <!-- navbar -->
   <div class="row" style="border: 1px solid grey; padding: 10px;">
     <div class="col-md-8">
-      <h4>Hello, {{user.username}}</h4>
+      <h4>Hello, {{ user.firstName }}</h4>
     </div>
+
+    {{ partner | json }}
     <div class="col">
       <div ngbDropdown class="d-inline-block text-right">
         <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
@@ -18,20 +20,34 @@
       <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
     </div>
   </div>
-
   <!-- Main Content -->
   <div class="container">
     <div class="container">
       <p>Search for your partner:</p>
-      <form class="form-inline">
+      <form (submit)="findPartner()" class="form-inline">
         <div class="form-group">
           <label for="search">Search: </label>
-          <input type="email" class="form-control" name="search" placeholder="Enter email">
+          <input type="email" [(ngModel)]="partner_email" class="form-control" name="search" placeholder="Enter partner's email">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
     </div>
+    <div *ngIf="partner != null && partner_match">
+      <form (submit)=request()>
+        <p *ngIf="partner.email == user.email">Sorry, you can't add yourself as a partner.</p>
+        <div *ngIf="partner.email != user.email">
+          <p>A Love Fool account associated with {{ partner.email }} exists. Would you like to send a link request to this user?</p>
+          <button type="submit" class="btn btn-primary">Yes, send request to link accounts.</button>
+        </div>
+      </form>
+    </div>
     <br>
+    <div class="container" *ngIf="!partner">
+      <p>Couldn't find {{found_user}}? Invite them to join Love Fool!</p>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="search">Invite partner: </label>
+          <input type="email" class="form-control" name="search" value="{{found_user}}" placeholder="Enter email">
     <div class="container">
       <p>Didn't find your parner? Invite them below:</p>
       <form (submit)="onSubmit(formdata)" #formdata="ngForm" class="form-inline">

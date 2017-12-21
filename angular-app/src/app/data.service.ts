@@ -29,10 +29,20 @@ export class DataService {
     );
   }
 
+  addRequest(link_request){
+    console.log("in data service");
+    console.log(link_request);
+    this._http.put('/request/' + link_request.partner_id, link_request).subscribe(
+      (response: any) => {
+        this.dataObserver.next(response);
+      }
+    );
+  }
+
   invite(email){
     console.log("in service");
     console.log(email);
-    return this._http.post('/invite', email)  
+    return this._http.post('/invite', email)
   }
 
 }
