@@ -21,8 +21,9 @@ app.use(function(req, res, next) {
 
 mailer.extend(app, {
     from: 'no-reply@lovefool.com',
+    host: 'smtp.gmail.com',
     secureConnection: true, // use SSL 
-    port: 537, // port for secure SMTP 
+    port: 465, // port for secure SMTP 
     transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
     auth: {
         user: 'lovefoolteam@gmail.com',
@@ -40,10 +41,12 @@ app.post('/invite', function (req, res) {
         if (err) {
             // handle error 
             console.log(err);
-            res.send('There was an error sending the email');
-            return;
+            res.send({"status":"error"});
+            // return;
+        } else {
+
+            res.send({"status":"success"});
         }
-        res.send('Email Sent');
         // res.redirect('/');
     });
 })

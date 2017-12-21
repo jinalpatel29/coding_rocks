@@ -32,11 +32,7 @@ export class DataService {
   invite(email){
     console.log("in service");
     console.log(email);
-    this._http.post('/invite', email).subscribe(
-      (response: any) => {
-        this.dataObserver.next(response);
-      }
-    );
+    return this._http.post('/invite', email)  
   }
 
 }
