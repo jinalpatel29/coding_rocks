@@ -6,33 +6,35 @@
   {{ partners | json }}
 
   <div class="content" *ngIf="user.requests">
-    <table class="table table-striped table-bordered table-sm">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let requester of partners; let idx = index">
-          <td>{{ requester.firstName }}</td>
-          <td>{{ requester.email }}</td>
-          <td>
-            <div class="row">
-              <div class="col-md-6">
-                <form (submit)="linkAccounts(idx)">
-                  <button type="submit" class="btn btn-primary">Accept</button>
-                </form>
+    <div *ngIf="partners.length">
+      <table class="table table-striped table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let requester of partners; let idx = index">
+            <td>{{ requester.firstName }}</td>
+            <td>{{ requester.email }}</td>
+            <td>
+              <div class="row">
+                <div class="col-md-6">
+                  <form (submit)="linkAccounts(idx)">
+                    <button type="submit" class="btn btn-primary">Accept</button>
+                  </form>
+                </div>
+                <div class="col-md-6">
+                  <form (submit)="removeRequest()">
+                    <button type="submit" class="btn btn-primary">Reject</button>
+                  </form>
+                </div>
               </div>
-              <div class="col-md-6">
-                <form (submit)="removeRequest()">
-                  <button type="submit" class="btn btn-primary">Reject</button>
-                </form>
-              </div>
-            </div>
-          </td>
-      </tbody>
-    </table>
+            </td>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

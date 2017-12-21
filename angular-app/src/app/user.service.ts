@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'Rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Router } from '@angular/router';
+import { PartnerService } from './partner.service';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,8 @@ export class UserService {
   constructor(
     private _http: HttpClient,
     private _dataServ: DataService,
-    private _route: Router
+    private _route: Router,
+    private _partnerService: PartnerService
   ) { }
 
   register(user) {
@@ -50,8 +52,11 @@ export class UserService {
 
   addPartner(link) {
     this._http.post('/link', link).subscribe(
-      (data: any[]) => { this.users.next(data); },
+      (data: any[]) => { 
+        this.users.next(data);
+      },
       errorResponse => console.log(errorResponse)
     );
   }
+
 }
