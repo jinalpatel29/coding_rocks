@@ -62,6 +62,7 @@ export class DashboardComponent {
   @ViewChild('AppComponent') modalContent: TemplateRef<any>;
   user;
   view: string = 'month';
+  activeday = false;
 
   viewDate: Date = new Date();
 
@@ -159,9 +160,11 @@ export class DashboardComponent {
         events.length === 0
       ) {
         this.activeDayIsOpen = false;
+        this.activeday = false;
       } else {
         this.activeDayIsOpen = true;
         this.viewDate = date;
+        this.activeday = true;
       }
     }
   }
