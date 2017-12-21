@@ -35,17 +35,17 @@ export class CalendarService {
   // generateEvent(preferences,startDate,duration){
   //   this.calendar.populate(this.user,moment().toDate(),duration,preferences);
   // }
-  retrieveEvents(){//also grabs user_id from local storage, hard coded from express for now
-    this._http.get('/events/').subscribe(
+  retrieveEvents(user_id){//also grabs user_id from local storage, hard coded from express for now
+    this._http.get('/events/'+user_id).subscribe(
       (events:any[])=>{this.events.next(events);
       console.log('event size:',events.length);
       },
       (err)=>{console.log(err)}
     )
   }
-  overwriteEvents(events){//also grabs user_id from local storage, hard coded from express for now; option to append or overwrite or simply update particular ones
+  overwriteEvents(user_id,events){//also grabs user_id from local storage, hard coded from express for now; option to append or overwrite or simply update particular ones
     console.log('overwritingEvents from events service');
-    this._http.post('/events',{events:events}).subscribe(
+    this._http.post('/events/'+user_id,{events:events}).subscribe(
       (res)=>{},
       (err)=>{console.log(err)}
     )
