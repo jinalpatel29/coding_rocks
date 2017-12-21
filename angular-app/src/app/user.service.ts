@@ -43,9 +43,15 @@ export class UserService {
       }
     }
   }
-
   logout() {
     sessionStorage.clear();
     this._route.navigate(['']);
+  }
+
+  addPartner(link) {
+    this._http.post('/link', link).subscribe(
+      (data: any[]) => { this.users.next(data); },
+      errorResponse => console.log(errorResponse)
+    );
   }
 }

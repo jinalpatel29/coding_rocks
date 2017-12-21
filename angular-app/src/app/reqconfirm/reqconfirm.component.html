@@ -1,42 +1,38 @@
 <div class="container">
-    <div class="header">
-      <h1>Hello</h1>
-    </div>
-    <div class="content">
-      <table class="table table-striped table-bordered table-sm">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Jinal</td>
-            <td>jpatel@gmail.com</td>
-            <td>
-              <a href="http://">
-                <button>Accept</button>
-              </a>
-              <a href="http://">
-                <button>Reject</button>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>Food</td>
-            <td>Today</td>
-            <td>
-              <a href="http://">
-                <button>Accept</button>
-              </a>
-              <a href="http://">
-                <button>Reject</button>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="header">
+    <h1>Hello</h1>
   </div>
+
+  {{ partners | json }}
+
+  <div class="content" *ngIf="user.requests">
+    <table class="table table-striped table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let requester of partners; let idx = index">
+          <td>{{ requester.firstName }}</td>
+          <td>{{ requester.email }}</td>
+          <td>
+            <div class="row">
+              <div class="col-md-6">
+                <form (submit)="linkAccounts(idx)">
+                  <button type="submit" class="btn btn-primary">Accept</button>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <form (submit)="removeRequest()">
+                  <button type="submit" class="btn btn-primary">Reject</button>
+                </form>
+              </div>
+            </div>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
