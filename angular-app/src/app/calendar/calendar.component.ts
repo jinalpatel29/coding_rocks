@@ -16,6 +16,7 @@ import { Subcategories } from '../subcategories';
 })
 export class CalendarComponent implements OnInit {
   events:CalendarEvent[];
+  partnerEvents:CalendarEvent[];
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   today:any=moment();
@@ -29,6 +30,7 @@ export class CalendarComponent implements OnInit {
    
   ngOnInit() {
     this._UserService.login({email:'jswift@swift.net',pwd:'12345678'},(data)=>{this.user=data;
+      console.log(this.user);
       this.initialize();
     });//hacky way to have persistant user
     if(false){//!this._UserService.isLoggedIn()){
@@ -39,6 +41,7 @@ export class CalendarComponent implements OnInit {
     }
   } 
   initialize(){  
+    
     //3.retrieve user from local storage: hard coding preferences for now
     this.preferences=this.generatePreferences(this.user.interests);
     // this.preferences=[
@@ -53,6 +56,11 @@ export class CalendarComponent implements OnInit {
       // if a week's elapsed, auto generate & alert for review or (prompt for generation and let user choose)
       // option to adjust preference / use your own preference for first timer / no partners yet
     });
+    //get partner's events: \/
+    // if(this.user._partner){
+    //   // this._CalendarService.events
+    //   return;
+    // }
   }
   generateEvents(preferences,startDate,duration){ //move this to calendar service?
     return this.calendar.populate(this.user,moment().toDate(),duration,preferences);//move to service?

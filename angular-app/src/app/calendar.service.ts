@@ -12,6 +12,8 @@ import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEv
 @Injectable()
 export class CalendarService {
   events: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  partnerEvents: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  
   // events:CalendarEvent[];
   user:any;
   calendar=new Calendar();
@@ -38,6 +40,14 @@ export class CalendarService {
   retrieveEvents(user_id){//also grabs user_id from local storage, hard coded from express for now
     this._http.get('/events/'+user_id).subscribe(
       (events:any[])=>{this.events.next(events);
+      console.log('event size:',events.length);
+      },
+      (err)=>{console.log(err)}
+    )
+  }
+  retrievePartnerEvents(user_id){//also grabs user_id from local storage, hard coded from express for now
+    this._http.get('/events/'+user_id).subscribe(
+      (events:any[])=>{this.partnerEvents.next(events);
       console.log('event size:',events.length);
       },
       (err)=>{console.log(err)}
