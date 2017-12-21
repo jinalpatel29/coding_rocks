@@ -1,25 +1,29 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+
 <div class="container">
     <!-- navbar -->
-    <div class="row" style="border: 1px solid grey;">
-        <div class="col-md-4">
-            <h4>Hello, username</h4>
+    <div class="row" style="border: 1px solid grey; padding-top: 10px;">
+        <div class="col-md-8">
+            <h4>Hello, {{ user.firstName }}</h4>
         </div>
-        <div class="col-md-6">
-            <!-- adjust layout -->
-            <a [routerLink]="['/quiz']">Edit Interests</a>
-            <a [routerLink]="['/confirmlove']">Confirm Love</a>
-            <a [routerLink]="['/invite']">Invite Partner</a>
-            <a [routerLink]="['/freqset']">Partner Interests</a>
-            <a [routerLink]="['/item']">Add Calendar Event</a>
-            <a [routerLink]="['/requests']">Partner requests</a>
-        </div>
-        <div class="col-md-2">
-            <a [routerLink]="['/']">Logout</a>
+        <div class="col">
+            <div ngbDropdown class="d-inline-block text-right">
+                <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item" [routerLink]="['/quiz']">Edit Interests</button>
+                    <button class="dropdown-item" [routerLink]="['/confirmlove']">Confirm Love</button>
+                    <button class="dropdown-item" [routerLink]="['/invite']">Invite Partner</button>
+                    <button class="dropdown-item" [routerLink]="['/freqset']">Partner Interests</button>
+                    <button class="dropdown-item" [routerLink]="['/item']">Add Calendar Event</button>
+                    <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
+                </div>
+            </div>
+            <button class="btn btn-outline-primary float-right" (click)="logout()" >Logout</button>
         </div>
     </div>
-    <!-- main content -->
+    <!-- Main Content Area -->
     <div class="container" style="width: 85%; margin: 10px auto;">
-        <!-- this part isnt working right now. -->
+        <!-- Calendar -->
         <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
         </mwl-demo-utils-calendar-header>
 
@@ -31,6 +35,14 @@
             </mwl-calendar-week-view>
             <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
             </mwl-calendar-day-view>
+        </div>
+        <!-- Chart -->
+        <br>
+        <br>
+        <div style="display: inline-block; width: 500px; height: 300px;">
+            <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
         </div>
     </div>
 </div>

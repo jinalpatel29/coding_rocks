@@ -3,7 +3,7 @@ import { Calendar } from '../calendar';
 import { Event } from '../event';
 // var moment = require('moment');
 import * as moment from 'moment';
-import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
+import { CalendarEvent } from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +33,7 @@ export class CalendarComponent implements OnInit {
     this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
-  } 
+  }
   // onChange(){
   //   this.result=this.today.setTime(this.today.getTime() + (this.nod * (1000 * 60 * 60 * 24)))
   // }

@@ -5,6 +5,8 @@ import { InterestService } from '../interests.service';
 import { CategoryService } from '../category-service.service';
 import { Category } from '../category';
 import { Subcategories } from '../subcategories';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-displayone',
@@ -12,6 +14,7 @@ import { Subcategories } from '../subcategories';
   styleUrls: ['./displayone.component.css']
 })
 export class DisplayoneComponent implements OnInit {
+  user;
   category_boolean: any[];
   user_profile = [];
   user_id="5aaab233333"
@@ -20,11 +23,15 @@ export class DisplayoneComponent implements OnInit {
   question;
   categories;
   name;
-  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService) {
+  constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService, private _userService: UserService ) {
     this.name = this.service.getUser();
   }
 
   ngOnInit() {
+    this._userService.users.subscribe(
+      (user) => {this.user = user}
+    );
+
     this.category_boolean = this._interestService.getPreferences();
     this._categoryService.tasks.subscribe(
       (data) => {
@@ -77,9 +84,12 @@ export class DisplayoneComponent implements OnInit {
         result.push(new_obj);
       }
     }
-
-    console.log(result);
-
+    var interests_obj = {
+      user_id: this.user._id,
+      result: result
+    }
+    this.service.addInterests(interests_obj);
+    this.router.navigateByUrl('dashboard');
   }
 
 }
