@@ -18,7 +18,7 @@
                     <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
                 </div>
             </div>
-            <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
+            <button class="btn btn-outline-primary float-right" (click)="logout()" >Logout</button>
         </div>
     </div>
     <!-- Main Content Area -->

@@ -125,30 +125,37 @@ export class DashboardComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, config: NgbDropdownConfig, private _userService: UserService) {
+  constructor(
+    private modal: NgbModal,
+    config: NgbDropdownConfig,
+    private _userService: UserService) {
     // config.placement = 'top-left';
     config.autoClose = false;
   }
 
 
-  events:CalendarEvent[];
-  calendar=new Calendar();
-  preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
+  events: CalendarEvent[];
+  calendar= new Calendar();
+  preferences: any[]; // get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
+    if ( !this._userService.isLoggedIn()) {
+      this._userService.logout();
+    }
+
     this._userService.users.subscribe(
-      (data) => { this.user = data }
+      (data) => { this.user = data; }
     );
 
     this.calendar.retrieveEvents(1);
-    this.preferences=[
-      {event:'shop together',interval:7},
+    this.preferences = [
+      {event: 'shop together', interval: 7 },
       // {event:'',freq:},
-      {event:'fancy dinner',interval:7},
-      {event:'dinner',interval:1},
-      {event:'outdoors event',interval:28},
-      {event:'movie',interval:14},      
+      {event: 'fancy dinner', interval: 7},
+      {event: 'dinner', interval: 1},
+      {event: 'outdoors event', interval: 28},
+      {event: 'movie', interval: 14},
     ]
-    this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
+    this.events = this.calendar.populate(1, moment().toDate(), 28, this.preferences); // moment().format('MMMM Do YYYY')
     console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
     
   }
@@ -239,6 +246,10 @@ export class DashboardComponent {
  
   public chartHovered(e:any):void {
     console.log(e);
+  }
+
+  logout() {
+    this._userService.logout();
   }
 }
  
