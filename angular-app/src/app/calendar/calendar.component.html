@@ -8,3 +8,4 @@
 
 <label for="">date {{today|date:'dd/MM/yyyy'}}; Multiplier:<input type="text" [(ngModel)]='multi'></label><label for="">number of days<input type="text" [(ngModel)]='nod' (change)='onChange()'></label>
 <p>{{result|date:'dd/MM/yyyy'}}</p>
+<button (click)='onGenerate()'>Generate new events!</button>
