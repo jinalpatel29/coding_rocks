@@ -26,13 +26,19 @@ export class ReqconfirmComponent implements OnInit {
   
   }
 
-  linkAccounts(){
-    console.log("hit link");
+  linkAccounts(idx){
+    var link = {
+      accept_id: this.user._id,
+      request_id: this.partners[idx]._id
+    }
+    
+    this._userService.addPartner(link);
+
   }
 
-  removeRequest(){
+  removeRequest(idx){
     console.log("hit remove")
   }
 
-  
+
 }

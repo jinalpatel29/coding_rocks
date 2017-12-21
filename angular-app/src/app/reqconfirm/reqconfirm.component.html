@@ -15,15 +15,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let requester of partners">
+        <tr *ngFor="let requester of partners; let idx = index">
           <td>{{ requester.firstName }}</td>
           <td>{{ requester.email }}</td>
           <td>
             <div class="row">
-              <div class="col-md-6"></div>
-              <form (submit)="linkAccounts()">
-                <button type="submit" class="btn btn-primary">Accept</button>
-              </form>
+              <div class="col-md-6">
+                <form (submit)="linkAccounts(idx)">
+                  <button type="submit" class="btn btn-primary">Accept</button>
+                </form>
+              </div>
               <div class="col-md-6">
                 <form (submit)="removeRequest()">
                   <button type="submit" class="btn btn-primary">Reject</button>

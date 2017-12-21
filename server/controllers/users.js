@@ -65,6 +65,36 @@ module.exports = {
                 res.json(users);
             }
         });
+    },
+    linkAccount: function (req, res){
+        //welcome to hell
+        User.findOne({_id: req.body.accept_id}, function(err, user_accepting){
+            if (err){
+                console.log(err);
+            } else {
+                User.findOne({_id: req.body.request_id}, function(err, user_requesting){
+                    if (err){
+                        console.log(err);
+                    } else {
+                        user_accepting._partner = user_requesting._id;
+                        user_accepting.save(function(err){
+                            if (err){
+                                console.log(err);
+                            } else {
+                                console.log("successfully saved user accepting")
+                                user_requesting._partner = user_accepting._id;
+                                user_requesting.save(function(err){
+                                    if (err){
+                                        console.log(err);
+                                    } else {
+                                        console.log("successfully saved user requesting");
+                                    }
+                                });
+                            }
+                        })
+                    }
+                });
+            }
+        });
     }
-
 }

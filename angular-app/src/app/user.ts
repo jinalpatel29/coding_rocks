@@ -1,16 +1,16 @@
 export class User {
-    constructor(
-        public id: number = null,
-        public firstName: string = "",
-        public lastName: string = "",
-        public email: string = "",
-        public pwd: string = "",
-        public addr: string = "",
-        public dob: Date = null,
-        public point: Number = 0,
-        public partner: any = null,
-        public requests: any[],
-        public interests: any[]
-    ) { }
+
+id: number = null;
+firstName: string = "";
+lastName: string = "";
+email: string = "";
+pwd: string = "";
+addr: string = "";
+dob: Date = null;
+point: Number = 0;
+partner: any = null;
+requests: any[];
+interests: any[];
+
 }
 

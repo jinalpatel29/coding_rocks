@@ -18,9 +18,14 @@ module.exports = function(app){
         users.findOne(req, res);
     });
 
-    //get link requests for specified user
+    //post get a link requests for specified user
     app.post('/partner/requests', function(req, res){
         users.getRequestedUsers(req, res);
+    });
+
+    //link accounts
+    app.post('/link', function(req, res){
+        users.linkAccount(req, res);
     });
 
     //add a link request to specified partner
