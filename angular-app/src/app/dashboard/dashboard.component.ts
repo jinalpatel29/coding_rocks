@@ -140,7 +140,7 @@ export class DashboardComponent {
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   ngOnInit() {
-    this.calendar.retrieveEvents(1);
+    // this.calendar.retrieveEvents(1);
     this.preferences=[
       {event:'shop together',interval:7},
       // {event:'',freq:},

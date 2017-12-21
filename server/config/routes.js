@@ -1,6 +1,7 @@
 var questions = require('../controllers/questions.js');
 var categories = require('../controllers/categories.js');
 var users = require('../controllers/users.js');
+var events=require('../controllers/events.js');
 var path = require('path');
 
 module.exports = function(app){
@@ -42,6 +43,10 @@ module.exports = function(app){
     app.delete('/question/:id', function(req,res){
         questions.destroy(req,res);
     });
+
+    app.get('/events',events.show);
+    app.post('/events',events.update);
+    app.post('/event', events.createOne);
 
     app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./angular-app/dist/index.html"))
