@@ -1,7 +1,8 @@
 <p>
   calendar works!
-
+  Hello, {{user.firstName}}!
 </p>
+<button (click)="onLogout()">Log out</button>
 <p *ngFor="let event of events ">
   {{event|json}}
 </p>
@@ -9,3 +10,4 @@
 <label for="">date {{today|date:'dd/MM/yyyy'}}; Multiplier:<input type="text" [(ngModel)]='multi'></label><label for="">number of days<input type="text" [(ngModel)]='nod' (change)='onChange()'></label>
 <p>{{result|date:'dd/MM/yyyy'}}</p>
 <button (click)='onGenerate()'>Generate new events!</button>
+<!-- <button (click)='initialize()'>initialized</button> -->

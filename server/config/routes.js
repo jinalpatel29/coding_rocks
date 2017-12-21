@@ -62,8 +62,8 @@ module.exports = function (app) {
         users.login(req, res);
     })
 
-    app.get('/events',events.show);
-    app.post('/events',events.update);
+    app.get('/events/:user_id',events.show);
+    app.post('/events/:user_id',events.update);
     app.post('/event', events.createOne);
 
     app.all("*", (req, res, next) => {
