@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
     address2: {type: String, default: ""},
     dob: {type: Date},
     point: {type: Number, default: 0},
+    events:[],
     interests: [],
     requests: [],
     _partner: {type: Schema.Types.ObjectId, ref: 'User'}

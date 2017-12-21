@@ -1,14 +1,14 @@
 import {Event} from './event';
-import {CalendarService} from './calendar.service'
+// import {CalendarService} from './calendar.service'
 import * as moment from 'moment';
 // import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 // import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
+// console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 
 export class Calendar {  
-
-    _CalendarService=new CalendarService();
+    // _CalendarService=new CalendarService();
     events:CalendarEvent[];//holder of events to be displayed on a particular page
     // constructor(
     //     public preferences={
@@ -18,7 +18,7 @@ export class Calendar {
     //     private _CalendarService: CalendarService
     // ){};
     //populate is the top level behind the scenes method; dateRange provides flexibility e.g. user only wants to populate one month at a time
-    populate(user:any, startDate,duration:any,preferences:any[]):CalendarEvent[] {//do this over a range, resolve / generate on a single event basis
+    populate(user:any, startDate:Date,duration:any,preferences:any[]):CalendarEvent[] {//do this over a range, resolve / generate on a single event basis
         //add generated events to local calendar
         var tempPreferences=this.updateFrequencies(preferences,duration);//frequencies from use later
         var events:CalendarEvent[]=this.generate(tempPreferences,startDate,duration);
@@ -36,12 +36,11 @@ export class Calendar {
         var events:CalendarEvent[] = [];
         console.log('date range: ',duration)
         for(let interest of preferences){
-            console.log('interest: ',interest);
-            console.log(Math.floor(duration/interest.freq));
+            // console.log('interest: ',interest);
             for(let i =0;i< duration;i+=interest.interval){
                 var newEvent=new Event(interest.event,moment(startDate, "MMMM Do YYYY").add(i,'days').toDate());//moment(startDate, "MMMM Do YYYY").add(i,'days').format('MMMM Do YYYY'));this.addDays(startDate,i)
                 // newEvent.location='San Jose';
-                console.log('adding events');
+                // console.log('adding events');
                 events.push(newEvent);
             }
         }
@@ -75,8 +74,8 @@ export class Calendar {
         //adds the event given its time and category; 
         //might add methods to randomly generate time / category
     }
-    retrieveEvents(dateRange){
-        this._CalendarService.retrieveEvents(dateRange);
-    }
+    // retrieveEvents(dateRange){
+    //     this._CalendarService.retrieveEvents(dateRange);
+    // }
 }
 

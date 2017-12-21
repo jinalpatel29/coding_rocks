@@ -101,7 +101,7 @@ export class DashboardComponent {
       (data) => { this.user = data; }
     );
 
-    this.calendar.retrieveEvents(1);
+    // this.calendar.retrieveEvents(1);
     this.preferences = [
       {event: 'shop together', interval: 7 },
       // {event:'',freq:},
