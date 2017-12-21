@@ -28,19 +28,12 @@ export class DisplayallComponent implements OnInit {
   ) {
     this.name = this.service.getUser();
     this.uservice.users.subscribe(
-<<<<<<< HEAD
       (result) => {
         this.user = result;
         this.service.createUser(this.user.firstName);
         console.log(this.user);
       }
     );
-=======
-      (result) =>{ this.user = result;
-        this.service.createUser(this.user.firstName);      
-      }
-    )  
->>>>>>> 7a34d4a7ded96a68d1502b8d65228c7d3dc670eb
   }
 
   onClick() {
@@ -94,7 +87,7 @@ export class DisplayallComponent implements OnInit {
     this.check_one = false;
     this.category_boolean[idx] == true ? this.category_boolean[idx] = false : this.category_boolean[idx] = true;
     this._interestService.updatePreferences(this.category_boolean);
-    //check to see if at least one item has been checked.
+    // check to see if at least one item has been checked.
     this.category_boolean.forEach(
       (element) => {
         if (element) {
