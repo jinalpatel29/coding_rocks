@@ -19,13 +19,21 @@ export class DisplayallComponent implements OnInit {
   questions;
   category_boolean = [];
   check_one: boolean;
-  constructor(public service: DataService, private uservice: UserService,private _router: Router, private _categoryService: CategoryService, private _interestService: InterestService) {
-    this.name = this.service.getUser();  
+  constructor (
+    public service: DataService,
+    private uservice: UserService,
+    private _router: Router,
+    private _categoryService: CategoryService,
+    private _interestService: InterestService
+  ) {
+    this.name = this.service.getUser();
     this.uservice.users.subscribe(
-      (result) =>{ this.user = result;
-        this.service.createUser(this.user.firstName);      
+      (result) => {
+        this.user = result;
+        this.service.createUser(this.user.firstName);
+        console.log(this.user);
       }
-    )  
+    );
   }
 
   onClick() {
@@ -37,21 +45,24 @@ export class DisplayallComponent implements OnInit {
   }
 
   logout() {
-    this.service.createUser("");
-    this._router.navigate(['']);
+    // this.service.createUser("");
+    // this._router.navigate(['']);
+    this.uservice.logout();
   }
 
   onDelete(id) {
-    this.service.deleteQuestion(id)
+    this.service.deleteQuestion(id);
   }
 
   ngOnInit() {
-    
+    if ( !this.uservice.isLoggedIn()) {
+      this.uservice.logout();
+    }
     this._categoryService.getCategories();
     this._categoryService.tasks.subscribe(
       (data) => {
         this.categories = data;
-        //set a boolean value in the category_boolean array that corresponds to the categories;
+        // set a boolean value in the category_boolean array that corresponds to the categories;
         this.category_boolean = [];
         this.categories.forEach(
           (element) => { this.category_boolean.push(false) }
@@ -76,7 +87,7 @@ export class DisplayallComponent implements OnInit {
     this.check_one = false;
     this.category_boolean[idx] == true ? this.category_boolean[idx] = false : this.category_boolean[idx] = true;
     this._interestService.updatePreferences(this.category_boolean);
-    //check to see if at least one item has been checked.
+    // check to see if at least one item has been checked.
     this.category_boolean.forEach(
       (element) => {
         if (element) {
