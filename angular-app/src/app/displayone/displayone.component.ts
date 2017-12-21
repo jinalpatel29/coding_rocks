@@ -18,9 +18,6 @@ export class DisplayoneComponent implements OnInit {
   category_boolean: any[];
   user_profile = [];
   user_id="5aaab233333"
-  question_id;
-  options;
-  question;
   categories;
   name;
   constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService, private _userService: UserService ) {

@@ -40,18 +40,10 @@ export class DisplayallComponent implements OnInit {
     this._router.navigate(['/create']);
   }
 
-  onQueClick(que) {
-    this.service.setQuestionDisplay(que);
-  }
-
   logout() {
     // this.service.createUser("");
     // this._router.navigate(['']);
     this.uservice.logout();
-  }
-
-  onDelete(id) {
-    this.service.deleteQuestion(id);
   }
 
   ngOnInit() {
@@ -77,10 +69,10 @@ export class DisplayallComponent implements OnInit {
       console.log(this.user)}
     )  
 
-    this.service.questionObserver.subscribe(
-      (result) => this.questions = result
-    )
-    this.service.getAll();
+    // this.service.questionObserver.subscribe(
+    //   (result) => this.questions = result
+    // )
+   // this.service.getAll();
   }
 
   select(idx) {

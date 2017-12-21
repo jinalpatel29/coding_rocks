@@ -1,6 +1,5 @@
-<div class="container">
   <!-- navbar -->
-  <div class="row" style="border: 1px solid grey; padding-top: 10px;">
+  <div class="row" style="border: 1px solid grey; padding: 10px;">
     <div class="col-md-8">
       <h4>Hello, {{user.username}}</h4>
     </div>
@@ -21,7 +20,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="container" >
+  <div class="container">
     <div class="container">
       <p>Search for your partner:</p>
       <form class="form-inline">
@@ -35,13 +34,13 @@
     <br>
     <div class="container">
       <p>Didn't find your parner? Invite them below:</p>
-      <form class="form-inline">
+      <form (submit)="onSubmit(formdata)" #formdata="ngForm" class="form-inline">
         <div class="form-group">
           <label for="search">Invite partner: </label>
-          <input type="email" class="form-control" name="search" placeholder="Enter email">
+          <input type="email" class="form-control" name="search" [(ngModel)]="email.email" placeholder="Enter email">
         </div>
         <button type="submit" class="btn btn-primary">Invite</button>
       </form>
     </div>
-
   </div>
+<!-- </div> -->
