@@ -29,7 +29,8 @@ export class CalendarComponent implements OnInit {
   ) { }
    
   ngOnInit() {
-    this._UserService.login({email:'jswift@swift.net',pwd:'12345678'},(data)=>{this.user=data;
+    //Jonnathan: {email:'jswift@swift.net',pwd:'12345678'}
+    this._UserService.login({email:'Arnold@muscles.net',pwd:'testing123'},(data)=>{this.user=data;
       console.log(this.user);
       this.initialize();
     });//hacky way to have persistant user
@@ -40,15 +41,14 @@ export class CalendarComponent implements OnInit {
       console.log('first name: ',this.user.firstName);      
     }
   } 
+/********************************* transplants from calendar.component.ts ******************************************** */
   initialize(){  
-    
     //3.retrieve user from local storage: hard coding preferences for now
     this.preferences=this.generatePreferences(this.user.interests);
     // this.preferences=[
     //   {event:'shop together',interval:7},     
     // ]
     this.retrieveEvents(this.user._id,this.today,28);        
-    //1.subscribe to calendar service \/
     this._CalendarService.events.subscribe(events=>{
       this.events=events;
       // console.log(this.events.length);
@@ -56,26 +56,42 @@ export class CalendarComponent implements OnInit {
       // if a week's elapsed, auto generate & alert for review or (prompt for generation and let user choose)
       // option to adjust preference / use your own preference for first timer / no partners yet
     });
-    //get partner's events: \/
-    // if(this.user._partner){
-    //   // this._CalendarService.events
-    //   return;
-    // }
+    if(this.user._partner){    // get partner's events: \/    
+      this._CalendarService.partnerEvents.subscribe(events=>{
+        this.partnerEvents=events;
+        for(let event of this.partnerEvents){
+          event.color.primary='pink';
+          event.color.secondary='purple';
+        }
+      });
+      this._CalendarService.retrievePartnerEvents(this.user._partner);
+      return;
+    }
   }
   generateEvents(preferences,startDate,duration){ //move this to calendar service?
     return this.calendar.populate(this.user,moment().toDate(),duration,preferences);//move to service?
   }
   onGenerate(){
+    moment("2012-02", "YYYY-MM").daysInMonth() // 29    
+    const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm');
+    const endOfMonth   = moment().endOf('month').format('YYYY-MM-DD hh:mm');
     console.log(`Generating a bunch of events per user request.`);  
     //   console.log('events are: ',events);
-    this._CalendarService.overwriteEvents(this.user._id,this.generateEvents(this.preferences,this.today,28));//move to service?
-    this.retrieveEvents(this.user._id,1,1);    
+    this._CalendarService.overwriteEvents(
+      this.user._id,this.generateEvents(
+        this.preferences,this.today,28),
+      (res)=>{//this.retrieveEvents(this.user._id,1,1);
+        console.log('calling from component')}
+      );//move to service?
   }
-  generatePreferences(interests){
+  generatePreferences(user_interests){
     var preferences=[];
-    for(let interest of interests){
+    for(let interest of user_interests){
       let eventName=interest.name+': ';
       for(let subcategory of interest.subcategories){
+        if(subcategory.interval<0.3){
+          subcategory.interval=Infinity;//fixes infinite loop bug
+        }
         preferences.push(
           {event:eventName+subcategory.title,
             interval:subcategory.interval}
@@ -92,6 +108,7 @@ export class CalendarComponent implements OnInit {
   onLogout(){
     this._UserService.logout();
   }
+/********************************* end of transplants from calendar.component.ts *********************************************/
 
 
 
