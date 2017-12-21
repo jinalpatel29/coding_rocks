@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-invite',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invite.component.css']
 })
 export class InviteComponent implements OnInit {
-
-  constructor() { }
-
+  email;
+  constructor(private _service:DataService) { }
+  onSubmit(){
+    this._service.invite(this.email);
+  }
   ngOnInit() {
   }
 
