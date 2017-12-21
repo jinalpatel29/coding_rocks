@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { CalendarService } from '../calendar.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   success = false;
   info = { email: '', pwd: '' };
 
-  constructor(private _service: DataService, private _uservice: UserService, private router: Router) { }
+  constructor(private _service: DataService, private _uservice: UserService, private router: Router, private _eventservice: CalendarService) { }
 
   signUp(formdata) {
     console.log(this.user);
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
     console.log(info);
     this._uservice.login(info, (data) => {
       sessionStorage.setItem('_id', data['_id']);
-      sessionStorage.setItem('name', data['name']);
+      sessionStorage.setItem('firstName', data['firstName']);
       console.log('Logged in...');
       this.router.navigate(['/dashboard']);
     });

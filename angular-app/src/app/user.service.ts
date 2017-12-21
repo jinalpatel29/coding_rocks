@@ -35,8 +35,8 @@ export class UserService {
   }
   isLoggedIn() {
     if (sessionStorage) {
-      if ( sessionStorage.getItem('_id') && sessionStorage.getItem('name') ) {
-        console.log(sessionStorage.getItem('name') + ' is logged in already!!!' );
+      if ( sessionStorage.getItem('_id') && sessionStorage.getItem('firstName') ) {
+        console.log(sessionStorage.getItem('firstName') + ' is logged in already!!!' );
         return true;
       } else {
         return false;
