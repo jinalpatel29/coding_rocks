@@ -2,13 +2,15 @@
 
 <div class="container">
     <!-- navbar -->
-    <div class="row" style="border: 1px solid grey; padding-top: 10px;">
-        <div class="col-md-8">
+    <div class="row head">
+        <div class="col-md-9">
             <h4>Hello, {{ user.firstName }}</h4>
         </div>
-        <div class="col">
+        <div class="col-md-2">
             <div ngbDropdown class="d-inline-block text-right">
-                <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                    <!-- <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle> -->
+                    Menu</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <button class="dropdown-item" [routerLink]="['/quiz']">Edit Interests</button>
                     <button class="dropdown-item" [routerLink]="['/confirmlove']">Confirm Love</button>
@@ -18,16 +20,20 @@
                     <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
                 </div>
             </div>
-            <button class="btn btn-outline-primary float-right" (click)="onLogout()" >Logout</button>
         </div>
+        <div class="col-md-1">
+            <button class="btn btn-outline-dark float-right" (click)="onLogout()">Logout</button>
+        </div>
+
     </div>
     <!-- Main Content Area -->
-    <div class="container" style="width: 85%; margin: 10px auto;">
+    <div class="content">
         <!-- Calendar -->
         <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
-        </mwl-demo-utils-calendar-header><button (click)='onGenerate()'>Generate new events!</button>
+        </mwl-demo-utils-calendar-header>
+        <button (click)='onGenerate()'>Generate new events!</button>
 
-        <div [ngSwitch]="view">
+        <div class="calendar" [ngSwitch]="view">
             <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeday" (dayClicked)="dayClicked($event.day)"
                 (eventClicked)="eventClicked($event)">
             </mwl-calendar-month-view>
@@ -36,11 +42,11 @@
             <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
             </mwl-calendar-day-view>
         </div>
-        <button (click)='onGenerate()'>Generate new events!</button>        
+        <button (click)='onGenerate()'>Generate new events!</button>
         <!-- Chart -->
         <br>
         <br>
-        <div style="display: inline-block; width: 500px; height: 300px;">
+        <div class="chart">
             <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
                 [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>

@@ -280,6 +280,7 @@ export class DashboardComponent {
       for (let event of this.selfEvents) {
         event.start = new Date(event.start); //very expensive???
       }
+      console.log('partner event number: ',this.partnerEvents.length);
       this.events=this.selfEvents.concat(this.partnerEvents);
       // console.log(this.events.length);
       //2.callback of events: prompt to generate events if none from now on ; 

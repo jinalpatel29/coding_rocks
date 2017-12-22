@@ -1,0 +1,20 @@
+.container{
+    width: 100%;   
+}
+.head{
+    /* border: 1px solid grey; */
+    padding: 10px;
+    /* background-color: rgba(177, 119, 139, 0.76); */
+}
+.chart{
+   display: inline-block; 
+   width: 500px; 
+   height: 300px;
+}
+.calendar{
+    background-color: rgba(78, 158, 129, 0.561);
+}
+.content{
+   /* width: 95%; */
+   margin: 10px auto;
+}
