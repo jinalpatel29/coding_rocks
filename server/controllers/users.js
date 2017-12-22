@@ -46,6 +46,16 @@ module.exports = {
             }
         });
     },
+    findPartner: function (req, res){
+        User.findOne({ _id: req.body.id }, function(err, user){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("got partner");
+                res.json(user);
+            }
+        });
+    },
     addRequest: function (req, res){
         User.update({_id: req.params.id}, { $push: { requests: req.body.user_id }}, function(err, result){
             if (err){

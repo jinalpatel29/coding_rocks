@@ -20,6 +20,7 @@ export class DisplayoneComponent implements OnInit {
   user_id="5aaab233333"
   categories;
   name;
+
   constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService, private _userService: UserService ) {
     this.name = this.service.getUser();
   }
@@ -85,6 +86,8 @@ export class DisplayoneComponent implements OnInit {
       user_id: this.user._id,
       result: result
     }
+
+    console.log(interests_obj);
     this.service.addInterests(interests_obj);
     this.router.navigateByUrl('dashboard');
   }
