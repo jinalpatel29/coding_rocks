@@ -57,6 +57,16 @@ module.exports = {
             }
         });
     },
+    findOneByID: function (req, res){
+        User.findOne({ _id: req.params.user_id }, function(err, user){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("got user");
+                res.json(user);
+            }
+        });
+    },
     addRequest: function (req, res){
         User.update({_id: req.params.id}, { $push: { requests: req.body.user_id }}, function(err, result){
             if (err){
