@@ -95,11 +95,13 @@ export class DashboardComponent {
   ngOnInit() {
     if ( !this._userService.isLoggedIn()) {
       this._userService.logout();
+    }else{
+      this.user = this._userService.getSessionUser();
     }
 
-    this._userService.users.subscribe(
-      (data) => { this.user = data; }
-    );
+    // this._userService.users.subscribe(
+    //   (data) => { this.user = data; }
+    // );
 
     // this.calendar.retrieveEvents(1);
     this.preferences = [

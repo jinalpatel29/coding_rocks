@@ -1,11 +1,20 @@
+.container{
+    padding: 0px;
+    /* margin: 20px; */
+    width: 100%;
+    background-color:rgba(116, 136, 223, 0.507);
+}
+.head{
+    padding: 20px;
+ }
 #link{
-    color: blue;
+    /* color: blue; */
     text-decoration: underline;
 }
 
 fieldset {
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 input {

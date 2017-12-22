@@ -1,16 +1,32 @@
 .home{
     margin-top: 50px;
     text-align: center;
-    color: rgba(42, 8, 122, 0.726);
-    /* border: 1px solid gray; */
+    background-color: #6DBBAA;
+    color: rgba(255, 255, 255, 0.883);
     padding: 10px;
+    font-family: 'Playball', cursive;
+    font-size: 60px;
 }
 .container{
-    background-color: rgba(116, 136, 223, 0.507);
+    /* background-color: #; */
+    /* background: linear-gradient(rgb(112, 104, 141), #B5A19E); */
+    /* background-image: url("../../assets/images/background.jpg"); */
+    /* background-color: rgba(116, 136, 223, 0.507); */
 }
 .register{
     padding: 3px;
 }
 h3{
     text-align: center;
+}
+#bts1{
+    border-radius: 25px;
+    width: 100px;
+    background-color: #FDA302;
+}
+
+#bts2{
+    border-radius: 25px;
+    width: 100px;
+    background-color: #FDA302;
 }
