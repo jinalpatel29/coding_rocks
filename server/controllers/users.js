@@ -36,6 +36,17 @@ module.exports = {
             }
         });
     },
+    addPoints: function(req, res) {
+        User.update({ _id: req.params.id }, { $inc: { point: Number(req.body.points) } }, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.send({"status": "error"})
+            } else {
+                console.log("successfully added model");
+                res.send({"status": "success"});
+            }
+        });
+    },
     findOne: function (req, res){
         User.findOne({ email: req.body.email }, function(err, user){
             if (err){
@@ -76,6 +87,9 @@ module.exports = {
                         console.log(err);
                     } else {
                         user_accepting._partner = user_requesting._id;
+                        var arr = user_accepting.requests
+                        arr.splice(arr.indexOf(req.body.request_id),1);
+                        user_accepting.requests = arr;
                         user_accepting.save(function(err){
                             if (err){
                                 console.log(err);

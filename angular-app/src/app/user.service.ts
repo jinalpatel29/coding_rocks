@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'Rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Router } from '@angular/router';
+import { PartnerService } from './partner.service';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,8 @@ export class UserService {
   constructor(
     private _http: HttpClient,
     private _dataServ: DataService,
-    private _route: Router
+    private _route: Router,
+    private _partnerService: PartnerService
   ) { }
 
   register(user) {
@@ -28,15 +30,29 @@ export class UserService {
     this._http.post('login', info).subscribe(
       (data: any[]) => {
         this.users.next(data);
-        callback(data);
+        sessionStorage.setItem('_id', data['_id']);
+        sessionStorage.setItem('firstName', data['firstName']);
+        sessionStorage.setItem('user', JSON.stringify(data));
+        callback();
       },
       errorResponse => console.log(errorResponse)
     );
   }
+  getSessionUser() {
+    if ( this.isLoggedIn() ) {
+      return JSON.parse(sessionStorage.user);
+    } else {
+      return null;
+    }
+  }
+  addPoints(id, pointsObj) {
+    return this._http.put('/addpoints/' + id, pointsObj);
+  }
+
   isLoggedIn() {
     if (sessionStorage) {
-      if ( sessionStorage.getItem('_id') && sessionStorage.getItem('name') ) {
-        console.log(sessionStorage.getItem('name') + ' is logged in already!!!' );
+      if ( sessionStorage.getItem('_id') ) {
+        console.log(sessionStorage.getItem('firstName') + ' is logged in already!!!' );
         return true;
       } else {
         return false;
@@ -50,7 +66,9 @@ export class UserService {
 
   addPartner(link) {
     this._http.post('/link', link).subscribe(
-      (data: any[]) => { this.users.next(data); },
+      (data: any[]) => { 
+        this.users.next(data);
+      },
       errorResponse => console.log(errorResponse)
     );
   }

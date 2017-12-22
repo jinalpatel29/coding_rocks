@@ -30,15 +30,16 @@ export class CalendarComponent implements OnInit {
    
   ngOnInit() {
     //Jonnathan: {email:'jswift@swift.net',pwd:'12345678'}
-    this._UserService.login({email:'Arnold@muscles.net',pwd:'testing123'},(data)=>{this.user=data;
-      console.log(this.user);
-      this.initialize();
-    });//hacky way to have persistant user
-    if(false){//!this._UserService.isLoggedIn()){
-      // this.onLogout();
+    // this._UserService.login({email:'Arnold@muscles.net',pwd:'testing123'},(data)=>{this.user=data;
+    //   console.log(this.user);
+    //   this.initialize();
+    // });//hacky way to have persistant user
+    if(!this._UserService.isLoggedIn()){
+      this.onLogout();
     }else{
-      this._UserService.users.subscribe(user=>{this.user=user;});
-      console.log('first name: ',this.user.firstName);      
+      this.user=this._UserService.getSessionUser();//users.subscribe(user=>{this.user=user;});
+      console.log('first name: ',this.user.firstName);  
+      this.initialize();    
     }
   } 
 /********************************* transplants from calendar.component.ts ******************************************** */
