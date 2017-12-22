@@ -33,9 +33,8 @@ export class InviteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._userService.users.subscribe(
-      (data) => { this.user = data }
-    );
+    this.user = this._userService.getSessionUser();
+    console.log("in invite user is:"+this.user)
 
     if ( !this._userService.isLoggedIn()) {
       this._userService.logout();

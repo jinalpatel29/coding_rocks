@@ -10,3 +10,6 @@
 .content{
     border: 2px solid gray;
 }
+#welcome{
+    font-family: 'Playball', cursive;
+}

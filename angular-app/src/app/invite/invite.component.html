@@ -1,11 +1,8 @@
 <!-- navbar -->
-<div class="row" style="border: 1px solid grey; padding: 10px;">
+<div class="row">
   <div class="col-md-8">
-    <h4>Hello, {{ user.firstName }}</h4>
+    <h4 id="welcome">Hello, {{ user.firstName }}</h4>
   </div>
-
-  {{ user | json }}
-
   
   <div class="col">
     <div ngbDropdown class="d-inline-block text-right">

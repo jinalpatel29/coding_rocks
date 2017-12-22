@@ -2,8 +2,9 @@
     width: 700px;
 }
 .header{
-    padding: 20px;
-    background-color: rgba(116, 136, 223, 0.507);
+    /* padding: 20px; */
+    background-color: #FDA302;
+    color: whitesmoke;
 }
 .content{
     border: 2px solid gray;
@@ -12,4 +13,7 @@
 }
 input{
     margin: 5px;
+}
+#welcome{
+    font-family: 'Playball', cursive;
 }
