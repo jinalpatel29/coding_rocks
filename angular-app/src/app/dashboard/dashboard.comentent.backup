@@ -86,7 +86,7 @@ const colors: any = {
   providers: [NgbDropdownConfig]
 })
 export class DashboardComponent {
-  @ViewChild('modalContent') modalContent: TemplateRef < any > ;
+  @ViewChild('AppComponent') modalContent: TemplateRef < any > ;
   view: string = 'month';
   activeday = false;
 
@@ -184,7 +184,6 @@ export class DashboardComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log('action: ',action, ' event: ',event);
     this.modalData = {
       event,
       action
@@ -288,7 +287,7 @@ export class DashboardComponent {
       this.partnerEvents = events;
       this.partnerEvents.forEach((event,index,events)=>{
         event.start=new Date(event.start);
-        event.color={primary : 'pink',secondary : '#FEA403'};
+        event.color={primary : 'pink',secondary : 'purple'};
       })
     });
     this.partner=this._UserService.getUser(this.user._partner,(partner)=>{this.partner = partner})
@@ -299,7 +298,6 @@ export class DashboardComponent {
     this._CalendarService.events.subscribe(events => {
       this.selfEvents = events;
       for (let event of this.selfEvents) {
-        event.color={primary : 'blue',secondary : '#00CED1'};
         event.start = new Date(event.start); //very expensive???
       }
       console.log('partner event number: ',this.partnerEvents.length);
