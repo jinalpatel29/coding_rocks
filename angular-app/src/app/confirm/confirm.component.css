@@ -1,12 +1,19 @@
-.container{
-    width: 700px;
+.confirm-container{
+    /* width: 700px; */
+    width: 90%;
+    margin: 0 auto;
     /* background-color: rgba(241, 177, 209, 0.733); */
 }
 
 .header{
     padding: 20px;
-    background-color: rgba(116, 136, 223, 0.507);
+    /* background-color: rgba(116, 136, 223, 0.507); */
 }
 .content{
-    border: 2px solid gray;
+    /* border: 2px solid gray; */
+    width: 99%;
+    margin: 0 auto;
+}
+#welcome{
+    font-family: 'Playball', cursive;
 }

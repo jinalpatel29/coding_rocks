@@ -2,8 +2,8 @@
     width: 100%;   
 }
 .head{
-    /* border: 1px solid grey; */
     padding: 10px;
+    /* background: linear-gradient(#6D648B, #B5A19E); */
     /* background-color: rgba(177, 119, 139, 0.76); */
 }
 .chart{
@@ -17,4 +17,7 @@
 .content{
    /* width: 95%; */
    margin: 10px auto;
+}
+#welcome{
+    font-family: 'Playball', cursive;
 }
