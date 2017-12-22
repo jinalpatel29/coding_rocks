@@ -15,7 +15,9 @@ export class ReqconfirmComponent implements OnInit {
   constructor(private _userService: UserService, private _partnerService: PartnerService, private _router: Router) { }
 
   ngOnInit() {
+    this.user = this._userService.getSessionUser();
     if (this.user){
+      console.log(this.user.firstName);
       this._partnerService.getRequestors({requests: this.user.requests});
     }
     
