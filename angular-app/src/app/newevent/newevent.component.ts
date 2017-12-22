@@ -21,7 +21,7 @@ export class NeweventComponent implements OnInit {
     this.user = this._uservice.getSessionUser();
   }
   logout() {
-    this.UserService.logout();
+    this._uservice.logout();
   }
 
 }
