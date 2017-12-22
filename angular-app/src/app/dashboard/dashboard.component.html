@@ -4,7 +4,7 @@
     <!-- navbar -->
     <div class="row head">
         <div class="col-md-9">
-            <h4>Hello, {{ user.firstName }}</h4>
+            <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4>
         </div>
         <div class="col-md-2">
             <div ngbDropdown class="d-inline-block text-right">

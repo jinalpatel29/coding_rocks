@@ -70,6 +70,7 @@ module.exports = function (app) {
     app.post('/login', function (req, res) {
         users.login(req, res);
     })
+    app.post('/user/:user_id',function(req,res){users.findOneByID(req,res)});
 
     app.get('/events/:user_id',events.show);
     app.post('/events/:user_id',events.update);

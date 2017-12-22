@@ -131,6 +131,7 @@ export class DashboardComponent {
   preferences: any[]; //get it from database; assume [{event:eventID,frequency:number of days per event}]
   today: any = moment();
   user: any;
+  partner:any;
   /*********** end of loveful custom ***********/
 
   constructor(
@@ -273,6 +274,7 @@ export class DashboardComponent {
           event.color.secondary = 'purple';
         }
       });
+      this.partner=this._UserService.getUser(this.user._partner,(partner)=>{this.partner = partner})
     }
     this.retrieveEvents(this.user._id, this.today, 28);
     this._CalendarService.events.subscribe(events => {

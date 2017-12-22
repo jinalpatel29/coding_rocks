@@ -10,6 +10,7 @@ export class UserService {
   // userObserver = new BehaviorSubject([]);
   users: BehaviorSubject<any[]> = new BehaviorSubject([]);
   result ;
+  partner:any;
   constructor(
     private _http: HttpClient,
     private _dataServ: DataService,
@@ -22,7 +23,7 @@ export class UserService {
     this._http.post('/createUser', user).subscribe(
       (data: any[]) => { this.users.next(data); },
       errorResponse => console.log(errorResponse)
-    );
+    ); 
   }
 
   login(info, callback) {
@@ -71,6 +72,9 @@ export class UserService {
       },
       errorResponse => console.log(errorResponse)
     );
+  }
+  getUser(user_id,callback){
+    this._http.post('/user/'+user_id,{}).subscribe(callback);
   }
   //from home.component.ts: login(info) {
   //   console.log('in login');
