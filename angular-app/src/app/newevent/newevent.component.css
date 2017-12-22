@@ -1,26 +1,26 @@
 .container{
-    width: 700px;
+    /* width: 700px; */
 }
 .header{
-    padding: 20px;
-    background-color: rgba(116, 136, 223, 0.507);
+    /* padding: 20px; */
+    /* background-color: rgba(116, 136, 223, 0.507); */
 }
 .content{
-    border: 2px solid gray;  
+    /* border: 2px solid gray;   */
     padding: 10px;
 }
 a{
-    color: blue;
+    /* color: blue;
     text-decoration: underline;
-    margin: 10px;
+    margin: 10px; */
 }
 .links{
-    text-align: right;
-    color: blue;  
+    /* text-align: right;
+    color: blue;   */
 }
 .btn{
-   margin: 10px;
+    /* margin: 10px; */
 }
 input{
-    width: 300px;
+    /* width: 300px; */
 }

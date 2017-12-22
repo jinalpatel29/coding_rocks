@@ -1,12 +1,22 @@
 <div class="container">
-  
-  <div class="header">
-    <div class="links">
-      <a [routerLink]="['/dashboard']">Back to Dashboard</a>
-    </div>
-    <h1>Hello {{ user.firstName }}</h1>
 
+  <div class="row head">
+    <div class="col-md-9">
+      <h4>Hello, {{ user.firstName }}</h4>
+      <!-- <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4> -->
+    </div>
+    <div class="col-md-2">
+      <div class="links">
+        <a [routerLink]="['/dashboard']">Back to Dashboard</a>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="links">
+        <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+      </div>
+    </div>
   </div>
+
   <div class="content">
     <form (submit)="saveFrequency()">
       <div>
