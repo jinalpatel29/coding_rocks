@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../user.service';
 import { PartnerService } from '../partner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invite',
@@ -22,7 +23,8 @@ export class InviteComponent implements OnInit {
     config: NgbDropdownConfig,
     private _userService: UserService,
     private _partnerService: PartnerService,
-    private _dataService: DataService
+    private _dataService: DataService,
+    private router: Router
   ) {
     config.autoClose = false;
   }
@@ -32,6 +34,7 @@ export class InviteComponent implements OnInit {
       (result) => {
         if (result['status'] === 'success') {
           formdata.reset();
+          this.router.navigate(['dashboard']);
         }
       }
     );
