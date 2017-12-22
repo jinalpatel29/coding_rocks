@@ -205,6 +205,7 @@ export class DashboardComponent {
   }
 
   addEvent(){
+    this.newEvent['creator']=this.user._id;
     this.selfEvents.push(this.newEvent);
     this._CalendarService.overwriteEvents(this.user._id,this.selfEvents);
   }
