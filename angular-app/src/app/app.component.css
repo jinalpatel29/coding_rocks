@@ -1,0 +1,18 @@
+.header {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #6DBBAA;
+    color: rgba(255, 255, 255, 0.883);
+    padding: 10px;
+    font-family: 'Playball', cursive;
+    font-size: 60px;
+}
+
+.footer {
+    height: 100px;
+    background-color: #6DBBAA;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

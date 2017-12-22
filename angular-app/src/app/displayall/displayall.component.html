@@ -1,14 +1,22 @@
 <div class="container">
-  <div class="row justify-content-md-center head">
-    <div class="col-md-7">
-      <h3>Step 1: Select Your Interests  {{user.firstName}}</h3>
+
+  <div class="row head">
+    <div class="col-md-9">
+      <!-- <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4> -->
     </div>
-       <div class="col-md-2 link">
-      <a (click)="logout()">Logout</a>
+    <div class="col-md-2">
     </div>
+    <div class="col-md-1">
+      <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+    </div>
+
   </div>
 
-  <div class="wrapper">
+  <div class="step text-center">
+      <h3>Step 1: Select Your Interests {{user.firstName}}</h3>
+  </div>
+
+  <div class="wrapper step">
     <div class="row justify-content-md-center">
       <div class="content" *ngFor="let category of categories; let idx = index">
         <div (click)="select(idx)" [ngClass]="{border_green: category_boolean[idx], border_red: !category_boolean[idx]}" class="blc">
@@ -23,6 +31,6 @@
     </div>
   </div>
   <form>
-    <button (click)="filter()" [disabled]=!this.check_one type="button" class="btn btn-dark btn-block float-right">Next</button>
+    <button (click)="filter()" [disabled]=!this.check_one type="button" class="btn btn-dark btn-block">Next</button>
   </form>
 </div>

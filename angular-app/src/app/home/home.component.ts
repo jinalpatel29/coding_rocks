@@ -16,8 +16,14 @@ export class HomeComponent implements OnInit {
   user = new User();
   success = false;
   info = { email: '', pwd: '' };
+  loginStatus = true;
 
-  constructor(private _service: DataService, private _uservice: UserService, private router: Router, private _eventservice: CalendarService) { }
+  constructor(
+    private _service: DataService,
+    private _uservice: UserService,
+    private router: Router,
+    private _eventservice: CalendarService
+  ) { }
 
   signUp(formdata) {
     console.log(this.user);
@@ -25,6 +31,10 @@ export class HomeComponent implements OnInit {
     formdata.reset();
     this.user = new User();
     this.router.navigateByUrl('quiz');
+  }
+
+  showLoginRegistration() {
+    this.loginStatus = !this.loginStatus;
   }
 
   login(info) {
