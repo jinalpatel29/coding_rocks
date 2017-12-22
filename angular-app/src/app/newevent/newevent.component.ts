@@ -20,6 +20,8 @@ export class NeweventComponent implements OnInit {
   ngOnInit() {
     this.user = this._uservice.getSessionUser();
   }
-  
+  logout() {
+    this.UserService.logout();
+  }
 
 }

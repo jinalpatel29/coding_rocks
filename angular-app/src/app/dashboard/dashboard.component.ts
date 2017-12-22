@@ -145,7 +145,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     if (!this._UserService.isLoggedIn()) {
-      this.onLogout();
+      this._UserService.logout();
     } else {
       this.user = this._UserService.getSessionUser(); //users.subscribe(user=>{this.user=user;});
       console.log('first name: ', this.user.firstName);
@@ -344,11 +344,11 @@ export class DashboardComponent {
     console.log('preferences: ', preferences);
     return preferences;
   }
-  retrieveEvents(user_id, startDate: Date, duration) { //unused wrapper
+  retrieveEvents(user_id, startDate: Date, duration) { // unused wrapper
     this._CalendarService.retrieveEvents(user_id);
-  };
-  //4.addEvent(){}//from dashboard modal??
-  onLogout() {
+  }
+  // 4.addEvent(){}//from dashboard modal??
+  logout() {
     this._UserService.logout();
   }
   /********************************* end of transplants from calendar.component.ts *********************************************/
