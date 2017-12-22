@@ -3,7 +3,7 @@
     width: 100%;
     /* background: linear-gradient(rgb(206, 191, 189), #B5A19E); */
     /* background-color: #B5A19E; */
-    background-color:rgba(116, 136, 223, 0.507);
+    /* background-color:rgba(116, 136, 223, 0.507); */
 }
 .head{
    padding: 20px;
@@ -58,4 +58,8 @@
 .catimg {
     width: 200px;
     margin: 0px auto;
+}
+
+.step {
+    font-family: 'Lora', serif;
 }

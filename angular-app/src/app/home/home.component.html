@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="home">
+  <!-- <div class="home">
     lovefool!
-  </div>
-
+  </div> -->
+<div *ngIf="loginStatus"class="login">
   <div class="row justify-content-md-center">
     <div class="col-sm-5">
       <div class="register">
@@ -10,16 +10,16 @@
           <h3>Sign In</h3>
           <br>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="email1">Email:</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="email1" placeholder="Enter username " required minlength="2" maxlength="24"
+            <label class="control-label col-sm-4" for="email1">Email:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="email1" id="email1" placeholder="Enter username " required minlength="2" maxlength="24"
                 [(ngModel)]="info.email" />
             </div>
           </div>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd1">Password:</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" name="pwd1" placeholder="Enter password " required minlength="2" maxlength="24"
+            <label class="control-label col-sm-4" for="pwd1">Password:</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="pwd1" name="pwd1" placeholder="Enter password " required minlength="2" maxlength="24"
                 [(ngModel)]="info.pwd" />
             </div>
           </div>
@@ -27,6 +27,7 @@
             <button id="bts1" type="submit" name="reg" class="btn btn-warning" [disabled]="!signin.form.valid">Login</button>
           </div>
         </form>
+        <p class="text-center">Not a registered user? | <button class="btn btn-link" (click)="showLoginRegistration()">Sign up</button></p>
       </div>
     </div>
   </div>
@@ -39,69 +40,108 @@
     </p>
     <p>Have a wonderful day!</p>
   </div>
-  <div class="row"></div>
+</div>
+
+<!-- Registration Section -->
+<div *ngIf="!loginStatus" class="registration">
   <div class="row justify-content-md-center">
     <div class="col-sm-7">
       <form (submit)="signUp(register)" #register="ngForm">
         <div class="register">
-          <h3>Account Information</h3>
+          <h3>Registration</h3>
           <br>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="name">First Name:</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required minlength="2" maxlength="24"
-                [(ngModel)]="user.firstName" #fname='ngModel' />
-              <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
-                Enter valid First Name
+            <label class="control-label col-sm-4" for="name">First Name:</label>
+            <div class="col-sm-8">
+              <input type="text" 
+              [ngClass]="{'is-invalid': fname.invalid && fname.touched, 'is-valid': fname.valid && fname.touched}"
+              class="form-control" 
+              name="fname" 
+              placeholder="Enter First Name" 
+              required 
+              minlength=2 
+              maxlength=24
+              [(ngModel)]="user.firstName" 
+              #fname='ngModel' />
+                <div class="invalid-feedback">
+                    First Name has to be atleast 2 characters long
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-sm-4" for="name">Last Name:</label>
+            <div class="col-sm-8 field">
+              <input type="text" 
+              [ngClass]="{'is-invalid': lname.invalid && lname.touched, 'is-valid': lname.valid && lname.touched}"
+              class="form-control" 
+              name="lname" 
+              placeholder="Enter Last Name" 
+              required 
+              minlength="4" 
+              maxlength="24"
+                [(ngModel)]="user.lastName" 
+                #lname='ngModel' />
+              <div class="invalid-feedback">
+                  Last Name has to be atleast 4 characters long
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="name">Last Name:</label>
-            <div class="col-sm-10 field">
-              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required minlength="4" maxlength="24"
-                [(ngModel)]="user.lastName" #lname='ngModel' />
-              <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
-                Enter valid Last Name
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd">Email:</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" name="email" placeholder="Please enter email here" required minlength="10" maxlength="50"
-                [(ngModel)]="user.email" #email="ngModel">
-              <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            <label class="control-label col-sm-4" for="pwd">Email:</label>
+            <div class="col-sm-8">
+              <input type="email" 
+              [ngClass]="{'is-invalid': email.invalid && email.touched, 'is-valid': email.valid && email.touched}"
+              class="form-control" 
+              name="email" 
+              placeholder="Please enter email here" 
+              required 
+              minlength="10" 
+              maxlength="50"
+                [(ngModel)]="user.email" 
+                #email="ngModel">
+              <div class="invalid-feedback">
                 Enter valid Email id
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd">Birthday:</label>
-            <div class="col-sm-10">
-              <input type="date" class="form-control" name="bday" required [(ngModel)]="user.dob" #bday="ngModel">
-              <div class="alert alert-danger" *ngIf="bday.touched && bday.invalid">
-                Enter Birthday Please
+            <label class="control-label col-sm-4" for="pwd">Birthday:</label>
+            <div class="col-sm-8">
+              <input type="date" 
+              [ngClass]="{'is-invalid': bday.invalid && bday.touched, 'is-valid': bday.valid && bday.touched}"
+              class="form-control" 
+              name="bday" required 
+              [(ngModel)]="user.dob" 
+              #bday="ngModel">
+              <div class="invalid-feedback">
+                Enter valid Birthday
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd">Password:</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" name="pwd" placeholder="Please enter password" required minlength="8" maxlength="20"
+            <label class="control-label col-sm-4" for="pwd">Password:</label>
+            <div class="col-sm-8">
+              <input type="password" 
+              [ngClass]="{'is-invalid': pwd.invalid && pwd.touched, 'is-valid': pwd.valid && pwd.touched}"
+              class="form-control" name="pwd" placeholder="Please enter password" required minlength="8" maxlength="20"
                 [(ngModel)]="user.pwd" #pwd="ngModel" />
-              <div class="alert alert-danger" *ngIf="pwd.touched && pwd.invalid">
+              <div class="invalid-feedback">
                 Enter valid password
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd">Password Confirmation:</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" name="cpwd" placeholder="Please confirm your password" required minlength="8"
-                maxlength="20" [(ngModel)]="user.cpwd" #cpwd="ngModel" />
-
-              <div class="alert alert-danger" *ngIf="cpwd.touched && user.pwd != user.cpwd">
+            <label class="control-label col-sm-4" for="pwd">Password Confirmation:</label>
+            <div class="col-sm-8">
+              <input type="password" 
+              [ngClass]="{'is-invalid': cpwd.invalid && cpwd.touched, 'is-valid': cpwd.valid && cpwd.touched}"
+              class="form-control" name="cpwd" placeholder="Please confirm your password" 
+              required 
+              minlength="8"
+              maxlength="20" 
+              pattern={{user.pwd}}
+              [(ngModel)]="user.cpwd" #cpwd="ngModel" />
+              <div class="invalid-feedback">
                 Confirm password doesn't match with Password
               </div>
             </div>
@@ -112,8 +152,10 @@
           </div>
         </div>
       </form>
+      <p class="text-center">Have an account? | <button class="btn btn-link" (click)="showLoginRegistration()">Sign in</button> </p>
     </div>
   </div>
+</div>
 
   <!-- </div> -->
 </div>
