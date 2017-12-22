@@ -39,8 +39,6 @@ export class DisplayallComponent implements OnInit {
   ngOnInit() {
     if ( !this.uservice.isLoggedIn()) {
       this.uservice.logout();
-    }else{
-     // this.firstName = sessionStorage.getItem('firstName');
     }
     this._categoryService.getCategories();
     this._categoryService.tasks.subscribe(

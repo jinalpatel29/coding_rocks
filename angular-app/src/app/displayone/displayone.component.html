@@ -5,8 +5,7 @@
     </div>
     <div class="col-md-2">
       <a id="link" (click)="goToQuiz()">
-        <button type="button" class="btn btn-link"></button>
-        Back to Interests
+        <button type="button" class="btn btn-link"> Back to Interests</button>
       </a>
     </div>
   </div>
@@ -15,13 +14,19 @@
       <fieldset *ngIf="category_boolean[idx]">
         <div *ngIf="category_boolean[idx]">
           <legend>{{ category.name }}</legend>
-          <div *ngFor="let item of category.subcategories; let idx2=index">
-            <div *ngIf="item.title">
-              <label for="{{item.title}}">{{item.title}}</label>
-              <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.title}}"
-                *ngIf="item.title">
+          <div *ngIf="category.subcategories.length != 0">
+            <div *ngFor="let item of category.subcategories; let idx2=index">
+              <div *ngIf="item.title">
+                <label for="{{item.title}}">{{item.title}}</label>
+                <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.title}}"
+                  *ngIf="item.title">
+              </div>
             </div>
           </div>
+          <!-- <div *ngIf="category.subcategories.length === 0">
+             Sorry there no subcategories at the moment for this Interest , We are working on it.
+             Please choose different interest if you would like. Thank you!
+          </div> -->
         </div>
       </fieldset>
     </div>
