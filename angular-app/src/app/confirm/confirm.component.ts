@@ -22,7 +22,7 @@ export class ConfirmComponent implements OnInit {
       (result) => {
         this.partnerEvents = result;
         this.pastEvent = result.filter(function(event) {
-          return new Date(event['start']) < new Date();
+          return (new Date(event['start']) < new Date()) && (!event['completed']);
         });
       }
     );
