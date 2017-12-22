@@ -33,7 +33,7 @@ export class Calendar {
     //     date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
     //     return date;
     // }
-    generate(preferences,startDate,duration): CalendarEvent[] {//randomness or strictly follow frequency? probably later
+    generate(preferences,startDate:Date,duration): CalendarEvent[] {//randomness or strictly follow frequency? probably later
         var events:CalendarEvent[] = [];
         console.log('date range: ',duration)
         for(let interest of preferences){

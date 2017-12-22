@@ -18,14 +18,14 @@
                     <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
                 </div>
             </div>
-            <button class="btn btn-outline-primary float-right" (click)="logout()" >Logout</button>
+            <button class="btn btn-outline-primary float-right" (click)="onLogout()" >Logout</button>
         </div>
     </div>
     <!-- Main Content Area -->
     <div class="container" style="width: 85%; margin: 10px auto;">
         <!-- Calendar -->
         <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
-        </mwl-demo-utils-calendar-header>
+        </mwl-demo-utils-calendar-header><button (click)='onGenerate()'>Generate new events!</button>
 
         <div [ngSwitch]="view">
             <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeday" (dayClicked)="dayClicked($event.day)"
@@ -36,6 +36,7 @@
             <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
             </mwl-calendar-day-view>
         </div>
+        <button (click)='onGenerate()'>Generate new events!</button>        
         <!-- Chart -->
         <br>
         <br>
