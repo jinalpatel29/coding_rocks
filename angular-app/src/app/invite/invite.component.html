@@ -1,24 +1,20 @@
 <!-- navbar -->
-<div class="row">
-  <div class="col-md-8">
-    <h4 id="welcome">Hello, {{ user.firstName }}</h4>
+<div class="row head">
+  <div class="col-md-9">
+    <h4>Hello, {{ user.firstName }}</h4>
   </div>
-  
-  <div class="col">
-    <div ngbDropdown class="d-inline-block text-right">
-      <button class="btn btn-outline-primary float-right" id="dropdownBasic1" ngbDropdownToggle>Actions</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" [routerLink]="['/quiz']">Edit Interests</button>
-        <button class="dropdown-item" [routerLink]="['/confirmlove']">Confirm Love</button>
-        <button class="dropdown-item" [routerLink]="['/invite']">Invite Partner</button>
-        <button class="dropdown-item" [routerLink]="['/freqset']">Partner Interests</button>
-        <button class="dropdown-item" [routerLink]="['/item']">Add Calendar Event</button>
-        <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
-      </div>
+  <div class="col-md-2">
+    <div class="links">
+      <a [routerLink]="['/dashboard']">Back to Dashboard</a>
     </div>
-    <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
+  </div>
+  <div class="col-md-1">
+    <div class="links">
+      <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+    </div>
   </div>
 </div>
+
 <!-- Main Content -->
 <div class="container">
   <div class="container">

@@ -1,3 +1,17 @@
+.container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px;
+}
+
+.middle-content {
+    min-height: 500px;
+    /* width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+}
 .header {
     margin-top: 25px;
     margin-bottom: 10px;
@@ -7,9 +21,11 @@
     padding: 10px;
     font-family: 'Playball', cursive;
     font-size: 60px;
+    height: 100px;
 }
 
 .footer {
+    /* height: 142px; */
     height: 100px;
     background-color: #6DBBAA;
     padding: 10px;
