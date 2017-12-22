@@ -76,4 +76,8 @@ export class FrequencyComponent implements OnInit {
     
   }
 
+  logout() {
+    this._userService.logout();
+  }
+
 }

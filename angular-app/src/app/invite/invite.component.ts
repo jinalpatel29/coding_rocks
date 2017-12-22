@@ -75,4 +75,8 @@ export class InviteComponent implements OnInit {
     this._dataService.addRequest(new_request);
   }
 
+  logout() {
+    this._userService.logout();
+  }
+
 }

@@ -47,4 +47,8 @@ export class ConfirmComponent implements OnInit {
   denyLove(startDate) {
     console.log('Deny Love ', startDate);
   }
+
+  logout() {
+    this._user.logout();
+  }
 }
