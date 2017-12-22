@@ -22,15 +22,16 @@
             </div>
         </div>
         <div class="col-md-1">
-            <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+            <button class="btn btn-outline-dark float-right" (click)="onLogout()">Logout</button>
         </div>
-        <!-- </div> -->
+
     </div>
     <!-- Main Content Area -->
     <div class="content">
         <!-- Calendar -->
         <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
         </mwl-demo-utils-calendar-header>
+        <button (click)='onGenerate()'>Generate new events!</button>
 
         <div class="calendar" [ngSwitch]="view">
             <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeday" (dayClicked)="dayClicked($event.day)"
@@ -41,6 +42,7 @@
             <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)">
             </mwl-calendar-day-view>
         </div>
+        <button (click)='onGenerate()'>Generate new events!</button>
         <!-- Chart -->
         <br>
         <br>

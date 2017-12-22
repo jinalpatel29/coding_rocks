@@ -45,6 +45,9 @@ export class UserService {
       return null;
     }
   }
+  addPoints(id, pointsObj) {
+    return this._http.put('/addpoints/' + id, pointsObj);
+  }
 
   isLoggedIn() {
     if (sessionStorage) {
@@ -69,5 +72,14 @@ export class UserService {
       errorResponse => console.log(errorResponse)
     );
   }
-
+  //from home.component.ts: login(info) {
+  //   console.log('in login');
+  //   console.log(info);
+  //   this._uservice.login(info, (data) => {
+  //     sessionStorage.setItem('_id', data['_id']);
+  //     sessionStorage.setItem('name', data['name']);
+  //     console.log('Logged in...');
+  //     this.router.navigate(['/dashboard']);
+  //   });
+  // }
 }
