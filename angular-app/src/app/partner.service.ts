@@ -24,6 +24,13 @@ export class PartnerService {
     
   }
 
+  getPartnerInfo(data){
+    console.log(data.id);
+    this._http.post('/partnerinfo', data).subscribe(
+      (data: any) => {this.partner.next(data)}
+    )
+  }
+
   getRequestors(requests){
     this._http.post('/partner/requests', requests).subscribe(
       (data: any) => {this.partner.next(data)}

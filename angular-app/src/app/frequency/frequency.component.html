@@ -3,48 +3,48 @@
     <div class="links">
       <a [routerLink]="['/dashboard']">Back to Dashboard</a>
     </div>
-    <h1>hello</h1>
-    {{ user | json }}
+    <h1>Hello {{ user.firstName }}</h1>
+
   </div>
   <div class="content">
-    <div>
-      <label for=""> Category 1:</label>
-      <select name="" id="">
-        <option value="">1</option>
-        <option value="">2</option>
-      </select>
-      <select name="" id="">
-        <option value="">Weekly</option>
-        <option value="">Monthly</option>
-        <option value="">Yearly</option>
-      </select>
-    </div>
-    <div>
-      <label for=""> Category 1:</label>
-      <select name="" id="">
-        <option value="">1</option>
-        <option value="">2</option>
-      </select>
-      <select name="" id="">
-        <option value="">Weekly</option>
-        <option value="">Monthly</option>
-        <option value="">Yearly</option>
-      </select>
-    </div>
-    <div>
-        <label for=""> Category 1:</label>
-        <select name="" id="">
-          <option value="">1</option>
-          <option value="">2</option>
-        </select>
-        <select name="" id="">
-          <option value="">Weekly</option>
-          <option value="">Monthly</option>
-          <option value="">Yearly</option>
-        </select>
+    <form (submit)="saveFrequency()">
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Partner Interests</th>
+              <th>Frequency</th>
+              <th>Per</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let interest of partner.interests; let idx=index">
+            <tr>
+              <td class="titlerow">
+                {{interest.name}}
+              </td>
+            </tr>
+            <tr *ngFor="let subcategory of interest.subcategories; let idx2=index">
+              <td scope="row">{{ subcategory.title }}</td>
+              <td>
+                <select name="subcategory" [(ngModel)]="freq_arr[idx].subcategories[idx2].frequency">
+                  <option *ngFor="let num of [1,2,3,4,5,6,7]">{{ num }}</option>
+                </select>
+              </td>
+              <td>
+                <select name="per" [(ngModel)]="freq_arr[idx].subcategories[idx2].per">
+                  <option>Day</option>
+                  <option>Week</option>
+                  <option>Month</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
-    <div class="offset-sm-5  pull-right">
-      <button type="button" class="btn btn-primary">Save</button>
-    </div>
+      <div class="offset-sm-5  pull-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
   </div>
 </div>
