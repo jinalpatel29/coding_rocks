@@ -21,12 +21,8 @@
           <td>{{event.start | date:'medium'}}</td>
           <td>0</td>
           <td>
-            <a href="http://">
-              <button>Confirm</button>
-            </a>
-            <a href="http://">
-              <button>Deny</button>
-            </a>
+            <button class="btn btn-success btn-sm" (click)="confirmLove(event)">Confirm</button>
+            <button class="btn btn-danger btn-sm" (click)="denyLove(event.start)">Deny</button>
           </td>
         </tr>
 

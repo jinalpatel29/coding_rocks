@@ -45,6 +45,9 @@ export class UserService {
       return null;
     }
   }
+  addPoints(id, pointsObj) {
+    return this._http.put('/addpoints/' + id, pointsObj);
+  }
 
   isLoggedIn() {
     if (sessionStorage) {
