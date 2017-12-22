@@ -10,9 +10,10 @@ export class Event implements CalendarEvent {
     cssClass?: string;
     resizable?: {
         beforeStart?: boolean;
-        afterEnd?: boolean;
+        afterEnd?: boolean; 
     };
-    draggable=true;//?: boolean;
+    draggable = true; // ?: boolean;
+    completed = false;
     // meta?: MetaType;
     
     
@@ -22,9 +23,9 @@ export class Event implements CalendarEvent {
     status:string;
     reminders:any[];
     attachments:any[];
-    color={primary:'blue',secondary:'green'}
+    color = {primary: 'blue', secondary: 'green' }
     
-    interest:string;//points / frequency
+    interest:string; // points / frequency
     creator:'';
     receiver:'';
 
@@ -32,7 +33,8 @@ export class Event implements CalendarEvent {
         public title:string,
         public start:Date,
     ){};
-    delete=function(){};
-    insert=function(){};
-    update=function(){};
+
+    delete= function(){};
+    insert= function(){};
+    update= function(){};
 }

@@ -9,6 +9,10 @@ module.exports = function (app) {
         categories.show(req, res);
     });
 
+    app.put('/addpoints/:id', function (req, res) {
+        users.addPoints(req, res);
+    });
+
     //get partner
     app.post('/partner', function(req,res){
         users.findOne(req, res);

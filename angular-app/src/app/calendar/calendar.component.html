@@ -6,6 +6,9 @@
 <p *ngFor="let event of events ">
   {{event|json}}
 </p>
+<h3 *ngFor="let event of partnerEvents ">
+  {{event|json}}
+</h3>
 
 <label for="">date {{today|date:'dd/MM/yyyy'}}; Multiplier:<input type="text" [(ngModel)]='multi'></label><label for="">number of days<input type="text" [(ngModel)]='nod' (change)='onChange()'></label>
 <p>{{result|date:'dd/MM/yyyy'}}</p>

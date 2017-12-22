@@ -18,11 +18,12 @@ export class Calendar {
     //     private _CalendarService: CalendarService
     // ){};
     //populate is the top level behind the scenes method; dateRange provides flexibility e.g. user only wants to populate one month at a time
-    populate(user:any, startDate:Date,duration:any,preferences:any[]):CalendarEvent[] {//do this over a range, resolve / generate on a single event basis
+    populate(user:any, startDate:Date,duration:any,preferences:any[]) {//do this over a range, resolve / generate on a single event basis
         //add generated events to local calendar
         var tempPreferences=this.updateFrequencies(preferences,duration);//frequencies from use later
-        var events:CalendarEvent[]=this.generate(tempPreferences,startDate,duration);
+        var events=this.generate(tempPreferences,startDate,duration);
         for(let event of events){
+            event['creator']=user._id;            
             this.resolveConflict(event);
         }
         return events;
@@ -32,7 +33,7 @@ export class Calendar {
     //     date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
     //     return date;
     // }
-    generate(preferences,startDate,duration): CalendarEvent[] {//randomness or strictly follow frequency? probably later
+    generate(preferences,startDate:Date,duration): CalendarEvent[] {//randomness or strictly follow frequency? probably later
         var events:CalendarEvent[] = [];
         console.log('date range: ',duration)
         for(let interest of preferences){

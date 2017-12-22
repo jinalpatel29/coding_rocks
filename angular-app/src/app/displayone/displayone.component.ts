@@ -21,8 +21,9 @@ export class DisplayoneComponent implements OnInit {
   categories;
   name;
 
+  
   constructor(public service: DataService, private router: Router, private _route: ActivatedRoute, private _interestService: InterestService, private _categoryService: CategoryService, private _userService: UserService ) {
-    this.name = this.service.getUser();
+    this.user = this._userService.getSessionUser();
   }
 
   ngOnInit() {
@@ -58,8 +59,8 @@ export class DisplayoneComponent implements OnInit {
   onLike(opt) {
 
   }
-  goToPoll() {
-    this.router.navigate(['dashboard']);
+  goToQuiz() {
+    this.router.navigate(['quiz']);
   }
 
   addInterests() {
