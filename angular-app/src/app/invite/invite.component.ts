@@ -12,20 +12,25 @@ import { PartnerService } from '../partner.service';
 })
 
 export class InviteComponent implements OnInit {
-  email = {email:""};
+  email = {email: ''};
   user;
   partner = null;
   partner_email;
   found_user;
-  partner_match: boolean = null
-  constructor(config: NgbDropdownConfig, private _userService: UserService, private _partnerService: PartnerService, private _dataService: DataService) {
+  partner_match = false;
+  constructor(
+    config: NgbDropdownConfig,
+    private _userService: UserService,
+    private _partnerService: PartnerService,
+    private _dataService: DataService
+  ) {
     config.autoClose = false;
   }
 
   onSubmit(formdata) {
     this._dataService.invite(this.email).subscribe(
-      (result) => { 
-        if(result['status'] == "success"){
+      (result) => {
+        if (result['status'] === 'success') {
           formdata.reset();
         }
       }
@@ -33,20 +38,27 @@ export class InviteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._userService.users.subscribe(
-      (data) => { this.user = data }
-    );
+
+    if (!this._userService.isLoggedIn()) {
+      this._userService.logout();
+    } else {
+      this.user = this._userService.getSessionUser(); // users.subscribe(user=>{this.user=user;});
+    }
+
+    // this._userService.users.subscribe(
+    //   (data) => { this.user = data; }
+    // );
 
     if ( !this._userService.isLoggedIn()) {
       this._userService.logout();
     }
 
     this._partnerService.partner.subscribe(
-      (data) => { this.partner = data }
-    )
+      (data) => { this.partner = data; }
+    );
   }
 
-  findPartner(){
+  findPartner() {
     this.found_user = this.partner_email;
     var find_user = {
       email: this.partner_email
