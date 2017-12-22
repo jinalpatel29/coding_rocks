@@ -38,16 +38,11 @@ export class InviteComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (!this._userService.isLoggedIn()) {
       this._userService.logout();
     } else {
-      this.user = this._userService.getSessionUser(); // users.subscribe(user=>{this.user=user;});
+      this.user = this._userService.getSessionUser(); 
     }
-
-    // this._userService.users.subscribe(
-    //   (data) => { this.user = data; }
-    // );
 
     if ( !this._userService.isLoggedIn()) {
       this._userService.logout();

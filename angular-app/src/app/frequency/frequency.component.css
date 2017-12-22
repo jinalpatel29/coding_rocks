@@ -16,7 +16,9 @@ a{
     color: blue;
     text-decoration: underline;
 }
-
+#welcome{
+    font-family: 'Playball', cursive;
+}
 .links{
     text-align: right;
 }

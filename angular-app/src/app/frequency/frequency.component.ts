@@ -16,13 +16,9 @@ export class FrequencyComponent implements OnInit {
   constructor(private _userService: UserService, private _partnerService: PartnerService, private _dataService: DataService, private _router: Router) { }
 
   ngOnInit() {
+    this.user = this._userService.getSessionUser();
+    this._partnerService.getPartnerInfo({ id: this.user._partner });
 
-    this._userService
-    this._userService.users.subscribe(
-      (user) => {
-        this.user = user
-        this._partnerService.getPartnerInfo({ id: this.user._partner });
-      });
 
     this._partnerService.partner.subscribe(
       (data) => {
@@ -54,11 +50,11 @@ export class FrequencyComponent implements OnInit {
   saveFrequency() {
     for (var i in this.partner.interests) {
       for (var j in this.partner.interests[i].subcategories) {
-        if (this.freq_arr[i].subcategories[j].per == "Day"){
+        if (this.freq_arr[i].subcategories[j].per == "Day") {
           this.partner.interests[i].subcategories[j].interval = this.freq_arr[i].subcategories[j].frequency;
-        } else if (this.freq_arr[i].subcategories[j].per == "Week"){
+        } else if (this.freq_arr[i].subcategories[j].per == "Week") {
           this.partner.interests[i].subcategories[j].interval = 7 / this.freq_arr[i].subcategories[j].frequency
-        } else if (this.freq_arr[i].subcategories[j].per == "Month"){
+        } else if (this.freq_arr[i].subcategories[j].per == "Month") {
           this.partner.interests[i].subcategories[j].interval = 30 / this.freq_arr[i].subcategories[j].frequency
         }
       }
@@ -73,7 +69,7 @@ export class FrequencyComponent implements OnInit {
 
     this._dataService.addInterests(interests_obj);
     this._router.navigateByUrl('dashboard');
-    
+
   }
 
 }
