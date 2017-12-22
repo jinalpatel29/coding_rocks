@@ -69,17 +69,21 @@ export class CalendarComponent implements OnInit {
     }
   }
   generateEvents(preferences,startDate,duration){ //move this to calendar service?
-    return this.calendar.populate(this.user,moment().toDate(),duration,preferences);//move to service?
+    return this.calendar.populate(this.user,startDate,duration,preferences);//move to service?
   }
   onGenerate(){
-    moment("2012-02", "YYYY-MM").daysInMonth() // 29    
-    const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm');
-    const endOfMonth   = moment().endOf('month').format('YYYY-MM-DD hh:mm');
+    var targetDay=this.today;//modify this to the day you want in the calendar library
+    var targetMonth=moment(targetDay.format('YYYY-MM'), "YYYY-MM");
+    var duration=targetMonth.daysInMonth();
+    var startDate=targetMonth.startOf('month').toDate();//returns a moment object
+    console.log('startDate: ',startDate,'; duration: ',duration)
+    // const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm');
+    // const endOfMonth   = moment().endOf('month').format('YYYY-MM-DD hh:mm');
     console.log(`Generating a bunch of events per user request.`);  
     //   console.log('events are: ',events);
     this._CalendarService.overwriteEvents(
       this.user._id,this.generateEvents(
-        this.preferences,this.today,28),
+        this.preferences,startDate,duration),
       (res)=>{//this.retrieveEvents(this.user._id,1,1);
         console.log('calling from component')}
       );//move to service?

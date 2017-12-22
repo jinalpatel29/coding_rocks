@@ -10,7 +10,7 @@ export class Event implements CalendarEvent {
     cssClass?: string;
     resizable?: {
         beforeStart?: boolean;
-        afterEnd?: boolean;
+        afterEnd?: boolean; 
     };
     draggable=true;//?: boolean;
     // meta?: MetaType;
