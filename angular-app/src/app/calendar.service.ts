@@ -11,18 +11,12 @@ import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEv
 
 @Injectable()
 export class CalendarService {
-  events: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  events: BehaviorSubject<any[]> = new BehaviorSubject([]);// events:CalendarEvent[];
   partnerEvents: BehaviorSubject<any[]> = new BehaviorSubject([]);
-  
-  // events:CalendarEvent[];
   user:any;
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
-  // result ;
   constructor(private _http: HttpClient) { }
-  // retrieveEvents(dateRange){
-  //   console.log('calendar service works!');
-  // }
   ngOnInit() {
     // this.calendar.retrieveEvents(1);
     // this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
@@ -55,7 +49,7 @@ export class CalendarService {
       (err)=>{console.log(err)}
     )
   }
-  overwriteEvents(user_id,events,callback=(res)=>{}){//also grabs user_id from local storage, hard coded from express for now; option to append or overwrite or simply update particular ones
+  overwriteEvents(user_id,events,callback=(res)=>{}){//also grabs user_id from local storage, option to append or overwrite or simply update particular ones?
     console.log('overwritingEvents from events service');
     this._http.post('/events/'+user_id,{events:events}).subscribe(
       (res)=>{callback(res); this.retrieveEvents(user_id)},
