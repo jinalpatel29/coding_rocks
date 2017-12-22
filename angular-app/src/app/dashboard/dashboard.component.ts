@@ -258,42 +258,13 @@ export class DashboardComponent {
   }
 
   /********************************* transplants from calendar.component.ts ******************************************** */
-  initialize() {
-    //3.retrieve user from local storage: hard coding preferences for now
+  initialize() {  //called inside ngOnInit(), after retrieving user from session
     this.preferences = this.generatePreferences(this.user.interests);
-    // this.preferences=[
-    //   {event:'shop together',interval:7},     
-    // ]
-    if (this.user._partner) { // get partner's events: \/  
-      this._CalendarService.retrievePartnerEvents(this.user._partner);    
-      this._CalendarService.partnerEvents.subscribe(events => {
-        this.partnerEvents = events;
-        for (let event of this.partnerEvents) {
-          event.start = new Date(event.start); //very expensive???          
-          event.color.primary = 'pink';
-          event.color.secondary = 'purple';
-        }
-      });
-      this.partner=this._UserService.getUser(this.user._partner,(partner)=>{this.partner = partner})
-    }
-    this.retrieveEvents(this.user._id, this.today, 28);
-    this._CalendarService.events.subscribe(events => {
-      this.selfEvents = events;
-      for (let event of this.selfEvents) {
-        event.start = new Date(event.start); //very expensive???
-      }
-      console.log('partner event number: ',this.partnerEvents.length);
-      this.events=this.selfEvents.concat(this.partnerEvents);
-      // console.log(this.events.length);
-      //2.callback of events: prompt to generate events if none from now on ; 
-      // if a week's elapsed, auto generate & alert for review or (prompt for generation and let user choose)
-      // option to adjust preference / use your own preference for first timer / no partners yet
-    });
+    // this.preferences=[  {event:'shop together',interval:7}, ] //should turn this into a type
+    this.retrievePartnerEvents();//this should be done before retrieving self events due to the two events arrays are concatnated
+    this.retrieveSelfEvents();
+  }
 
-  }
-  generateEvents(preferences, startDate: Date, duration) { //move this to calendar service?
-    return this.calendar.populate(this.user, startDate, duration, preferences); //move to service?
-  }
   onGenerate() {
     var targetDay = this.today; //modify this to the day you want in the calendar library
     var targetMonth = moment(targetDay.format('YYYY-MM'), "YYYY-MM");
@@ -312,6 +283,37 @@ export class DashboardComponent {
       }
     ); //move to service?
   }
+
+  retrievePartnerEvents(){
+    if (this.user._partner) { // get partner's events: \/  
+    this._CalendarService.retrievePartnerEvents(this.user._partner);    
+    this._CalendarService.partnerEvents.subscribe(events => {
+      this.partnerEvents = events;
+      this.partnerEvents.forEach((event,index,events)=>{
+        event.start=new Date(event.start);
+        event.color={primary : 'pink',secondary : 'purple'};
+      })
+    });
+    this.partner=this._UserService.getUser(this.user._partner,(partner)=>{this.partner = partner})
+  }
+  };//this should be done before retrieving self events due to the two events arrays are concatnated
+  retrieveSelfEvents(){
+    this._CalendarService.retrieveEvents(this.user._id);//should make dynamic
+    this._CalendarService.events.subscribe(events => {
+      this.selfEvents = events;
+      for (let event of this.selfEvents) {
+        event.start = new Date(event.start); //very expensive???
+      }
+      console.log('partner event number: ',this.partnerEvents.length);
+      this.events=this.selfEvents.concat(this.partnerEvents);
+      //2.callback of events: prompt to generate events if none from now on ; 
+      // if a week's elapsed, auto generate & alert for review or (prompt for generation and let user choose)
+      // option to adjust preference / use your own preference for first timer / no partners yet
+    });
+  };
+  generateEvents(preferences, startDate: Date, duration) { //move this to calendar service?
+    return this.calendar.populate(this.user, startDate, duration, preferences); //move to service?
+  }
   generatePreferences(user_interests) {
     var preferences = [];
     for (let interest of user_interests) {
@@ -329,7 +331,7 @@ export class DashboardComponent {
     console.log('preferences: ', preferences);
     return preferences;
   }
-  retrieveEvents(user_id, startDate: Date, duration) { //first time directly receives from generateEvents, or call retrieveAll from service?
+  retrieveEvents(user_id, startDate: Date, duration) { //unused wrapper
     this._CalendarService.retrieveEvents(user_id);
   };
   //4.addEvent(){}//from dashboard modal??
