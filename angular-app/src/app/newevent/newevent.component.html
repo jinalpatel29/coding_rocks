@@ -1,58 +1,45 @@
 <div class="container">
-  <div class="header">
-    <div class="links">
-      <a [routerLink]="['/dashboard']">Back to Dashboard</a>
-      <a [routerLink]="['/']">Cancel</a>
+  <div class="row head">
+    <div class="col-md-9">
+      <h4>Hello, {{ user.firstName }}</h4>
+      <!-- <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4> -->
     </div>
+    <div class="col-md-2">
+      <div class="links">
+        <a [routerLink]="['/dashboard']">Back to Dashboard</a>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="links">
+        <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+  <div class="header">
     <h1>New Event</h1>
   </div>
   <div class="content">
-    <form class="form-control" method="post" (submit)="onSubmit()">
-      <div class="row">
-        <div class="col">
-          <label for="name">Title: </label>
-        </div>
-        <div class="col-10">
-          <input id="title" type="text" name="title" [(ngModel)]=question.question placeholder="Enter name here">
-        </div>
+
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text"
+          class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="">
       </div>
-      <div class="row">
-        <div class="col">
-          <label for="name">Title: </label>
-        </div>
-        <div class="col-10">
-          <input id="title" type="text" name="title2" [(ngModel)]=question.question placeholder="Enter name here">
-        </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" name="location" id="location" aria-describedby="helpId" placeholder="">
       </div>
-      <div class="row">
-        <div class="col">
-          <label for="loc">Location: </label>
-        </div>
-        <div class="col-10">
-          <input type="text" name="loc" [(ngModel)]=question.options[0] placeholder="Enter name here">
-        </div>
+      <div class="form-group">
+        <label for="eDate">Date</label>
+        <input type="date"
+          class="form-control" name="eDate" id="eDate" aria-describedby="helpId" placeholder="">
       </div>
-      <div class="row">
-        <div class="col">
-          <label for="date">Date: </label>
-        </div> 
-        <div class="col-10">
-          <input type="date" name="date" [(ngModel)]=question.options[1] placeholder="Enter name here">
-        </div>
+      <div class="form-group">
+        <label for="comment">Comments</label>
+        <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
       </div>
-      <div class="row">
-        <div class="col">
-          <label for="comment">Comment: </label>
-        </div>
-        <div class="col-10">
-          <input type="text" name="comment" [(ngModel)]=question.options[2] placeholder="Enter name here">
-        </div>
-      </div>
-      <div class="row">
-        <!-- <div class="offset-sm-1 pull-right"> -->
-        <button type="submit" class="btn btn-primary">Create Event</button>
-        <!-- </div> -->
-      </div>
+      <button type="submit" class="btn btn-primary">Create Event</button>
     </form>
   </div>
 </div>

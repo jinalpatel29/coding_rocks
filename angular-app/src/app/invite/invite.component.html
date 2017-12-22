@@ -1,11 +1,22 @@
 <!-- navbar -->
-<div class="row">
-  <div class="col-md-8">
-    <h4>Hello, {{ user.firstName }}</h4>
-  </div>
-
   <!-- {{ user | json }} -->
-
+  <div class="row head">
+    <div class="col-md-9">
+        <h4>Hello, {{ user.firstName }}</h4>
+        <!-- <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4> -->
+      </div>
+      <div class="col-md-2">
+        <div class="links">
+          <a [routerLink]="['/dashboard']">Back to Dashboard</a>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="links">
+          <button class="btn btn-outline-dark float-right" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+<!-- 
   
   <div class="col">
     <div ngbDropdown class="d-inline-block text-right">
@@ -20,8 +31,8 @@
       </div>
     </div>
     <button class="btn btn-outline-primary float-right" [routerLink]="['/']">Logout</button>
-  </div>
-</div>
+  </div> 
+</div> -->
 <!-- Main Content -->
 <div class="container">
   <div class="container">
