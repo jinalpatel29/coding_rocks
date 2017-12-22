@@ -9,18 +9,6 @@
     /* border: 2px solid gray;   */
     padding: 10px;
 }
-a{
-    /* color: blue;
-    text-decoration: underline;
-    margin: 10px; */
-}
-.links{
-    /* text-align: right;
-    color: blue;   */
-}
-.btn{
-    /* margin: 10px; */
-}
-input{
-    /* width: 300px; */
+#welcome{
+    font-family: 'Playball', cursive;
 }

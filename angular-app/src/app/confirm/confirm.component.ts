@@ -24,6 +24,7 @@ export class ConfirmComponent implements OnInit {
         this.pastEvent = result.filter(function(event) {
           return (new Date(event['start']) < new Date()) && (!event['completed']);
         });
+        // this.pastEvent.sort();
       }
     );
     this.eservice.retrievePartnerEvents(this._user.getSessionUser()['_partner']);

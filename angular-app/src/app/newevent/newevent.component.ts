@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Calendar } from '../calendar';
 import { Event } from '../event';
 import * as moment from 'moment';
-import {CalendarEvent} from 'angular-calendar';
+import {CalendarEvent} from 'angular-calendar';//,CalendarEventAction,CalendarEventTimesChangedEvent
 import { UserService } from '../user.service';
-// ,CalendarEventAction,CalendarEventTimesChangedEvent
+import { _keyValueDiffersFactory } from '@angular/core/src/application_module';
 
 @Component({
   selector: 'app-newevent',
@@ -13,12 +13,15 @@ import { UserService } from '../user.service';
 })
 export class NeweventComponent implements OnInit {
   event:CalendarEvent;
-  constructor(private _userService: UserService) { }
+  user;
+
+  constructor(private _uservice: UserService) { }
 
   ngOnInit() {
+    this.user = this._uservice.getSessionUser();
   }
   logout() {
-    this._userService.logout();
+    this.UserService.logout();
   }
 
 }

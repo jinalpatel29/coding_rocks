@@ -1,6 +1,28 @@
 <script src="node_modules/chart.js/src/chart.js"></script>
 
 <ng-template #modalContent let-close="close">
+    <div class = "modal-body" *ngIf="modalData?.action == 'Clicked Blanck' ">
+        <div>
+            Event title: <input type='text' [(ngModel)]='modalData?.event.title'> 
+            <!-- <pre>{{ modalData?.event.title }}</pre> -->
+        </div>
+        <div>
+            Event date:  
+            <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
+        </div>
+        <button (click)="addEvent()">Create new event</button>
+    </div>
+    <div class = "modal-body" *ngIf="modalData?.action == 'Clicked' ">
+        <div>
+            {{user.firstName}} does 
+            <pre>{{ modalData?.event.title }}</pre>
+        </div>
+        <div>
+            on 
+            <pre>{{ modalData?.event.start|date:"longDate" }}</pre>
+        </div>
+    </div>
+    <div *ngIf="modalData?.action == 'Clicked placeholder' ">
     <div class="modal-header">
       <h5 class="modal-title">Event action occurred</h5>
       <button type="button" class="close" (click)="close()">
@@ -20,13 +42,14 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
     </div>
+    </div>
   </ng-template>
 
 <div class="container">
     <!-- navbar -->
     <div class="row head">
         <div class="col-md-9">
-            <h4>Hello, {{ user.firstName }}!
+            <h4 id="welcome">Hello, {{ user.firstName }}!
                 <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span>
             </h4>
         </div>

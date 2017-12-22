@@ -10,6 +10,9 @@ module.exports = {
                 // console.log(user);
                 console.log('retrieving events for: ',user.firstName)            ;
                 // res.json(categories);
+                user.events.sort(function(a, b) {
+                    return new Date(b.date) - new Date(a.date);
+                });
                 res.json(user.events);
             }
         });

@@ -121,6 +121,7 @@ export class DashboardComponent {
   activeDayIsOpen: boolean = true;
   /*********** loveful custom ***********/
   events:CalendarEvent[];
+  newEvent: CalendarEvent;
   selfEvents: CalendarEvent[];
   partnerEvents: CalendarEvent[];
   calendar = new Calendar();
@@ -167,6 +168,8 @@ export class DashboardComponent {
       ) {
         this.activeDayIsOpen = false;
         this.activeday = false;
+        this.newEvent=new Event('title',date);
+        this.handleEvent('Clicked Blanck',this.newEvent);//hacky
       } else {
         this.activeDayIsOpen = true;
         this.viewDate = date;
@@ -182,7 +185,11 @@ export class DashboardComponent {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
+    // this.handleEvent('Dropped or resized', event);
+    // console.log(event['creator'],', and ',this.user._id)
+    if(event['creator'] && event['creator']==this.user._id){
+      this._CalendarService.overwriteEvents(this.user._id,this.selfEvents);
+    }
     this.refresh.next();
   }
 
@@ -197,20 +204,25 @@ export class DashboardComponent {
     });
   }
 
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.refresh.next();
+  addEvent(){
+    this.newEvent['creator']=this.user._id;
+    this.selfEvents.push(this.newEvent);
+    this._CalendarService.overwriteEvents(this.user._id,this.selfEvents);
   }
+  // addEvent(): void {   //vanilla addEvent
+  //   this.events.push({
+  //     title: 'New event',
+  //     start: startOfDay(new Date()),
+  //     end: endOfDay(new Date()),
+  //     color: colors.red,
+  //     draggable: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     }
+  //   });
+  //   this.refresh.next();
+  // }
 
 
 
