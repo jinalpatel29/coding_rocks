@@ -57,12 +57,21 @@ module.exports = {
             }
         });
     },
+<<<<<<< HEAD
     findOneByID: function (req, res){
         User.findOne({ _id: req.params.user_id }, function(err, user){
             if (err){
                 console.log(err);
             } else {
                 console.log("got user");
+=======
+    findPartner: function (req, res){
+        User.findOne({ _id: req.body.id }, function(err, user){
+            if (err){
+                console.log(err);
+            } else {
+                console.log("got partner");
+>>>>>>> 8d67e3d70d4d7f66cd668663a2fe22dfeb362558
                 res.json(user);
             }
         });

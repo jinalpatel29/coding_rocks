@@ -25,23 +25,13 @@ export class DisplayallComponent implements OnInit {
     private _router: Router,
     private _categoryService: CategoryService,
     private _interestService: InterestService
-  ) {
-    this.name = this.service.getUser();
-    this.uservice.users.subscribe(
-      (result) => {
-        this.user = result;
-        this.service.createUser(this.user.firstName);
-        console.log(this.user);
-      }
-    );
-  }
+  ) { }
 
   onClick() {
     this._router.navigate(['/create']);
   }
 
-  logout() {
-    // this.service.createUser("");
+  logout() {  
     // this._router.navigate(['']);
     this.uservice.logout();
   }
@@ -49,6 +39,8 @@ export class DisplayallComponent implements OnInit {
   ngOnInit() {
     if ( !this.uservice.isLoggedIn()) {
       this.uservice.logout();
+    }else{
+     // this.firstName = sessionStorage.getItem('firstName');
     }
     this._categoryService.getCategories();
     this._categoryService.tasks.subscribe(
@@ -63,16 +55,8 @@ export class DisplayallComponent implements OnInit {
       }
     );
 
-    this.uservice.users.subscribe(
-      (result) =>{ this.user = result;
-        this.service.createUser(this.user.firstName);      
-      console.log(this.user)}
-    )  
-
-    // this.service.questionObserver.subscribe(
-    //   (result) => this.questions = result
-    // )
-   // this.service.getAll();
+    this.user = this.uservice.getSessionUser();      
+      console.log(this.user)
   }
 
   select(idx) {

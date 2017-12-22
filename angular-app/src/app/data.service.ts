@@ -6,19 +6,8 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   dataObserver = new BehaviorSubject([]);
   result;
-  author: string;
-  options =[];
 
   constructor(private _http: HttpClient) { }
-
-  createUser(author) {
-    console.log(author);
-    this.author = author;
-  }
-
-  getUser() {
-    return this.author;
-  }
 
   addInterests(result){
     console.log(result);

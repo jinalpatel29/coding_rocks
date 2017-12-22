@@ -1,32 +1,34 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <h3></h3>
+  <div class="row head">
+    <div class="col-md-9">
+      <h3>Let's get a little more specific ...</h3>
     </div>
     <div class="col-md-2">
-      <a id="link" (click)="goToPoll()">Go to Polls</a>
-    </div>
-    <div class="col-md-3">
-      <a id="link" (click)="goToPoll()">Go to Polls</a>
+      <a id="link" (click)="goToQuiz()">
+        <button type="button" class="btn btn-link"></button>
+        Back to Interests
+      </a>
     </div>
   </div>
-
-  <div class="container">
-    <h3>Let's get a little more specific ...</h3>
-    <form>
-      <div class="category" *ngFor="let category of categories; let idx=index">
-        <fieldset *ngIf="category_boolean[idx]">
-          <div *ngIf="category_boolean[idx]">
-            <legend>{{ category.name }}</legend>
-            <div *ngFor="let item of category.subcategories; let idx2=index">
-              <div *ngIf="item.title">
-                <label for="{{item.title}}">{{item.title}}</label>
-                <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.title}}" *ngIf="item.title">
-              </div>
+  <form>
+    <div class="category" *ngFor="let category of categories; let idx=index">
+      <fieldset *ngIf="category_boolean[idx]">
+        <div *ngIf="category_boolean[idx]">
+          <legend>{{ category.name }}</legend>
+          <div *ngFor="let item of category.subcategories; let idx2=index">
+            <div *ngIf="item.title">
+              <label for="{{item.title}}">{{item.title}}</label>
+              <input type="checkbox" class="form-check-input" [(ngModel)]="user_profile[idx].subcategories[idx2].keep" name="{{item.title}}"
+                *ngIf="item.title">
             </div>
           </div>
-        </fieldset>
+        </div>
+      </fieldset>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="button" (click)="addInterests()" class="btn btn-dark">Finish</button>
       </div>
-      <button type="button" (click)="addInterests()" class="btn btn-primary float-right">Finish</button>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
