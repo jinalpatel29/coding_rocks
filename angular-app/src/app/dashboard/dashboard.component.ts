@@ -128,6 +128,7 @@ export class DashboardComponent {
   today: any = moment();
   user: any;
   partner:any;
+  pendingRequests;
   /*********** end of loveful custom ***********/
 
   constructor(
@@ -147,6 +148,8 @@ export class DashboardComponent {
     } else {
       this.user = this._UserService.getSessionUser(); //users.subscribe(user=>{this.user=user;});
       console.log('first name: ', this.user.firstName);
+      this.pendingRequests = this.user.requests.length;
+      console.log("pending requests are :"+this.pendingRequests);
       this.initialize();
     }
   }

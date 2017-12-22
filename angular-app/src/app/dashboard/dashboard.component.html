@@ -26,7 +26,9 @@
     <!-- navbar -->
     <div class="row head">
         <div class="col-md-9">
-            <h4>Hello, {{ user.firstName }}! <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span></h4>
+            <h4>Hello, {{ user.firstName }}!
+                <span *ngIf="partner">Your partner is: {{partner.firstName}}.</span>
+            </h4>
         </div>
         <div class="col-md-2">
             <div ngbDropdown class="d-inline-block text-right">
@@ -39,8 +41,13 @@
                     <button class="dropdown-item" [routerLink]="['/invite']">Find Partner</button>
                     <button class="dropdown-item" [routerLink]="['/freqset']">Partner Interests</button>
                     <button class="dropdown-item" [routerLink]="['/item']">Add Calendar Event</button>
-                    <button class="dropdown-item" [routerLink]="['/requests']">Partner requests</button>
-                </div>
+                    <button class="dropdown-item" [routerLink]="['/requests']" *ngIf="pendingRequests != 0">Partner requests
+                        <span class="badge badge-danger">{{pendingRequests}}</span>
+                    </button>
+                    <button class="dropdown-item" *ngIf="pendingRequests == 0" disabled>Partner requests
+                        <span class="badge badge-secondary">{{pendingRequests}}</span>
+                    </button>
+                </div>               
             </div>
         </div>
         <div class="col-md-1">
@@ -132,8 +139,8 @@
               (eventClicked)="handleEvent('Clicked', $event.event)"
               (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-day-view>
-          </div>
-        <button (click)='onGenerate()'>Generate new events!</button>
+        </div>
+        <!-- <button  class="btn btn-warning" (click)='onGenerate()'>Generate new events!</button> -->
         <!-- Chart -->
         <br>
         <br>
@@ -142,6 +149,9 @@
                 [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
         </div> -->
-        <h3 *ngIf="user.point">Your love points: {{user.point}}</h3><h3 *ngIf="partner && partner.point">Your partner's points: <span>{{partner.point}}</span></h3>
+        <h3 *ngIf="user.point">Your love points: {{user.point}}</h3>
+        <h3 *ngIf="partner && partner.point">Your partner's points:
+            <span>{{partner.point}}</span>
+        </h3>
     </div>
 </div>
