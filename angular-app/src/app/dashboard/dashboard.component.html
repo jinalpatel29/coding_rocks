@@ -46,10 +46,11 @@
         <!-- Chart -->
         <br>
         <br>
-        <div class="chart">
+        <!-- <div class="chart">
             <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
                 [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
-        </div>
+        </div> -->
+        <h3 *ngIf="user.point">Your love points: {{user.point}}</h3><h3 *ngIf="partner && partner.point">Your partner's points: <span>{{partner.point}}</span></h3>
     </div>
 </div>
