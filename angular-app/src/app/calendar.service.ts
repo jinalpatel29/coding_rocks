@@ -55,14 +55,10 @@ export class CalendarService {
       (err)=>{console.log(err)}
     )
   }
-  overwriteEvents(user_id, events, callback = (res) => {} ) {
-    // also grabs user_id from local storage, hard coded from express for now;
-    // option to append or overwrite or simply update particular ones
+  overwriteEvents(user_id,events,callback=(res)=>{}){//also grabs user_id from local storage, hard coded from express for now; option to append or overwrite or simply update particular ones
     console.log('overwritingEvents from events service');
-    this._http.post('/events/' + user_id, {events: events}).subscribe(
-      (res) => {
-        callback(res);
-      },
+    this._http.post('/events/'+user_id,{events:events}).subscribe(
+      (res)=>{callback(res); this.retrieveEvents(user_id)},
       (err)=>{console.log(err)}
     )
   }
