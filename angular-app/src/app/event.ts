@@ -15,7 +15,7 @@ export class Event implements CalendarEvent {
     draggable = true; // ?: boolean;
     completed = false;
     // meta?: MetaType;
-    
+      
     
     location:string;
     // summary:string;
