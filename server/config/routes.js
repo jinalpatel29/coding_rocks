@@ -1,6 +1,7 @@
 var categories = require('../controllers/categories.js');
 var users = require('../controllers/users.js');
 var events=require('../controllers/events.js');
+var yelp=require('../controllers/yelp.js');
 var path = require('path');
 
 module.exports = function (app) {
@@ -72,9 +73,12 @@ module.exports = function (app) {
     })
     app.post('/user/:user_id',function(req,res){users.findOneByID(req,res)});
 
+    //saving / retrieving events from database, called by calendar.service.ts
     app.get('/events/:user_id',events.show);
     app.post('/events/:user_id',events.update);
     app.post('/event', events.createOne);
+    //making a yelp query from req.body, returns 1 result, called by yelp.service.ts
+    app.post('/yelp/recommendOne',yelp.searchOne);
 
     app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./angular-app/dist/index.html"))

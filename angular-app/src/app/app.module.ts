@@ -28,6 +28,7 @@ import { UserService } from './user.service';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 import { PartnerService } from './partner.service';
+import { YelpService } from './yelp.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { PartnerService } from './partner.service';
     CalendarModule.forRoot(),
     ChartsModule
   ],
-  providers: [DataService, CategoryService,CalendarService, InterestService, UserService, PartnerService],
+  providers: [DataService, CategoryService,CalendarService, InterestService, UserService, PartnerService,YelpService],
   bootstrap: [AppComponent]
 })
 

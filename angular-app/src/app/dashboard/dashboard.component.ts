@@ -62,6 +62,7 @@ import {
 import {
   DataService
 } from '../data.service';
+import { YelpService } from '../yelp.service';
 
 const colors: any = {
   red: {
@@ -137,7 +138,8 @@ export class DashboardComponent {
     config: NgbDropdownConfig,
     private _CalendarService: CalendarService,
     private _UserService: UserService,
-    private _route: Router, ) {
+    private _route: Router,
+    private _yelp: YelpService, ) {
     // config.placement = 'top-left';
     config.autoClose = false;
   }
@@ -183,11 +185,11 @@ export class DashboardComponent {
     newStart,
     newEnd
   }: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
     // this.handleEvent('Dropped or resized', event);
     // console.log(event['creator'],', and ',this.user._id)
     if(event['creator'] && event['creator']==this.user._id){
+      event.start = newStart;
+      event.end = newEnd;
       this._CalendarService.overwriteEvents(this.user._id,this.selfEvents);
     }
     this.refresh.next();
@@ -224,8 +226,6 @@ export class DashboardComponent {
   //   this.refresh.next();
   // }
 
-
-
   // lineChart
   public lineChartData: Array < any > = [{
       data: [65, 59, 80, 81, 56, 55, 40],
@@ -259,12 +259,10 @@ export class DashboardComponent {
   ];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
-
   // events
   public chartClicked(e: any): void {
     console.log(e);
   }
-
   public chartHovered(e: any): void {
     console.log(e);
   }
@@ -295,7 +293,22 @@ export class DashboardComponent {
       }
     ); //move to service?
   }
-
+  onRecommend(){
+    this._yelp.testQuery({
+      term:'food: mexican',
+      location: 'portland, or'
+    },(business)=>{console.log(business)
+      var date=new Date;
+      this.newEvent=new Event('fate',date);
+      this.newEvent['business']={
+        image_url:business.image_url,
+        name:business.name,
+        address:business.location,
+        isOpen:!business.is_closed,
+      };
+      this.handleEvent('yelp',this.newEvent);
+    })
+  }
   retrievePartnerEvents(){
     if (this.user._partner) { // get partner's events: \/  
     this._CalendarService.retrievePartnerEvents(this.user._partner);    

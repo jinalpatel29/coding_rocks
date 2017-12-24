@@ -17,7 +17,7 @@ export class CalendarService {
   calendar=new Calendar();
   preferences:any[];//get it from database; assume [{event:eventID,frequency:number of days per event}]
   constructor(private _http: HttpClient) { }
-  ngOnInit() {
+  ngOnInit() { 
     // this.calendar.retrieveEvents(1);
     // this.events= this.calendar.populate(1,moment().toDate(),28,this.preferences);//moment().format('MMMM Do YYYY')
   }
