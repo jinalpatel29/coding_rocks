@@ -23,6 +23,7 @@
     "nodemailer": "^4.4.1",
     "google-auth-library": "^0.12.0",
     "googleapis": "^23.0.0",
-    "package.json": "^2.0.1"
+    "package.json": "^2.0.1",
+    "yelp-fusion": "^2.0.2"
   }
 }

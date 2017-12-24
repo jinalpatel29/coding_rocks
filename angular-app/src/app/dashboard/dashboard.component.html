@@ -12,6 +12,24 @@
         </div>
         <button (click)="addEvent()">Create new event</button>
     </div>
+    <div class = "modal-body" *ngIf="modalData?.action == 'yelp' ">
+      <div>
+          Name: {{modalData?.event.business.name|json}} 
+          <!-- <pre>{{ modalData?.event.title }}</pre> -->
+      </div>
+      <div>
+          Location: {{modalData?.event.business.address|json}} 
+          <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
+      </div>
+      <div>
+        isOpen: {{modalData?.event.business.isOpen}}  
+        <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
+      </div>
+      <div>
+        <img src={{modalData?.event.business.image_url}}>
+      </div>
+      <button (click)="addEvent()">Create new event</button>
+    </div>
     <div class = "modal-body" *ngIf="modalData?.action == 'Clicked' ">
         <div>
             {{user.firstName}} does 
@@ -163,7 +181,8 @@
               (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-day-view>
         </div>
-        <!-- <button  class="btn btn-warning" (click)='onGenerate()'>Generate new events!</button> -->
+        <button  class="btn btn-warning" (click)='onGenerate()'>Generate new events!</button>
+        <button  class="btn btn-warning" (click)='onRecommend()'>I'm feeling lucky!</button>
         <!-- Chart -->
         <br>
         <br>
