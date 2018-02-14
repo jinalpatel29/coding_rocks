@@ -1,4 +1,4 @@
-MEAN stack Group project
+Loveful: A MEAN Stack Group Project
 =====================================
 
 A social app that recommends events from user interests and availability as well as Yelp API. Uses Angular front end, Express server and MongoDB. 
