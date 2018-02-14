@@ -1,5 +1,3 @@
-# coding_rocks
-MEAN st# coding_rocks
 MEAN stack Group project
 =====================================
 
@@ -24,5 +22,4 @@ Upon logging in for the first time, you will be prompted to choose your interest
 The Specifics
 ------------- 
 
-This app was made in a few days by 5 developers. It uses the MEAN stack, [AngularBootstrapCalendar](https://github.com/mattlewis92/angular-bootstrap-calendar), and [ExpressMailer](https://www.npmjs.com/package/express-mailer).
-ack Group project
+This app was made in a few days by 5 developers. It uses the full MEAN stack, [AngularBootstrapCalendar](https://github.com/mattlewis92/angular-bootstrap-calendar), and [ExpressMailer](https://www.npmjs.com/package/express-mailer).
