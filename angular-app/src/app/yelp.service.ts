@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { Yelp } from '../config/config';
-import { BehaviorSubject } from 'Rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
