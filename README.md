@@ -15,7 +15,7 @@ Usage
 
 Upon logging in for the first time, you will be prompted to choose your interests. After that, you will go to your main dashboard where your calendar is displayed. You can click on a date to create new events, click on an event to view details, or drag an event to change its date. You are encouraged to search for your partner or invite via email if he/she does not already have a loveful account.
 
-[Lovefool](https://tinyurl.com/lovefool-aws)
+Try it: [_Lovefool_](https://tinyurl.com/lovefool-aws)
 
 
 
