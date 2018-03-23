@@ -1,4 +1,4 @@
-Loveful: A MEAN Stack Group Project
+Lovefool: A MEAN Stack Project
 =====================================
 
 A social app that recommends events from user interests and availability as well as Yelp API. Uses Angular front end, Express server and MongoDB. 
@@ -15,7 +15,7 @@ Usage
 
 Upon logging in for the first time, you will be prompted to choose your interests. After that, you will go to your main dashboard where your calendar is displayed. You can click on a date to create new events, click on an event to view details, or drag an event to change its date. You are encouraged to search for your partner or invite via email if he/she does not already have a loveful account.
 
-[Youtube demo]()
+[Lovefool](https://tinyurl.com/lovefool-aws)
 
 
 
