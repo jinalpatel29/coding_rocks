@@ -296,7 +296,7 @@ export class DashboardComponent {
   onRecommend(){
     this._yelp.testQuery({
       term:'food: mexican',
-      location: 'portland, or'
+      location: 'San Jose, CA'
     },(business)=>{console.log(business)
       var date=new Date;
       this.newEvent=new Event('fate',date);
@@ -309,6 +309,7 @@ export class DashboardComponent {
       this.handleEvent('yelp',this.newEvent);
     })
   }
+  
   retrievePartnerEvents(){
     if (this.user._partner) { // get partner's events: \/  
     this._CalendarService.retrievePartnerEvents(this.user._partner);    
