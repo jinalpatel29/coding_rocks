@@ -14,19 +14,22 @@
     </div>
     <div class = "modal-body" *ngIf="modalData?.action == 'yelp' ">
       <div>
-          Name: {{modalData?.event.business.name|json}} 
+         <h5>{{modalData?.event.business.name}}</h5>  
           <!-- <pre>{{ modalData?.event.title }}</pre> -->
       </div>
       <div>
-          Location: {{modalData?.event.business.address|json}} 
-          <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
+          {{modalData?.event.business.address.display_address[0]}} 
+           <br>
+           {{modalData?.event.business.address.display_address[1]}} 
+          <!-- debug: might use adderss 2 as well <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
       </div>
       <div>
-        isOpen: {{modalData?.event.business.isOpen}}  
+        <span *ngIf="modalData?.event.business.isOpen" class="text-success">Open</span>
+        <span *ngIf="!modalData?.event.business.isOpen" class="text-danger">Closed</span>
         <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
       </div>
       <div>
-        <img src={{modalData?.event.business.image_url}}>
+        <img src={{modalData?.event.business.image_url}} style="width:100%">
       </div>
       <button (click)="addEvent()">Create new event</button>
     </div>
