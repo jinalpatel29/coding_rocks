@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   title = 'Registration';
   user = new User();
   success = false;
-  info = { email: '', pwd: '' };
+  info = { email: 'guest@loveful.com', pwd: '12345678' };
   loginStatus = true;
 
   constructor(
@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
   }
 
     ngOnInit() {
+
     }
 
 }
