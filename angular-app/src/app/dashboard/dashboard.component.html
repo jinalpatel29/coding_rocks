@@ -29,7 +29,7 @@
         <!-- <pre>{{ modalData?.event.start|date:"longDate" }}</pre> -->
       </div>
       <div>
-        <img src={{modalData?.event.business.image_url}} style="width:100%">
+        <img src={{modalData?.event.business.image_url}} style="max-width:100%; max-height:100%">
       </div>
       <button (click)="addEvent()">Create new event</button>
     </div>
@@ -153,7 +153,7 @@
                   Day
                 </div>
               </div>
-            </div>
+            </div>yelp
           </div>
           <br>
           <div [ngSwitch]="view">
